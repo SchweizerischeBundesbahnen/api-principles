@@ -1,9 +1,9 @@
 ---
 layout: default
-title: RESTful API Design
+title: Synchronous-API Design
 nav_order: 4
 has_children: true
-permalink: /docs/design
+permalink: /docs/synchronous-design
 ---
 
 Design Principles for synchronous APIs (Draft)

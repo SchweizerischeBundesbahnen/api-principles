@@ -2,4 +2,4 @@
 
 See GitHub Pages for the resulting output:
 
-https://SchweizerischeBundesbahnen.github.io/API-Principles/
+https://SchweizerischeBundesbahnen.github.io/api-principles/
