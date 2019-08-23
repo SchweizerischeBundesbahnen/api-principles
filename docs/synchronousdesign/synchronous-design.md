@@ -3,7 +3,7 @@ layout: default
 title: Synchronous-API Design
 nav_order: 4
 has_children: true
-permalink: /docs/synchronous-design
+permalink: /docs/synchronousdesign
 ---
 
 Design Principles for synchronous APIs (Draft)
