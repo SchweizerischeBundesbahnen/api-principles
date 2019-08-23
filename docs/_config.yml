@@ -1,0 +1,13 @@
+remote_theme: pmarsceill/just-the-docs
+
+title: API Principles
+description: The SBB API Principles [Draft]
+baseurl: "/API-Principles"
+url: "https://thomas-siegrist.github.io"
+
+permalink: pretty
+search_enabled: true
+heading_anchors: true
+aux_links:
+    "API Principles on GitHub":
+      - "//github.com/thomas-siegrist/api-principles"

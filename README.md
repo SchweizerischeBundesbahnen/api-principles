@@ -1,2 +1,5 @@
-# api-principles
-The applicable SBB API Principles
+# API Principles
+
+See GitHub Pages for the resulting output:
+
+https://SchweizerischeBundesbahnen.github.io/API-Principles/
