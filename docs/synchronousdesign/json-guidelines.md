@@ -1,7 +1,7 @@
 ---
 layout: default
 title: JSON Guidelines
-parent: API Design
+parent: Synchronous-API Design
 nav_order: 14
 ---
 

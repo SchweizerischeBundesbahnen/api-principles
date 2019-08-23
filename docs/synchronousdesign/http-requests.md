@@ -1,7 +1,7 @@
 ---
 layout: default
 title: HTTP Requests
-parent: API Design
+parent: Synchronous-API Design
 nav_order: 11
 ---
 

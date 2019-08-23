@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Performance
-parent: API Design
+parent: Synchronous-API Design
 nav_order: 18
 ---
 

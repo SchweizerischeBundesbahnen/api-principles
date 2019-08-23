@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Common Data Types
-parent: API Design
+parent: Synchronous-API Design
 nav_order: 4
 ---
 

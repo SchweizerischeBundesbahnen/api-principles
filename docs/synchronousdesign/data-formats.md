@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data Formats
-parent: API Design
+parent: Synchronous-API Design
 nav_order: 7
 ---
 
