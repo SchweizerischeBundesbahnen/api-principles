@@ -16,8 +16,12 @@ Publication
 
 ---
 
-## APIs are findable
+## APIs are findable `Must`
 Severity: `Must`
+``MUST``
+```MUST```
+`Requirement Level: MUST`
+
 
 APIs are published on a API Repository and findable through a single index. Currently there are the following Plattforms for API publication:
 - API Management
