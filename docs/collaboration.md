@@ -44,6 +44,8 @@ Teams of APIs are open to contributions of other teams by following the [InnerSo
 - `May` Complex Features
 - `May` Refactorings
 
+Teams maintaining an API should actively foster collaboration on their API and should therefore actively maintain a consumer community.
+
 #### Rational
 {: .no_toc }
 
