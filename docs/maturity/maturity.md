@@ -28,7 +28,7 @@ APIs must invest a continuous effort in increasing the maturity of an API accord
 #### Rational
 {: .no_toc }
 
-Higher maturities of interfaces lead to lower costs due to:
+Higher maturities of interfaces lead to lower costs due to ...
 - higher speed in the development of API consumers.
 - higher reuse coefficient due to better understandability, quality and functional precision.
 
