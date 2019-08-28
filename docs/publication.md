@@ -10,6 +10,8 @@ Publication
 
 For the purpose of higher ReUse, more autonomous clients and «Self Service» of capabilities, it is crucial that APIs are well understandable, documented and easily accessible to other teams and external partners.
 
+---
+
 ## Table of contents
 {: .no_toc .text-delta }
 
@@ -21,8 +23,6 @@ For the purpose of higher ReUse, more autonomous clients and «Self Service» of
 ## `Must` APIs are findable
 
 APIs must be published in the central API Repository, also known as the [SBB Developer Portal](https://developer.sbb.ch). APIs must be logically ordered and grouped by business capabilities or domains for better findability. APIs have a unique name and short description which describes the business capabilities in one or two sentences.
-
----
 
 #### API Names
 {: .no_toc }
