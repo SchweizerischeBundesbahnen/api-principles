@@ -3,7 +3,7 @@ Microservices provide functionality via APIs. APIs purely express what systems d
 With this in mind, we’ve defined "API Principles" with the following key statements:
 
 1. Every Team / Application publishes it's main capabilities over an API with a high [maturity](maturity/maturity.md)
-2. APIs can be [synchronous](api-types.md#synchronous) or [asynchronous](api-types.md#asynchronous)
+2. APIs can be [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md)
 3. All of these APIs must fulfill the principles described on this site
 
 Architekturprinzipien der SBB
@@ -72,6 +72,8 @@ Wir beziehen Daten an der Quelle und geben diese nicht weiter an andere Anwendun
 Conventions Used in These Guidelines
 ====================================
 
+### Requirement level
 The requirement level keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" used in this document (case insensitive) are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
+### API Consumer vs. Provider
 *Consumer* is used as a synonym for API Consumers (also known as clients of an API) and is referring the team which implements the client. On the other hand, we use *Provider* as a synonym for *API Provider*, referring the team maintaining the API.
