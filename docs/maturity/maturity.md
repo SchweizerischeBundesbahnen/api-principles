@@ -36,7 +36,7 @@ Higher maturities of interfaces lead to lower costs due to:
 
 ## `Must` APIs provide automated tests
 
-An API provides at least one staging environment with full functionality and *close-to-production* testdata.
+An API must provide at least one staging environment with full functionality and *close-to-production* testdata.
 
 #### Rational
 {: .no_toc }
