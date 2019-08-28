@@ -19,6 +19,7 @@ For the purpose of higher ReUse, more autonomous clients and «Self Service» of
 ---
 
 ## `Must` APIs are findable
+=======
 
 APIs must be published in the central API Repository, also known as the [SBB Developer Portal](https://developer.sbb.ch). APIs must be logically ordered and grouped by business capabilities or domains for better findability. APIs have a unique name and short description which describes the business capabilities in one or two sentences.
 
@@ -61,7 +62,8 @@ For a better understandability of the technical specifications, there should als
 
 #### Example
 {: .no_toc }
-A good example for comprehensive documentation is the b2p API: https://developer.sbb.ch/api/16/b2p
+
+A good example for comprehensive documentation is the b2p API: https://developer.sbb.ch/api/16/b2p .
 
 #### Rational
 {: .no_toc }
