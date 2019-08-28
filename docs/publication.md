@@ -22,6 +22,8 @@ For the purpose of higher ReUse, more autonomous clients and «Self Service» of
 
 APIs must be published in the central API Repository, also known as the [SBB Developer Portal](https://developer.sbb.ch). APIs must be logically ordered and grouped by business capabilities or domains for better findability. APIs have a unique name and short description which describes the business capabilities in one or two sentences.
 
+---
+
 #### API Names
 {: .no_toc }
 
