@@ -71,5 +71,5 @@ A good example for comprehensive documentation is the [b2p API](https://develope
 #### Rational
 {: .no_toc }
 - Comprehensive documentation leads to lower costs through higher reuse and better collaboration.
-- Increased understandability also improves development Speed and thus reduced cost of delay.
+- Increased understandability also improves development Speed and thus reduced [Cost of Delay](https://en.wikipedia.org/wiki/Cost_of_delay).
 - Documentation in english enables new business models due to a global understandable Repository of APIs and it also supports the shoring strategy.
