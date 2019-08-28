@@ -19,16 +19,17 @@ For the purpose of higher ReUse, more autonomous clients and «Self Service» of
 ---
 
 ## `Must` APIs are findable
-=======
 
 APIs must be published in the central API Repository, also known as the [SBB Developer Portal](https://developer.sbb.ch). APIs must be logically ordered and grouped by business capabilities or domains for better findability. APIs have a unique name and short description which describes the business capabilities in one or two sentences.
 
 #### API Names
+{: .no_toc }
 
 The name of an API must represent the business capability that it provides, focusing on consumers and a wide understandability. Organizational names must not be used for API Names. API Names should be as unique as possible.
 
 #### Rational
 {: .no_toc }
+
 - Better transparency and findability leads to a higher reuse which again leads to lower redundancy and costs.
 - Better findability and documentation leads to a higher collaboration between API consumer and provider.
 - We expect better stability and efficiency in development due to better documentation.
@@ -63,7 +64,7 @@ For a better understandability of the technical specifications, there should als
 #### Example
 {: .no_toc }
 
-A good example for comprehensive documentation is the b2p API: https://developer.sbb.ch/api/16/b2p .
+A good example for comprehensive documentation is the [b2p API](https://developer.sbb.ch/api/16/b2p).
 
 #### Rational
 {: .no_toc }
