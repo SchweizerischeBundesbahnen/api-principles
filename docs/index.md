@@ -78,8 +78,8 @@ Wir beziehen Daten an der Quelle und geben diese nicht weiter an andere Anwendun
 Conventions Used in These Guidelines
 ====================================
 
-### Requirement level
+#### Requirement level
 The requirement level keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" used in this document (case insensitive) are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
-### API Consumer vs. Provider
+#### API Consumer vs. Provider
 *Consumer* is used as a synonym for API Consumers (also known as clients of an API) and is referring the team which implements the client. On the other hand, we use *Provider* as a synonym for *API Provider*, referring the team maintaining the API.
