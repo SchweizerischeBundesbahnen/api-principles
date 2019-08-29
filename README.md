@@ -13,7 +13,7 @@ The [/docs](/docs) folder contains all the markdown files which are rendered wit
 Custom styling is overwritten in the [_sass/custom](/_sass/custom) Folder. For further information on customization, read the documentation for [customization](https://pmarsceill.github.io/just-the-docs/docs/customization/).
 
 #### Contributing
-You are always welcome to [contribute](/CONTRIBUTING.md) to our API Principles by filing a pull-request.
+You are always welcome to [contribute](/CONTRIBUTING.md) to our API Principles by filing a Pull Request (PR).
 
 #### License
 [Apache License 2.0](/LICENSE)
