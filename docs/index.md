@@ -1,3 +1,5 @@
+![API Principles](img/API-Principles-Logo.jpg)
+
 Microservices provide functionality via APIs. APIs purely express what systems do, and are therefore highly valuable business assets. Designing high-quality, long-lasting APIs has become. Our strategy emphasizes developing lots of internal and also public APIs for our external business partners.
 
 With this in mind, we’ve defined "API Principles" with the following key statements:
