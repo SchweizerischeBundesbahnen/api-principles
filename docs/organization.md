@@ -32,7 +32,7 @@ For the sake of short decision processes and clear definitions of the responsibi
 
 ---
 
-## `Must` An API defines an SLO
+## `Must` An API defines SLOs
 
 An API must have well defined SLOs ([Service Level Objectives](https://en.wikipedia.org/wiki/Service-level_objective)). An API may provide different SLAs ([Service Level Agreements](https://en.wikipedia.org/wiki/Service-level_agreement)) as part of its subscription plans. SLOs and SLAs must be part of an API documentation.
 
