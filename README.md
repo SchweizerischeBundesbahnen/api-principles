@@ -1,5 +1,21 @@
 # API Principles
 
-See GitHub Pages for the resulting output:
+This is the repository for maintaining the SBB's API Principles, as part of the company wide *Integration Architecture* initiative. The principles are subject to constant improvements and are valid for all kind of software projects, independent of the chosen procurement model: reuse, buy, customize, make and also shoring.
+
+#### See it in action
 
 https://SchweizerischeBundesbahnen.github.io/api-principles/
+
+## Repository Structure
+
+#### Documentation
+The [/docs](/docs) folder contains all the markdown files which are rendered with [jekyll](https://jekyllrb.com). The master branch is automatically being published using [GitHub Pages](https://pages.github.com). For styling, we use [Patrick Marceill](https://github.com/pmarsceill)'s awesome jekyll theme called "[Just-The-Docs](https://github.com/pmarsceill/just-the-docs)".
+
+#### Styling
+Custom styling is overwritten in the [_sass/custom](/_sass/custom) Folder. For further information on customization, read the documentation at https://pmarsceill.github.io/just-the-docs/docs/customization/.
+
+#### Contributing
+You are always welcome to [contribute](/CONTRIBUTING.md) to our API Principles by filing a pull-request.
+
+#### License
+[Apache License 2.0](/LICENSE)
