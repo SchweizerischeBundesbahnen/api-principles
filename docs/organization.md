@@ -34,9 +34,9 @@ For the sake of short decision processes and clear definitions of the responsibi
 
 ## `Must` An API defines an SLO
 
-An API must have well defined SLOs ([Service Level Objectives](https://en.wikipedia.org/wiki/Service-level_objective)). An API may provide different SLAs ([Service Level Agreements](https://en.wikipedia.org/wiki/Service-level_agreement)) as part of its subscription plans.
+An API must have well defined SLOs ([Service Level Objectives](https://en.wikipedia.org/wiki/Service-level_objective)). An API may provide different SLAs ([Service Level Agreements](https://en.wikipedia.org/wiki/Service-level_agreement)) as part of its subscription plans. SLOs and SLAs must be part of an API documentation.
 
-SLOs and SLAs must be part of an API documentation. Applications serving an API and it's operational processes must aim to match the SLAs between API provider and consumer. 
+Applications serving an API and it's operational processes must aim to match the SLAs between API provider and consumer. Breaches of SLAs or service outages (planned and unplanned) must be actively communicated through established communication channels.
 
 #### Rational
 {: .no_toc }
