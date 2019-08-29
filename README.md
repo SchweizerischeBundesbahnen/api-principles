@@ -1,4 +1,4 @@
-# API Principles
+![API Principles](img/API-Principles-Logo.jpg)
 
 This is the repository for maintaining the SBB's API Principles, as part of the company wide *Integration Architecture* initiative. The principles are subject to constant improvements and are valid for all kind of software projects, independent of the chosen procurement model: reuse, buy, customize, make and also shoring.
 
