@@ -6,5 +6,7 @@ has_children: true
 permalink: /docs/asynchronousdesign
 ---
 
-Design Principles for asynchronous APIs (Draft)
-==============================================
+Design Principles for asynchronous APIs
+=======================================
+
+`coming soon`
