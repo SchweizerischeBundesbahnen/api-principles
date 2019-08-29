@@ -2,15 +2,19 @@ Microservices provide functionality via APIs. APIs purely express what systems d
 
 With this in mind, we’ve defined "API Principles" with the following key statements:
 
-1. Every Team / Application publishes it's main capabilities over an API with a high [maturity](maturity/maturity.md)
+1. Every IT Solution publishes it's main capabilities over an API with a high [maturity](maturity/maturity.md)
 2. APIs can be [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md)
-3. All of these APIs must fulfill the principles described on this site
+3. Every API must fulfill the principles described on this site
 
-Architekturprinzipien der SBB
-=============================
+Architecture Principles
+=======================
 
-## Gestaltungsprinzipien mit Bezug zu Schnittstellen
-[Interner Link auf die Gestaltungsprinzipien](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/GEP_Gestaltungsprinzip.pdf)
+This section lists all architecture principles that have a relevant aspect when dealing with dependencies between teams and applications. Keep in mind that this is just a subset of SBB's Architecture Principles, which cover a lot more aspects.
+
+## Architecture Design Principles
+*@see also: the complete [Architecture Design Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/GEP_Gestaltungsprinzip.pdf) \[internal link\]*
+
+`--> TODO: Translate to english`
 
 ### Architektur und Teamschnitt bilden eine Einheit
 Architektur und der Schnitt der Entwicklungsteams bilden eine Einheit. Wo Anwendungen von mehr als einem Team entwickelt werden, folgt der
@@ -30,11 +34,11 @@ sich verändernden Latenzen und Ausfällen von Umsystemen.
 existieren keine Anwendungs/Service übergreifende Datenspeicher (Datenbanken) ...
 
 ## Bereitstellungsprinzip mit Bezug zu Schnittstellen
-[Interner Link auf die Bereitstellungsprinzipien](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/BEP_Bereitstellungsprinzip.pdf)
+*@see also: the complete [Software Procurement Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/BEP_Bereitstellungsprinzip.pdf) \[internal link\]*
 ... Falls ein Geschäftsbedarf mit einer bestehenden Anwendung abgedeckt werden kann, verwenden wir diese wieder (Reuse) ...
 
 ## Daten- und Integrationsprinzipien mit Bezug zu Schnittstellen
-[Interner Link auf die Daten- und Integrationsprinzipien](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/DIP%20Daten-%20und%20Integrationsprinzip.pdf)
+*@see also: the complete [Data and Integration Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/DIP%20Daten-%20und%20Integrationsprinzip.pdf)\[internal link\]*
 
 ### Wir teilen und nutzen die Daten der SBB über definierte und zweckmässige Schnittstellen
 Definiert und zweckmässig bedeutet: Schnittstellen sind abnehmerorientiert und leicht zu verwenden (z.B. dokumentiert, versioniert, Verrechnung geklärt). Wir bauen Schnittstellen robust und soweit als möglich fehlertolerant.
