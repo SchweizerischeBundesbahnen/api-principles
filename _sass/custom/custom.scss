@@ -46,9 +46,10 @@
 //$yellow-200: #f7d12e;
 //$yellow-300: #e7af06;
 
-//$red-000: #f77e7e;
-//$red-100: #f96e65;
-//$red-200: #e94c4c;
+// SBB-Red (@see: https://digital.sbb.ch/de/farben)
+$red-000: #EB0000;
+$red-125: #C60018;
+$red-150: #A20013;
 //$red-300: #dd2e2e;
 
 //$body-background-color: $white;
@@ -60,9 +61,9 @@
 //$body-text-color: $grey-dk-100;
 //$body-heading-color: $grey-dk-300;
 //$search-result-preview-color: $grey-dk-000;
-$nav-child-link-color: $red-000;
-$link-color: $red-300;
-$btn-primary-color: $red-100;
+$nav-child-link-color: $red-150;
+$link-color: $red-000;
+$btn-primary-color: $red-000;
 //$base-button-color: #f7f7f7;
 
 ////
