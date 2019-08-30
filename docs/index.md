@@ -40,7 +40,10 @@ Dependencies between applications are always built over well defined interfaces 
 
 ## Software Procurement Principles
 *@see also: the complete [Software Procurement Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/BEP_Bereitstellungsprinzip.pdf) \[internal link\]*
+
 Teams must Reuse functionality of other teams when the desired functionality is already existing. We prefer contributions to existing APIs (e.g. following [InnerSource](https://innersourcecommons.org) principles) than to rewrite already existing functionality of other teams.
+
+During the process of software procurement, the most actual and applicable [API Principles](https://schweizerischebundesbahnen.github.io/api-principles/) must be part of the decision criterias.
 
 ## Data and Integration Principles
 *@see also: the complete [Data and Integration Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/DIP%20Daten-%20und%20Integrationsprinzip.pdf)\[internal link\]*
@@ -50,7 +53,7 @@ Teams must focus on collaborating with other teams. They consume existing busine
 
 Applications and their data are very valuable assets. Every team must publish it's business capabilities and data over well defined APIs using the [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md) pattern. APIs are accessible, well documented and designed with consumer oriented focus.
 
-The owner and master of data assets must always be clearly defined.
+The owner and master of data assets must always be clearly defined and well know to both sides of a dependency.
 
 ### We reuse existing APIs from the API Repository
 Before building up a new dependency between applications and teams, we check for existing capabilities in the [API Repository](https://developer.sbb.ch).
