@@ -22,7 +22,7 @@ Security on dependencies and interfaces is of course a very important topic. It 
 
 ---
 
-## `Must` APIs are secured
+## `MUST` APIs are secured
 
 An API must always be secured by default - no matter of where it is accessible from. For increased security, APIs must be secured using [OAuth 2.0](https://oauth.net/2/) (usually following the [OIDC](https://openid.net/connect/) standard). APIs should not be secured with [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) or access tokens that never expire (like static API Keys). Traffic must only be accepted via HTTPS.
 
@@ -36,20 +36,20 @@ By a standardization of security mechanisms by using templates and common good p
 
 ---
 
-## `Must` API consumers are well-known
+## `MUST` API consumers are well-known
 
-Consumers of APIs must identify themselves. Every request must be mappable to one consumer. Identifiers can be mapped to a contact channel (like eMail or chat) for operational issues.
+Consumers of APIs must identify themselves. Every request must be mappable to one consumer. Identifiers can be mapped to a contact channel (like e-mail or chat) for operational issues.
 
 #### Rational
 {: .no_toc }
 Consumer based API Security enables:
-- New Business Models based on API usage and plans
+- New business models based on API usage and plans
 - Better transparency in enterprise architecture
 - Better operational stability through better transparency
 
 ---
 
-## `Should` APIs are protected by throttling mechanisms
+## `SHOULD` APIs are protected by throttling mechanisms
 
 API consumers should be throtteled, based on their individual request rates. Means the number of request done by one consumer should be individually tracked and throtteled on extensive use. This may be important for the stability on the API and reduces side effects between API consumers.
 

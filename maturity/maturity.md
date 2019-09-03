@@ -20,7 +20,7 @@ We have defined a maturity model in order to be able to differentiate between go
 
 ---
 
-## `Must` Continuous improvement of API Maturity
+## `MUST` Continuous improvement of API Maturity
 
 APIs must invest a continuous effort in increasing the maturity of an API according to the *API Maturity Model*. 
 ![Maturity Model](maturity-model.jpg)
@@ -34,14 +34,14 @@ Higher maturities of interfaces lead to lower costs due to ...
 
 ---
 
-## `Must` APIs provide automated tests
+## `MUST` APIs provide automated tests
 
 An API must provide at least one staging environment with full functionality and *close-to-production* testdata.
 
 #### Rational
 {: .no_toc }
 
-A productionlike testing environment increases ...
+A production-like testing environment increases ...
 - speed in implementing new features in the API.
 - changeability and maintainability rates.
 - operational stability (e.g. less unknown side-effects).

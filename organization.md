@@ -20,9 +20,9 @@ We define the most basic organizational requirements needed for an efficient col
 
 ---
 
-## `Must` An API is owned by a business product owner
+## `MUST` An API is owned by a business product owner
 
-For the sake of short decision processes and clear definitions of the responsibilities of an API, every API must be owned by a business product owner. The Business Product Owner acts "consumer driven". Means, he focuses on serving it's API consumers in a best possible way. He treats the API as an internal and sometimes also external product. He is motivated to improve the API as part of his product with the focus of delivering its capabilities to as much consumers as possible (product thinking).
+For the sake of short decision processes and clear definitions of the responsibilities of an API, every API must be owned by a business product owner. The business product owner acts "consumer driven". Means, he focuses on serving it's API consumers in a best possible way. He treats the API as an internal and sometimes also external product. He is motivated to improve the API as part of his product with the aim of delivering its capabilities to as much consumers as possible (product thinking).
 
 #### Rational
 {: .no_toc }
@@ -32,7 +32,7 @@ For the sake of short decision processes and clear definitions of the responsibi
 
 ---
 
-## `Must` An API defines SLOs
+## `MUST` An API defines SLOs
 
 An API must have well defined SLOs ([Service Level Objectives](https://en.wikipedia.org/wiki/Service-level_objective)). An API may provide different SLAs ([Service Level Agreements](https://en.wikipedia.org/wiki/Service-level_agreement)) as part of its subscription plans. SLOs and SLAs must be part of an API documentation.
 
@@ -40,13 +40,13 @@ Applications serving an API and it's operational processes must aim to match the
 
 #### Rational
 {: .no_toc }
-- API Consumers better understand the risk of a dependency through an API, which increases operational stability.
+- API consumers better understand the risk of a dependency through an API, which increases operational stability.
 
 ---
 
-## `Must` An API has a support channel
+## `MUST` An API has a support channel
 
-An API must have a responsive support channel which responds on bugs, questions & contributions within a working day. Usually we use eMail or a Chat (e.g. Teams) as channels. It is also a good practice to have a published and accessible FAQ and roadmap.
+An API must have a responsive support channel which responds on bugs, questions & contributions within a working day. Usually we use e-mail or a chat (e.g. Microsoft Teams) as channels. It is also a good practice to have a published and accessible FAQ and roadmap.
 
 #### Rational
 {: .no_toc }

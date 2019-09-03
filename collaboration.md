@@ -20,16 +20,16 @@ For the purpose of better collaboration on dependencies between teams, we sugges
 
 ---
 
-## `Must` Consumers contribute to APIs
+## `MUST` Consumers contribute to APIs
 
 Teams of APIs are open to contributions of other teams by following the [InnerSource](https://innersourcecommons.org) culture. API Consumers contribute the following types of code:
-- `Must` Documentation
-- `Must` Consumer Driven Contract Tests
-- `Must` Bug-Reports and Feature-Requests
-- `Should` Bugfixes in the API
-- `Should` Simple API Features
-- `May` Complex Features
-- `May` Refactorings
+- `MUST` Documentation
+- `MUST` Consumer Driven Contract Tests
+- `MUST` Bug-Reports and Feature-Requests
+- `SHOULD` Bugfixes in the API
+- `SHOULD` Simple API Features
+- `MAY` Complex Features
+- `MAY` Refactorings
 
 Teams maintaining an API should actively foster collaboration on their API and should therefore actively maintain a consumer community.
 
@@ -42,7 +42,7 @@ Teams maintaining an API should actively foster collaboration on their API and s
 
 ---
 
-## `Should` API Consumers provide interface tests
+## `SHOULD` API Consumers provide interface tests
 
 APIs should allow and engage consumers to provide *Consumer Driven Contract Tests*. Tests can be provided over a pact broker like [pacto](https://thoughtworks.github.io/pacto/patterns/cdc/) or over source code [contribution](collaboration.md/#must-consumers-contribute-to-apis).
 
