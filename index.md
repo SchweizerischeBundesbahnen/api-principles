@@ -28,15 +28,20 @@ This section lists all high level architectural principles that have a relevant 
 ### Team decomposition and architecture decomposition are aligned
 Development teams build the core unit in the phase of decomposition and separation of concerns into different applications ... Each application is assigned to exactly one development team ... Dependencies between applications are also dependencies between teams.
 
+### Composition of applications is done over well defined APIs
+Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
+
+### APIs belong to business capabilities
+An API itself is not a business capability, but it transports the teams core business values to other teams. Therefore, a team providing a business capability must own and provide the according API. This API must explicitly not be own and/or maintained by other teams.
+
+For engineering teams, focusing on building business capabilities, it is tempting to delegate the API capabilities to a team which is the expert of building and providing APIs. But during the last decades we have learned, that introducing an API team, which publishes the API for an other team introduces an additional organizational and technical dependency which slows down evolution, complicates failure tracing and increases cost in creation and maintenance.
+
 ### We build tolerant dependencies
 When building dependencies between teams and applications, we focus on loose coupling. We implement [tolerant readers](https://martinfowler.com/bliki/TolerantReader.html) and we strictly follow Postel's law:
 
 >Be conservative in what you do, be liberal in what you accept from others
 
 New versions of a dependency (API) must not be introduced, unless there is no other way. The evolution of an API must be compatible within one version as long as possible. Changes are breaking, when consumers need to change simultaneously. In that case a new version must be introduced and maintained. APIs should not have more than two concurrent supported versions. Dependencies are also built tolerant in terms of changing latencies or outages.
-
-### Composition of applications is done over well defined APIs
-Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
 
 ## Software Provisioning Principles
 *@see also: the complete [Software Provisioning Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/BEP_Bereitstellungsprinzip.pdf) \[internal link\]*
