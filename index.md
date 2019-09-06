@@ -20,12 +20,19 @@ With this in mind, we’ve defined "API Principles" with the following key state
 Chapters
 ========
 [Architecture](architecture.md)
+
 [Organizational Requirements](organization.md)
+
 [Maturity](maturity/maturity.md)
+
 [Synchronous-API Design](synchronousdesign/synchronousdesign.md)
+
 [Asynchronous-API Design](asynchronousdesign/asynchronousdesign.md)
+
 [API Security](security.md)
+
 [Collaboration](collaboration.md)
+
 
 Conventions Used in These Guidelines
 ====================================
