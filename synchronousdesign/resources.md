@@ -5,7 +5,7 @@ parent: Synchronous-API Design
 nav_order: 98
 ---
 
-{MUST} Avoid Actions — Think About Resources
+{SHOULD} Avoid Actions — Think About Resources
 ============================================
 
 REST is all about your resources, so consider the domain entities that take part in web service interaction, and aim to model your API around these using the standard HTTP methods as operation indicators. For instance, if an application has to lock articles explicitly so that only one user may edit them, create an article lock with {PUT} or {POST} instead of using a lock action.
@@ -28,22 +28,23 @@ In addition, it prevents services from being designed as thin wrappers around da
 
 As a rule of thumb resources should be defined to cover 90% of all its client’s use cases. A *useful* resource should contain as much information as necessary, but as little as possible. A great way to support the last 10% is to allow clients to specify their needs for more/less information by supporting filtering and [embedding](#157).
 
-{MUST} Keep URLs Verb-Free
+{SHOULD} Keep URLs Verb-Free
 ==========================
 
 The API describes resources, so the only place where actions should appear is in the HTTP methods. In URLs, use only nouns. Instead of thinking of actions (verbs), it’s often helpful to think about putting a message in a letter box: e.g., instead of having the verb *cancel* in the url, think of sending a message to cancel an order to the *cancellations* letter box on the server side.
 
-{MUST} Use Domain-Specific Resource Names
+{SHOULD} Use Domain-Specific Resource Names
 =========================================
 
 API resources represent elements of the application’s domain model. Using domain-specific nomenclature for resource names helps developers to understand the functionality and basic semantics of your resources. It also reduces the need for further documentation outside the API definition. For example, "sales-order-items" is superior to "order-items" in that it clearly indicates which business object it represents. Along these lines, "items" is too general.
 
-{MUST} Use URL-friendly Resource Identifiers: \[a-zA-Z0-9:.\_-\]\*
-==================================================================
+{MUST} Define the language
+=========================================
 
-To simplify encoding of resource IDs in URLs, their representation must only consist of ASCII strings of letters, numbers, underscore, minus, colon, and period.
+In a complex business domain, it's hard to translate everything in another languages without losing context. If you chose to define your resources in another language than English, you **must** provide a glossary with the explanations of the different resources.
 
-{MUST} Identify resources and Sub-Resources via Path Segments
+
+{SHOULD} Identify resources and Sub-Resources via Path Segments
 =============================================================
 
 Some API resources may contain or reference sub-resources. Embedded sub-resources, which are not top-level resources, are parts of a higher-level resource and cannot be used outside of its scope. Sub-resources should be referenced by their name and identifier in the path segments.
@@ -62,36 +63,6 @@ Examples:
     /customers/12ev123bv12v/addresses/DE_100100101
     /content/images/9cacb4d8
 
-{SHOULD} Only Use UUIDs If Necessary
-====================================
-
-Generating IDs can be a scaling problem in high frequency and near real time use cases. UUIDs solve this problem, as they can be generated without collisions in a distributed, non-coordinated way and without additional server round trips.
-
-However, they also come with some disadvantages:
-
--   pure technical key without meaning; not ready for naming or name scope conventions that might be helpful for pragmatic reasons, e.g. we learned to use names for product attributes, instead of UUIDs
-
--   less usable, because…​
-
--   cannot be memorized and easily communicated by humans
-
--   harder to use in debugging and logging analysis
-
--   less convenient for consumer facing usage
-
--   quite long: readable representation requires 36 characters and comes with higher memory and bandwidth consumption
-
--   not ordered along their creation history and no indication of used id volume
-
--   may be in conflict with additional backward compatibility support of legacy ids
-
-UUIDs should be avoided when not needed for large scale id generation. Instead, for instance, server side support with id generation can be preferred ({POST} on id resource, followed by idempotent {PUT} on entity resource). Usage of UUIDs is especially discouraged as primary keys of master and configuration data, like brand-ids or attribute-ids which have low id volume but widespread steering functionality.
-
-Please be aware that sequential, strictly monotonically increasing numeric identifiers may reveal critical, confidential business information, like order volume, to non-privileged clients.
-
-In any case, we should always use string rather than number type for identifiers. This gives us more flexibility to evolve the identifier naming scheme. Accordingly, if used as identifiers, UUIDs should not be qualified using a format property.
-
-Hint: Usually, random UUID is used - see UUID version 4 in {RFC-4122}\[RFC 4122\]. Though UUID version 1 also contains leading timestamps it is not reflected by its lexicographic sorting. This deficit is addressed by [ULID](https://github.com/alizain/ulid) (Universally Unique Lexicographically Sortable Identifier). You may favour ULID instead of UUID, for instance, for pagination use cases ordered along creation time.
 
 {MAY} Consider Using (Non-) Nested URLs
 =======================================
@@ -135,4 +106,4 @@ Nevertheless one API should hold all necessary resources to model complete busin
 {SHOULD} Limit number of Sub-Resource Levels
 ============================================
 
-There are main resources (with root url paths) and sub-resources (or *nested* resources with non-root urls paths). Use sub-resources if their life cycle is (loosely) coupled to the main resource, i.e. the main resource works as collection resource of the subresource entities. You should use ⇐ 3 sub-resource (nesting) levels — more levels increase API complexity and url path length. (Remember, some popular web browsers do not support URLs of more than 2000 characters.)
+There are main resources (with root url paths) and sub-resources (or *nested* resources with non-root urls paths). Use sub-resources if their life cycle is (loosely) coupled to the main resource, i.e. the main resource works as collection resource of the subresource entities. You should use <= 3 sub-resource (nesting) levels — more levels increase API complexity and url path length. (Remember, some popular web browsers do not support URLs of more than 2000 characters.)

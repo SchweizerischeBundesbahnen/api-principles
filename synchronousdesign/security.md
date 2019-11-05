@@ -5,6 +5,29 @@ parent: Synchronous-API Design
 nav_order: 20
 ---
 
+{MUST} Secure public APIs with API Management & WAF
+===================================================
+Every public API must be published in the API Management and must be protected with a WAF. For applications, which are running internal or in a private cloud, the configuration of the WAF is already made with the initial deployment of the API to the API Management. If an API is published on a public cloud, you **must** protect your API with a CloudWAF ([internal CloudWAF documentation](https://confluence.sbb.ch/pages/viewpage.action?pageId=1206812770))
+
+{SHOULD} Use "OWASP Secure Coding Practice"
+===================================================
+
+The WAF checks all known OWASP 10 security risks. To avoid false positives, all API Provider **should** use the [OWASP Secure Coding Practice Checklist](https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_Checklist)  <br/>
+**Example**: <br/>
+Do not use <> in the payloads:
+
+    {
+      "user": "<unknown>"
+    }
+
+will be blocked as an html injection. In this case you **should** use an empty or null value:
+
+    {
+      "user": ""
+    }
+
+Exceptions can be configured in the WAF and **must** be reported to the Network and Security Team.
+
 {MUST} Secure Endpoints with OAuth 2.0
 ======================================
 
@@ -25,7 +48,7 @@ The example defines OAuth2 with client credentials flow as security standard use
 
 It makes little sense specifying the flow to retrieve OAuth tokens in the `securitySchemes` section, as API endpoints should not care, how OAuth tokens were created. Unfortunately the `flow` field is mandatory and cannot be omitted. API endpoints should always set `flow: clientCredentials` and ignore this information.
 
-{MUST} Define and Assign Permissions (Scopes)
+{SHOULD} Define and Assign Permissions (Scopes)
 =============================================
 
 APIs must define permissions to protect their resources. Thus, at least one permission must be assigned to each endpoint. Permissions are defined as shown in the [previous section](#104).
@@ -48,34 +71,21 @@ After permission names are defined and the permission is declared in the securit
             - oauth2:
               - business-partner.read
 
-In very rare cases a whole API or some selected endpoints may not require specific access control. However, to make this explicit you should assign the `uid` pseudo permission in this case. It is the user id and always available as OAuth2 default scope.
-
-    paths:
-      /public-information:
-        get:
-          summary: Provides public information about ...
-                   Accessible by any user; no permissions needed.
-          security:
-            - oauth2:
-              - uid
 
 Hint: you need not explicitly define the "Authorization" header; it is a standard header so to say implicitly defined via the security section.
 
-{MUST} Follow Naming Convention for Permissions (Scopes)
+{SHOULD} Follow Naming Convention for Permissions (Scopes)
 ========================================================
 
 As long as the [functional naming](#223) is not supported for permissions, permission names in APIs must conform to the following naming pattern:
 
     <permission> ::= <standard-permission> |  -- should be sufficient for majority of use cases
                      <resource-permission> |  -- for special security access differentiation use cases
-                     <pseudo-permission>      -- used to explicitly indicate that access is not restricted
 
     <standard-permission> ::= <application-id>.<access-mode>
     <resource-permission> ::= <application-id>.<resource-name>.<access-mode>
-    <pseudo-permission>   ::= uid
 
     <application-id>      ::= [a-z][a-z0-9-]*  -- application identifier
     <resource-name>       ::= [a-z][a-z0-9-]*  -- free resource identifier
     <access-mode>         ::= read | write    -- might be extended in future
 
-This pattern is compatible with the previous definition.
