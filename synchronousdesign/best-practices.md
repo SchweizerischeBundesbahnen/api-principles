@@ -2,184 +2,229 @@
 layout: default
 title: Best Practices
 parent: Synchronous-API Design
-nav_order: 3
+nav_order: 99
 ---
 
-The best practices presented in this section are not part of the actual guidelines, but should provide guidance for common challenges we face when implementing RESTful APIs.
+Best Practices
+==============
+{: .no_toc }
 
-Optimistic Locking in RESTful APIs
-==================================
+This chapter is not subject to IT Governance. It is more a collection of extractions from literature, experiences and patterns that we document as shared knowledge. We also included some ideas from other API Principles (e.g. Zalando's and Paypal's). Nevertheless engineers **should** read this section as it contains very valuable knowledge of how to design and implement RESTful APIs.
 
-Introduction
-------------
+---
 
-Optimistic locking might be used to avoid concurrent writes on the same entity, which might cause data loss. A client always has to retrieve a copy of an entity first and specifically update this one. If another version has been created in the meantime, the update should fail. In order to make this work, the client has to provide some kind of version reference, which is checked by the service, before the update is executed. Please read the more detailed description on how to update resources via {PUT} in the [HTTP Requests Section](#put).
+## Table of contents
+{: .no_toc .text-delta }
 
-A RESTful API usually includes some kind of search endpoint, which will then return a list of result entities. There are several ways to implement optimistic locking in combination with search endpoints which, depending on the approach chosen, might lead to performing additional requests to get the current version of the entity that should be updated.
+1. TOC
+{:toc}
 
-`ETag` with `If-Match` header
------------------------------
+---
 
-An {ETag} can only be obtained by performing a {GET} request on the single entity resource before the update, i.e. when using a search endpoint an additional request is necessary.
+## General Principles
 
-Example:
+### Follow API First Principle
 
-    < GET /orders
+You should follow the API First Principle, more specifically:
 
-    > HTTP/1.1 200 OK
-    > {
-    >   "items": [
-    >     { "id": "O0000042" },
-    >     { "id": "O0000043" }
-    >   ]
-    > }
+-   You should design APIs first, before coding its implementation.
+-   You should design your APIs consistently with these guidelines.
+-   You should call for early review feedback from peers and client developers. Also consider to apply for a lightweight review by the API Team.
 
-    < GET /orders/BO0000042
+### Provide API User Manual
 
-    > HTTP/1.1 200 OK
-    > ETag: osjnfkjbnkq3jlnksjnvkjlsbf
-    > { "id": "BO0000042", ... }
+In addition to the API Specification, it is good practice to provide an API user manual to improve client developer experience, especially of engineers that are less experienced in using this API. A helpful API user manual typically describes the following API aspects:
 
-    < PUT /orders/O0000042
-    < If-Match: osjnfkjbnkq3jlnksjnvkjlsbf
-    < { "id": "O0000042", ... }
+-   Domain Knowledge and context, including API scope, purpose, and use cases
+-   Concrete examples of API usage
+-   Edge cases, error situation details, and repair hints
+-   Architecture context and major dependencies - including figures and sequence flows
 
-    > HTTP/1.1 204 No Content
+## Common Headers
 
-Or, if there was an update since the {GET} and the entity’s {ETag} has changed:
+This section describes a handful of headers which are useful in particular circumstances but not widely known.
 
-    > HTTP/1.1 412 Precondition failed
+### Use `Content-*` Headers Correctly
 
-#### Pros
+Content or entity headers are headers with a `Content-` prefix. They describe the content of the body of the message and they can be used in both, HTTP requests and responses. Commonly used content headers include but are not limited to:
 
--   RESTful solution
+-   {Content-Disposition} can indicate that the representation is supposed to be saved as a file, and the proposed file name.
 
-#### Cons
+-   {Content-Encoding} indicates compression or encryption algorithms applied to the content.
 
--   Many additional requests are necessary to build a meaningful front-end
+-   {Content-Length} indicates the length of the content (in bytes).
 
-`ETags` in result entities
---------------------------
+-   {Content-Language} indicates that the body is meant for people literate in some human language(s).
 
-The ETag for every entity is returned as an additional property of that entity. In a response containing multiple entities, every entity will then have a distinct {ETag} that can be used in subsequent {PUT} requests.
+-   {Content-Location} indicates where the body can be found otherwise ([{MAY} Use Header](#179) for more details\]).
 
-In this solution, the `etag` property should be `readonly` and never be expected in the {PUT} request payload.
+-   {Content-Range} is used in responses to range requests to indicate which part of the requested resource representation is delivered with the body.
 
-Example:
+-   {Content-Type} indicates the media type of the body content.
 
-    < GET /orders
+### Use Standardized Headers
 
-    > HTTP/1.1 200 OK
-    > {
-    >   "items": [
-    >     { "id": "O0000042", "etag": "osjnfkjbnkq3jlnksjnvkjlsbf", "foo": 42, "bar": true },
-    >     { "id": "O0000043", "etag": "kjshdfknjqlowjdsljdnfkjbkn", "foo": 24, "bar": false }
-    >   ]
-    > }
+Use [this list](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields) and mention its support in your OpenAPI definition.
 
-    < PUT /orders/O0000042
-    < If-Match: osjnfkjbnkq3jlnksjnvkjlsbf
-    < { "id": "O0000042", "foo": 43, "bar": true }
+### Consider to Support `ETag` Together With `If-Match`/`If-None-Match` Header
 
-    > HTTP/1.1 204 No Content
+When creating or updating resources it may be necessary to expose conflicts and to prevent the 'lost update' or 'initially created' problem. Following {RFC-7232}\[RFC 7232 "HTTP: Conditional Requests"\] this can be best accomplished by supporting the {ETag} header together with the {If-Match} or {If-None-Match} conditional header. The contents of an `ETag: <entity-tag>` header is either (a) a hash of the response body, (b) a hash of the last modified field of the entity, or (c) a version number or identifier of the entity version.
 
-Or, if there was an update since the {GET} and the entity’s {ETag} has changed:
+To expose conflicts between concurrent update operations via {PUT}, {POST}, or {PATCH}, the `If-Match: <entity-tag>` header can be used to force the server to check whether the version of the updated entity is conforming to the requested {entity-tag}. If no matching entity is found, the operation is supposed a to respond with status code {412} - precondition failed.
 
-    > HTTP/1.1 412 Precondition failed
+Beside other use cases, `If-None-Match: *` can be used in a similar way to expose conflicts in resource creation. If any matching entity is found, the operation is supposed a to respond with status code {412} - precondition failed.
 
-#### Pros
+The {ETag}, {If-Match}, and {If-None-Match} headers can be defined as follows in the API definition:
 
--   Perfect optimistic locking
+    components:
+      headers:
+      - ETag:
+          description: |
+            The RFC 7232 ETag header field in a response provides the entity-tag of
+            a selected resource. The entity-tag is an opaque identifier for versions
+            and representations of the same resource over time, regardless whether
+            multiple versions are valid at the same time. An entity-tag consists of
+            an opaque quoted string, possibly prefixed by a weakness indicator (see
+            [RFC 7232 Section 2.3](https://tools.ietf.org/html/rfc7232#section-2.3).
 
-#### Cons
+          type: string
+          required: false
+          example: W/"xy", "5", "5db68c06-1a68-11e9-8341-68f728c1ba70"
 
--   Information that only belongs in the HTTP header is part of the business objects
+      - If-Match:
+          description: |
+            The RFC7232 If-Match header field in a request requires the server to
+            only operate on the resource that matches at least one of the provided
+            entity-tags. This allows clients express a precondition that prevent
+            the method from being applied if there have been any changes to the
+            resource (see [RFC 7232 Section
+            3.1](https://tools.ietf.org/html/rfc7232#section-3.1).
 
-Version numbers
----------------
+          type: string
+          required: false
+          example: "5", "7da7a728-f910-11e6-942a-68f728c1ba70"
 
-The entities contain a property with a version number. When an update is performed, this version number is given back to the service as part of the payload. The service performs a check on that version number to make sure it was not incremented since the consumer got the resource and performs the update, incrementing the version number.
+      - If-None-Match:
+          description: |
+            The RFC7232 If-None-Match header field in a request requires the server
+            to only operate on the resource if it does not match any of the provided
+            entity-tags. If the provided entity-tag is `*`, it is required that the
+            resource does not exist at all (see [RFC 7232 Section
+            3.2](https://tools.ietf.org/html/rfc7232#section-3.2).
 
-Since this operation implies a modification of the resource by the service, a {POST} operation on the exact resource (e.g. `POST /orders/O0000042`) should be used instead of a {PUT}.
+          type: string
+          required: false
+          example: "7da7a728-f910-11e6-942a-68f728c1ba70", *
 
-In this solution, the `version` property is not `readonly` since it is provided at {POST} time as part of the payload.
+Please see [???](#optimistic-locking) for a detailed discussion and options.
 
-Example:
+### Consider to Support `Idempotency-Key` Header
 
-    < GET /orders
+When creating or updating resources it can be helpful or necessary to ensure a strong [???](#idempotent) behavior comprising same responses, to prevent duplicate execution in case of retries after timeout and network outages. Generally, this can be achieved by sending a client specific *unique request key* – that is not part of the resource – via {Idempotency-Key} header.
 
-    > HTTP/1.1 200 OK
-    > {
-    >   "items": [
-    >     { "id": "O0000042", "version": 1,  "foo": 42, "bar": true },
-    >     { "id": "O0000043", "version": 42, "foo": 24, "bar": false }
-    >   ]
-    > }
+The *unique request key* is stored temporarily, e.g. for 24 hours, together with the response and the request hash (optionally) of the first request in a key cache, regardless of whether it succeeded or failed. The service can now look up the *unique request key* in the key cache and serve the response from the key cache, instead of re-executing the request, to ensure [???](#idempotent) behavior. Optionally, it can check the request hash for consistency before serving the response. If the key is not in the key store, the request is executed as usual and the response is stored in the key cache.
 
-    < POST /orders/O0000042
-    < { "id": "O0000042", "version": 1, "foo": 43, "bar": true }
+This allows clients to safely retry requests after timeouts, network outages, etc. while receive the same response multiple times. **Note:** The request retry in this context requires to send the exact same request, i.e. updates of the request that would change the result are off-limits. The request hash in the key cache can protection against this misbehavior. The service is recommended to reject such a request using status code {400}.
 
-    > HTTP/1.1 204 No Content
+**Important:** To grant a reliable [???](#idempotent) execution semantic, the resource and the key cache have to be updated with hard transaction semantics – considering all potential pitfalls of failures, timeouts, and concurrent requests in a distributed systems. This makes a correct implementation exceeding the local context very hard.
 
-or if there was an update since the {GET} and the version number in the database is higher than the one given in the request body:
+The {Idempotency-Key} header should be defined as follows, but you are free to choose your expiration time:
 
-    > HTTP/1.1 409 Conflict
+    components:
+      headers:
+      - Idempotency-Key:
+          description: |
+            The idempotency key is a free identifier created by the client to
+            identify a request. It is used by the service to identify subsequent
+            retries of the same request and ensure idempotent behavior by sending
+            the same response without executing the request a second time.
 
-#### Pros
+            Clients should be careful as any subsequent requests with the same key
+            may return the same response without further check. Therefore, it is
+            recommended to use an UUID version 4 (random) or any other random
+            string with enough entropy to avoid collisions.
 
--   Perfect optimistic locking
+            Idempotency keys expire after 24 hours. Clients are responsible to stay
+            within this limits, if they require idempotent behavior.
 
-#### Cons
+          type: string
+          format: uuid
+          required: false
+          example: "7da7a728-f910-11e6-942a-68f728c1ba70"
 
--   Functionality that belongs into the HTTP header becomes part of the business object
+**Hint:** The key cache is not intended as request log, and therefore should have a limited lifetime, else it could easily exceed the data resource in size.
 
--   Using {POST} instead of PUT for an update logic (not a problem in itself, but may feel unusual for the consumer)
+**Note:** The {Idempotency-Key} header unlike other headers in this section is not standardized in an RFC. Our only reference are the usage in the [Stripe API](https://stripe.com/docs/api/idempotent_requests). However, as it fit not into our section about [???](#proprietary-headers), and we did not want to change the header name and semantic, we decided to treat it as any other common header.
 
-`Last-Modified` / `If-Unmodified-Since`
----------------------------------------
+## Compatibility
 
-In HTTP 1.0 there was no {ETag} and the mechanism used for optimistic locking was based on a date. This is still part of the HTTP protocol and can be used. Every response contains a {Last-Modified} header with a HTTP date. When requesting an update using a {PUT} request, the client has to provide this value via the header {If-Unmodified-Since}. The server rejects the request, if the last modified date of the entity is after the given date in the header.
+### Follow Versioning best practices
 
-This effectively catches any situations where a change that happened between {GET} and {PUT} would be overwritten. In the case of multiple result entities, the {Last-Modified} header will be set to the latest date of all the entities. This ensures that any change to any of the entities that happens between {GET} and {PUT} will be detectable, without locking the rest of the batch as well.
+TODO: describe the following best practices
+- URL based Versioning
+- Semantic Versioning
+- Reflect deprecation in documentation
+- Add Warnings in HTTP Headers
 
-Example:
+### Design APIs Conservatively
 
-    < GET /orders
+Designers of service provider APIs should be conservative and accurate in what they accept from clients:
 
-    > HTTP/1.1 200 OK
-    > Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
-    > {
-    >   "items": [
-    >     { "id": "O0000042", ... },
-    >     { "id": "O0000043", ... }
-    >   ]
-    > }
+-   Unknown input fields in payload or URL should not be ignored; servers should provide error feedback to clients via an HTTP 400 response code.
 
-    < PUT /block/O0000042
-    < If-Unmodified-Since: Wed, 22 Jul 2009 19:15:56 GMT
-    < { "id": "O0000042", ... }
+-   Be accurate in defining input data constraints (like formats, ranges, lengths etc.) — and check constraints and return dedicated error information in case of violations.
 
-    > HTTP/1.1 204 No Content
+-   Prefer being more specific and restrictive (if compliant to functional requirements), e.g. by defining length range of strings. It may simplify implementation while providing freedom for further evolution as compatible extensions.
 
-Or, if there was an update since the {GET} and the entities last modified is later than the given date:
+Not ignoring unknown input fields is a specific deviation from Postel’s Law (e.g. see also  
+[The Robustness Principle Reconsidered](https://cacm.acm.org/magazines/2011/8/114933-the-robustness-principle-reconsidered/fulltext)) and a strong recommendation. Servers might want to take different approach but should be aware of the following problems and be explicit in what is supported:
 
-    > HTTP/1.1 412 Precondition failed
+-   Ignoring unknown input fields is actually not an option for {PUT}, since it becomes asymmetric with subsequent {GET} response and HTTP is clear about the {PUT} *replace* semantics and default roundtrip expectations (see {RFC-7231}\#section-4.3.4\[RFC 7231 Section 4.3.4\]). Note, accepting (i.e. not ignoring) unknown input fields and returning it in subsequent {GET} responses is a different situation and compliant to {PUT} semantics.
 
-#### Pros
+-   Certain client errors cannot be recognized by servers, e.g. attribute name typing errors will be ignored without server error feedback. The server cannot differentiate between the client intentionally providing an additional field versus the client sending a mistakenly named field, when the client’s actual intent was to provide an optional input field.
 
--   Well established approach that has been working for a long time
+-   Future extensions of the input data structure might be in conflict with already ignored fields and, hence, will not be compatible, i.e. break clients that already use this field but with different type.
 
--   No interference with the business objects; the locking is done via HTTP headers only
+In specific situations, where a (known) input field is not needed anymore, it either can stay in the API definition with "not used anymore" description or can be removed from the API definition as long as the server ignores this specific parameter.
 
--   Very easy to implement
+### Always Return JSON Objects As Top-Level Data Structures To Support Extensibility
+====================================================================================
 
--   No additional request needed when updating an entity of a search endpoint result
+In a response body, you must always return a JSON object (and not e.g. an array) as a top level data structure to support future extensibility. JSON objects support compatible extension by additional attributes. This allows you to easily extend your response and e.g. add pagination later, without breaking backwards compatibility.
 
-#### Cons
+Maps (see [???](#216)), even though technically objects, are also forbidden as top level data structures, since they don’t support compatible, future extensions.
 
--   If a client communicates with two different instances and their clocks are not perfectly in sync, the locking could potentially fail
+### Treat Open API Definitions As Open For Extension By Default
+===============================================================
 
-Conclusion
-----------
+The Open API 2.0 specification is not very specific on default extensibility of objects, and redefines JSON-Schema keywords related to extensibility, like `additionalProperties`. Following our overall compatibility guidelines, Open API object definitions are considered open for extension by default as per [Section 5.18 "additionalProperties"](http://json-schema.org/latest/json-schema-validation.html#rfc.section.5.18) of JSON-Schema.
 
-We suggest to either use the *{ETag} in result entities* or *{Last-Modified} / {If-Unmodified-Since}* approach.
+When it comes to Open API 2.0, this means an `additionalProperties` declaration is not required to make an object definition extensible:
+
+-   API clients consuming data must not assume that objects are closed for extension in the absence of an `additionalProperties` declaration and must ignore fields sent by the server they cannot process. This allows API servers to evolve their data formats.
+
+-   For API servers receiving unexpected data, the situation is slightly different. Instead of ignoring fields, servers *may* reject requests whose entities contain undefined fields in order to signal to clients that those fields would not be stored on behalf of the client. API designers must document clearly how unexpected fields are handled for {PUT}, {POST}, and {PATCH} requests.
+
+API formats must not declare `additionalProperties` to be false, as this prevents objects being extended in the future.
+
+Note that this guideline concentrates on default extensibility and does not exclude the use of `additionalProperties` with a schema as a value, which might be appropriate in some circumstances, e.g. see [???](#216).
+
+### Use Open-Ended List of Values (`x-extensible-enum`) Instead of Enumerations
+===============================================================================
+
+Enumerations are per definition closed sets of values, that are assumed to be complete and not intended for extension. This closed principle of enumerations imposes compatibility issues when an enumeration must be extended. To avoid these issues, we strongly recommend to use an open-ended list of values instead of an enumeration unless:
+
+1.  the API has full control of the enumeration values, i.e. the list of values does not depend on any external tool or interface, and
+
+2.  the list of value is complete with respect to any thinkable and unthinkable future feature.
+
+To specify an open-ended list of values use the marker {x-extensible-enum} as follows:
+
+    deliver_methods:
+      type: string
+      x-extensible-enum:
+        - parcel
+        - letter
+        - email
+
+**Note:** {x-extensible-enum} is not JSON Schema conform but will be ignored by most tools.

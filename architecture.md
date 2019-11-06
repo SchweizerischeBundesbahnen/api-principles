@@ -63,3 +63,7 @@ The owner and master of data assets must always be clearly defined and well know
 
 ### `MUST` We reuse existing APIs from the API Repository
 Before building up a new dependency between applications and teams, we check for existing capabilities in the [API Repository](https://developer.sbb.ch).
+
+### `SHOULD` Monitor API Usage
+==============================
+Owners of APIs used in production should monitor API usage to get information about its using clients. This information, for instance, is useful to identify partners for API changes and lifecycle management.
