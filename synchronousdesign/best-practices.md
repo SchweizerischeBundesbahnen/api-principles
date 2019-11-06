@@ -160,11 +160,39 @@ The {Idempotency-Key} header should be defined as follows, but you are free to c
 
 ### Follow Versioning best practices
 
-TODO: describe the following best practices
-- URL based Versioning
-- Semantic Versioning
-- Reflect deprecation in documentation
-- Add Warnings in HTTP Headers
+#### URL based Versioning
+{: .no_toc }
+
+When API versioning is unavoidable, you should design your multi-version RESTful APIs carefully using URI type versioning. It is well known that versions in URIs also do have their negative consequences (like content negotiation issues). We still prefer URI Versioning because it is better supported by tools and infrastructure like API Management and Proxies use URL Mappings as an important property for routing and applying policies for the sake of performance (like e.g. different API subscription plans for different versions).
+
+We explicitly avoid Resource based versioning, because this is a complexity which an API should not reflect to its consumers. 
+
+*Good Example*
+```
+http://api.example.com/v1/myresource/...
+```
+
+*Bad Example*
+```
+http://api.example.com/myresource/v1/...
+```
+
+#### Semantic Versioning
+{: .no_toc }
+
+Versions in the Specification should follow the principles described by [SemVer](https://semver.org/). Versions in URIs are always major versions. Or in a more generic way: we avoid introducing minors or patches anywhere where it could break consumers compatibility.
+
+#### Reflect deprecation in documentation
+{: .no_toc }
+
+Every element on the API that is being deprecated should also be marked in its documentation, using the [OpenAPI](https://swagger.io/specification/) property "deprecated".
+
+#### Add Warnings in HTTP Headers
+{: .no_toc }
+
+During the deprecation timespan the responses of the deprected API SHOULD have a `Warning` header accoring to [RFC 7234](https://tools.ietf.org/html/rfc7234#section-5.5) with code 299 and text: "This API call is deprecated and will be removed. Refer release notes for details.
+
+Alternatively we also use `X-API-Deprecation` Header with the upcoming deletion date as its value.
 
 ### Design APIs Conservatively
 
@@ -188,14 +216,12 @@ Not ignoring unknown input fields is a specific deviation from Postel’s Law (e
 In specific situations, where a (known) input field is not needed anymore, it either can stay in the API definition with "not used anymore" description or can be removed from the API definition as long as the server ignores this specific parameter.
 
 ### Always Return JSON Objects As Top-Level Data Structures To Support Extensibility
-====================================================================================
 
 In a response body, you must always return a JSON object (and not e.g. an array) as a top level data structure to support future extensibility. JSON objects support compatible extension by additional attributes. This allows you to easily extend your response and e.g. add pagination later, without breaking backwards compatibility.
 
 Maps (see [???](#216)), even though technically objects, are also forbidden as top level data structures, since they don’t support compatible, future extensions.
 
 ### Treat Open API Definitions As Open For Extension By Default
-===============================================================
 
 The Open API 2.0 specification is not very specific on default extensibility of objects, and redefines JSON-Schema keywords related to extensibility, like `additionalProperties`. Following our overall compatibility guidelines, Open API object definitions are considered open for extension by default as per [Section 5.18 "additionalProperties"](http://json-schema.org/latest/json-schema-validation.html#rfc.section.5.18) of JSON-Schema.
 
@@ -210,7 +236,6 @@ API formats must not declare `additionalProperties` to be false, as this prevent
 Note that this guideline concentrates on default extensibility and does not exclude the use of `additionalProperties` with a schema as a value, which might be appropriate in some circumstances, e.g. see [???](#216).
 
 ### Use Open-Ended List of Values (`x-extensible-enum`) Instead of Enumerations
-===============================================================================
 
 Enumerations are per definition closed sets of values, that are assumed to be complete and not intended for extension. This closed principle of enumerations imposes compatibility issues when an enumeration must be extended. To avoid these issues, we strongly recommend to use an open-ended list of values instead of an enumeration unless:
 
