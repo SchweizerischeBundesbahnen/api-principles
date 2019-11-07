@@ -253,3 +253,55 @@ To specify an open-ended list of values use the marker {x-extensible-enum} as fo
         - email
 
 **Note:** {x-extensible-enum} is not JSON Schema conform but will be ignored by most tools.
+
+
+## Data Formats
+
+### Use JSON to Encode Structured Data
+
+Use JSON-encoded body payload for transferring structured data. The JSON payload must follow {RFC-7159}\[RFC 7159\] by having (if possible) a serialized object as the top-level structure, since it would allow for future extension. This also applies for collection resources where one naturally would assume an array. See [???](#161) for an example.
+
+### Use Standard Date and Time Formats
+
+#### JSON Payload
+
+Read more about date and time format in //TODO date format definieren.
+
+#### HTTP headers
+
+Http headers including the proprietary headers use the {RFC-7231}\#section-7.1.1.1\[HTTP date format defined in RFC 7231\].
+
+### Use Standards for Country, Language and Currency Codes
+
+Use the following standard formats for country, language and currency codes:
+
+-   {ISO-3166-1-a2}\[ISO 3166-1-alpha2 country codes\]
+
+    -   (It is "GB", not "UK")
+
+-   {ISO-639-1}\[ISO 639-1 language code\]
+
+    -   {BCP47}\[BCP 47\] (based on {ISO-639-1}\[ISO 639-1\]) for language variants
+
+-   {ISO-4217}\[ISO 4217 currency codes\]
+
+## Deprication
+
+### Monitor Usage of Deprecated APIs
+
+Owners of APIs used in production must monitor usage of deprecated APIs until the API can be shut down in order to align deprecation and avoid uncontrolled breaking effects.
+
+**Hint:** Use [API Management (internal link)](https://confluence.sbb.ch/display/AITG/API+Management) to keep track of the usage of your APIs
+
+### Add a Warning Header to Responses
+
+During deprecation phase, the producer should add a `Warning` header (see {RFC-7234}\#section-5.5\[RFC 7234 - Warning header\]) field. When adding the `Warning` header, the `warn-code` must be `299` and the `warn-text` should be in form of
+
+    The path/operation/parameter/... {name} is deprecated and will be removed by {date}.
+    Please see {link} for details.
+
+with a link to a documentation describing why the API is no longer supported in the current form and what clients should do about it. Adding the `Warning` header is not sufficient to gain client consent to shut down an API.
+
+### Add Monitoring for Warning Header
+
+Clients should monitor the `Warning` header in HTTP responses to see if an API will be deprecated in future.
