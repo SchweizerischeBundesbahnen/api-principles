@@ -190,9 +190,20 @@ Every element on the API that is being deprecated should also be marked in its d
 #### Add Warnings in HTTP Headers
 {: .no_toc }
 
-During the deprecation timespan the responses of the deprected API SHOULD have a `Warning` header accoring to [RFC 7234](https://tools.ietf.org/html/rfc7234#section-5.5) with code 299 and text: "This API call is deprecated and will be removed. Refer release notes for details.
+During the deprecation timespan the responses of the deprected API SHOULD have a `Warning` header accoring to [RFC 7234](https://tools.ietf.org/html/rfc7234#section-5.5) with warn code 299 and text: "This API call is deprecated and will be removed. Refer release notes for details.
 
-Alternatively we also use `X-API-Deprecation` Header with the upcoming deletion date as its value.
+*Listed below, the table of warn codes described in RFC 7234:*
+
+| Warn Code | Short Description                | Reference     |
+|-----------|----------------------------------|---------------|
+| 110       | Response is Stale                | Section 5.5.1 |
+| 111       | Revalidation Failed              | Section 5.5.2 |
+| 112       | Disconnected Operation           | Section 5.5.3 |
+| 113       | Heuristic Expiration             | Section 5.5.4 |
+| 199       | Miscellaneous Warning            | Section 5.5.5 |
+| 214       | Transformation Applied           | Section 5.5.6 |
+| 299       | Miscellaneous Persistent Warning | Section 5.5.7 |
+
 
 ### Design APIs Conservatively
 
