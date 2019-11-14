@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Asynchronous-API Design
+title: Event-Driven APIs
 nav_order: 6
 has_children: true
-permalink: /docs/asynchronousdesign
+permalink: /eventdriven
 ---
 
-Design Principles for asynchronous APIs
+Design Principles for Event-Driven APIs
 =======================================
 
 `coming soon`
