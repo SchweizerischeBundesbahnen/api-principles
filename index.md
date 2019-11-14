@@ -12,7 +12,7 @@ Applications provide functionality via APIs, no matter if they are designed as M
 With this in mind, we’ve defined "API Principles" with the following key statements:
 
 1. Every IT Solution publishes it's main capabilities over an API with a high [maturity](maturity/maturity.md)
-2. APIs can be [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md)
+2. APIs can be [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md)
 3. Every API must fulfill the principles described on this site
 
 ---
@@ -25,9 +25,9 @@ Chapters
 
 [Maturity](maturity/maturity.md)
 
-[Synchronous-API Design](synchronousdesign/synchronousdesign.md)
+[RESTful APIs](synchronousdesign/synchronousdesign.md)
 
-[Asynchronous-API Design](asynchronousdesign/asynchronousdesign.md)
+[Event-Driven APIs](asynchronousdesign/asynchronousdesign.md)
 
 [API Security](security.md)
 

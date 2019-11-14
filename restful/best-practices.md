@@ -82,7 +82,7 @@ Content or entity headers are headers with a `Content-` prefix. They describe th
 
 -   {Content-Language} indicates that the body is meant for people literate in some human language(s).
 
--   {Content-Location} indicates where the body can be found otherwise ([{MAY} Use Header](#179) for more details\]).
+-   {Content-Location} indicates where the body can be found otherwise.
 
 -   {Content-Range} is used in responses to range requests to indicate which part of the requested resource representation is delivered with the body.
 
@@ -142,17 +142,15 @@ The {ETag}, {If-Match}, and {If-None-Match} headers can be defined as follows in
           required: false
           example: "7da7a728-f910-11e6-942a-68f728c1ba70", *
 
-Please see [???](#optimistic-locking) for a detailed discussion and options.
-
 ### Consider to Support `Idempotency-Key` Header
 
-When creating or updating resources it can be helpful or necessary to ensure a strong [???](#idempotent) behavior comprising same responses, to prevent duplicate execution in case of retries after timeout and network outages. Generally, this can be achieved by sending a client specific *unique request key* – that is not part of the resource – via {Idempotency-Key} header.
+When creating or updating resources it can be helpful or necessary to ensure a strong idempotent behavior comprising same responses, to prevent duplicate execution in case of retries after timeout and network outages. Generally, this can be achieved by sending a client specific *unique request key* – that is not part of the resource – via {Idempotency-Key} header.
 
-The *unique request key* is stored temporarily, e.g. for 24 hours, together with the response and the request hash (optionally) of the first request in a key cache, regardless of whether it succeeded or failed. The service can now look up the *unique request key* in the key cache and serve the response from the key cache, instead of re-executing the request, to ensure [???](#idempotent) behavior. Optionally, it can check the request hash for consistency before serving the response. If the key is not in the key store, the request is executed as usual and the response is stored in the key cache.
+The *unique request key* is stored temporarily, e.g. for 24 hours, together with the response and the request hash (optionally) of the first request in a key cache, regardless of whether it succeeded or failed. The service can now look up the *unique request key* in the key cache and serve the response from the key cache, instead of re-executing the request, to ensure idempotent behavior. Optionally, it can check the request hash for consistency before serving the response. If the key is not in the key store, the request is executed as usual and the response is stored in the key cache.
 
 This allows clients to safely retry requests after timeouts, network outages, etc. while receive the same response multiple times. **Note:** The request retry in this context requires to send the exact same request, i.e. updates of the request that would change the result are off-limits. The request hash in the key cache can protection against this misbehavior. The service is recommended to reject such a request using status code {400}.
 
-**Important:** To grant a reliable [???](#idempotent) execution semantic, the resource and the key cache have to be updated with hard transaction semantics – considering all potential pitfalls of failures, timeouts, and concurrent requests in a distributed systems. This makes a correct implementation exceeding the local context very hard.
+**Important:** To grant a reliable idempotent execution semantic, the resource and the key cache have to be updated with hard transaction semantics – considering all potential pitfalls of failures, timeouts, and concurrent requests in a distributed systems. This makes a correct implementation exceeding the local context very hard.
 
 The {Idempotency-Key} header should be defined as follows, but you are free to choose your expiration time:
 
@@ -180,7 +178,7 @@ The {Idempotency-Key} header should be defined as follows, but you are free to c
 
 **Hint:** The key cache is not intended as request log, and therefore should have a limited lifetime, else it could easily exceed the data resource in size.
 
-**Note:** The {Idempotency-Key} header unlike other headers in this section is not standardized in an RFC. Our only reference are the usage in the [Stripe API](https://stripe.com/docs/api/idempotent_requests). However, as it fit not into our section about [???](#proprietary-headers), and we did not want to change the header name and semantic, we decided to treat it as any other common header.
+**Note:** The {Idempotency-Key} header unlike other headers in this section is not standardized in an RFC. Our only reference are the usage in the [Stripe API](https://stripe.com/docs/api/idempotent_requests). However, as it fit not into our section about proprietary-headers, and we did not want to change the header name and semantic, we decided to treat it as any other common header.
 
 ## Compatibility
 
@@ -256,7 +254,7 @@ In specific situations, where a (known) input field is not needed anymore, it ei
 
 In a response body, you must always return a JSON object (and not e.g. an array) as a top level data structure to support future extensibility. JSON objects support compatible extension by additional attributes. This allows you to easily extend your response and e.g. add pagination later, without breaking backwards compatibility.
 
-Maps (see [???](#216)), even though technically objects, are also forbidden as top level data structures, since they don’t support compatible, future extensions.
+Maps, even though technically objects, are also forbidden as top level data structures, since they don’t support compatible, future extensions.
 
 ### Treat Open API Definitions As Open For Extension By Default
 
@@ -270,7 +268,7 @@ When it comes to Open API 2.0, this means an `additionalProperties` declaration 
 
 API formats must not declare `additionalProperties` to be false, as this prevents objects being extended in the future.
 
-Note that this guideline concentrates on default extensibility and does not exclude the use of `additionalProperties` with a schema as a value, which might be appropriate in some circumstances, e.g. see [???](#216).
+Note that this guideline concentrates on default extensibility and does not exclude the use of `additionalProperties` with a schema as a value, which might be appropriate in some circumstances.
 
 ### Use Open-Ended List of Values (`x-extensible-enum`) Instead of Enumerations
 
@@ -296,7 +294,7 @@ To specify an open-ended list of values use the marker {x-extensible-enum} as fo
 
 ### Use JSON to Encode Structured Data
 
-Use JSON-encoded body payload for transferring structured data. The JSON payload must follow {RFC-7159}\[RFC 7159\] by having (if possible) a serialized object as the top-level structure, since it would allow for future extension. This also applies for collection resources where one naturally would assume an array. See [???](#161) for an example.
+Use JSON-encoded body payload for transferring structured data. The JSON payload must follow {RFC-7159}\[RFC 7159\] by having (if possible) a serialized object as the top-level structure, since it would allow for future extension. This also applies for collection resources where one naturally would assume an array.
 
 ### Use Standard Date and Time Formats
 
@@ -355,7 +353,7 @@ We do not generally recommend to implement [REST Maturity Level 3](http://martin
 
 Our major concerns regarding the promised advantages of HATEOAS (see also [RESTistential Crisis over Hypermedia APIs](https://www.infoq.com/news/2014/03/rest-at-odds-with-web-apis), [Why I Hate HATEOAS](https://jeffknupp.com/blog/2014/06/03/why-i-hate-hateoas/) and others for a detailed discussion):
 
--   We follow the [API First principle](#100) with APIs explicitly defined outside the code with standard specification language. HATEOAS does not really add value for SOA client engineers in terms of API self-descriptiveness: a client engineer finds necessary links and usage description (depending on resource state) in the API reference definition anyway.
+-   We follow the API First principle with APIs explicitly defined outside the code with standard specification language. HATEOAS does not really add value for SOA client engineers in terms of API self-descriptiveness: a client engineer finds necessary links and usage description (depending on resource state) in the API reference definition anyway.
 
 -   Generic HATEOAS clients which need no prior knowledge about APIs and explore API capabilities based on hypermedia information provided, is a theoretical concept that we haven’t seen working in practice and does not fit to our SOA set-up. The OpenAPI description format (and tooling based on OpenAPI) doesn’t provide sufficient support for HATEOAS either.
 
@@ -371,7 +369,7 @@ However, we do not forbid HATEOAS; you could use it, if you checked its limitati
 
 Links to other resource must always use full, absolute URI.
 
-**Motivation**: Exposing any form of relative URI (no matter if the relative URI uses an absolute or relative path) introduces avoidable client side complexity. It also requires clarity on the base URI, which might not be given when using features like embedding subresources. The primary advantage of non-absolute URI is reduction of the payload size, which is better achievable by following the recommendation to use [gzip compression](#156)
+**Motivation**: Exposing any form of relative URI (no matter if the relative URI uses an absolute or relative path) introduces avoidable client side complexity. It also requires clarity on the base URI, which might not be given when using features like embedding subresources. The primary advantage of non-absolute URI is reduction of the payload size, which is better achievable by following the recommendation to use gzip compression.
 
 ### Use Common Hypertext Controls
 
@@ -415,9 +413,7 @@ Hypertext controls are allowed anywhere within a JSON model. While this specific
 
 ### Use Simple Hypertext Controls for Pagination and Self-References
 
-For pagination and self-references a simplified form of the [extensible common hypertext controls](#164) should be used to reduce the specification and cognitive overhead. It consists of a simple URI value in combination with the corresponding {link-relations}\[link relations\], e.g. {next}, {prev}, {first}, {last}, or {self}.
-
-See [???](#simple-hypertext-control-fields) and [???](#161) for examples and more information.
+For pagination and self-references a simplified form of the extensible common hypertext controls should be used to reduce the specification and cognitive overhead. It consists of a simple URI value in combination with the corresponding {link-relations}\[link relations\], e.g. {next}, {prev}, {first}, {last}, or {self}.
 
 ### Do not Use Link Headers with JSON Entities
 
@@ -439,7 +435,7 @@ Rationale: No established industry standard exists, but many popular Internet co
 
 A "map" here is a mapping from string keys to some other type. In JSON this is represented as an object, the key-value pairs being represented by property names and property values. In OpenAPI schema (as well as in JSON schema) they should be represented using additionalProperties with a schema defining the value type. Such an object should normally have no other defined properties.
 
-The map keys don’t count as property names in the sense of [rule 118](#118), and can follow whatever format is natural for their domain. Please document this in the description of the map object’s schema.
+The map keys don’t count as property names, and can follow whatever format is natural for their domain. Please document this in the description of the map object’s schema.
 
 Here is an example for such a map definition (the `translations` property):
 
@@ -485,7 +481,7 @@ Schema based JSON properties that are by design booleans must not be presented a
 
 ###  Use same semantics for `null` and absent properties
 
-Open API 3.x allows to mark properties as `required` and as `nullable` to specify whether properties may be absent (`{}`) or `null` (`{"example":null}`). If a property is defined to be not `required` and `nullable` (see [2nd row in Table below](#required-nullable-row-2)), this rule demands that both cases must be handled in the exact same manner by specification.
+Open API 3.x allows to mark properties as `required` and as `nullable` to specify whether properties may be absent (`{}`) or `null` (`{"example":null}`). If a property is defined to be not `required` and `nullable` (see 2nd row in Table below), this rule demands that both cases must be handled in the exact same manner by specification.
 
 The following table shows all combinations and whether the examples are valid:
 
@@ -555,9 +551,7 @@ There are two well known page iteration techniques:
 
 -   [Cursor/Limit-based](https://dev.twitter.com/overview/api/cursoring) — aka key-based — pagination: a unique key element identifies the first page entry (see also [Facebook’s guide](https://developers.facebook.com/docs/graph-api/using-graph-api/v2.4#paging))
 
-The technical conception of pagination should also consider user experience related issues. As mentioned in this [article](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/), jumping to a specific page is far less used than navigation via {next}/{prev} page links (See [{SHOULD} Use Pagination Links Where Applicable](#161)). This favours cursor-based over offset-based pagination.
-
-**Note:** To provide a consistent look and feel of pagination patterns, you must stick to the common query parameter names defined in [???](#137).
+The technical conception of pagination should also consider user experience related issues. As mentioned in this [article](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/), jumping to a specific page is far less used than navigation via {next}/{prev} page links. This favours cursor-based over offset-based pagination.
 
 ### Prefer Cursor-Based Pagination, Avoid Offset-Based Pagination
 
@@ -624,7 +618,7 @@ The {cursor} used for pagination is an opaque pointer to a page, that must never
         - position
         - direction
 
-The page information for cursor-based pagination should consist of a {cursor} set, that besides {next} may provide support for {prev}, {first}, {last}, and {self} as follows (see also [???](#link-relation-fields)):
+The page information for cursor-based pagination should consist of a {cursor} set, that besides {next} may provide support for {prev}, {first}, {last}, and {self} as follows:
 
     {
       "cursors": {
@@ -637,8 +631,6 @@ The page information for cursor-based pagination should consist of a {cursor} se
       "items": [... ]
     }
 
-**Note:** The support of the {cursor} set may be dropped in favor of [{SHOULD} Use Pagination Links Where Applicable](#161).
-
 Further reading:
 
 -   [Twitter](https://dev.twitter.com/rest/public/timelines)
@@ -649,16 +641,16 @@ Further reading:
 
 ### Use Pagination Links Where Applicable
 
-To simplify client design, APIs should support [simplified hypertext controls](#165) for pagination over collections whenever applicable. Beside {next} this may comprise the support for {prev}, {first}, {last}, and {self} as {link-relations}\[link relations\] (see also [???](#link-relation-fields) for details).
+To simplify client design, APIs should support simplified hypertext controls for pagination over collections whenever applicable. Beside {next} this may comprise the support for {prev}, {first}, {last}, and {self} as {link-relations}\[link relations\].
 
 The page content is transported via {items}, while the {query} object may contain the query filters applied to the collection resource as follows:
 
     {
-      "self": "http://my-service.zalandoapis.com/resources?cursor=<self-position>",
-      "first": "http://my-service.zalandoapis.com/resources?cursor=<first-position>",
-      "prev": "http://my-service.zalandoapis.com/resources?cursor=<previous-position>",
-      "next": "http://my-service.zalandoapis.com/resources?cursor=<next-position>",
-      "last": "http://my-service.zalandoapis.com/resources?cursor=<last-position>",
+      "self": "http://..../resources?cursor=<self-position>",
+      "first": "http://my-api.api.sbb.ch/resources?cursor=<first-position>",
+      "prev": "http://my-api.api.sbb.ch/resources?cursor=<previous-position>",
+      "next": "http://my-api.api.sbb.ch/resources?cursor=<next-position>",
+      "last": "http://my-api.api.sbb.ch/resources?cursor=<last-position>",
       "query": {
         "query-param-<1>": ...,
         "query-param-<n>": ...
@@ -711,9 +703,9 @@ Exceptions can be configured in the WAF and **must** be reported to the Network 
 
 ### Define and Assign Permissions (Scopes)
 
-APIs must define permissions to protect their resources. Thus, at least one permission must be assigned to each endpoint. Permissions are defined as shown in the [previous section](#104).
+APIs must define permissions to protect their resources. Thus, at least one permission must be assigned to each endpoint. Permissions are defined as shown in the previous section.
 
-The naming schema for permissions corresponds to the naming schema for [hostnames](#224) and [event type names](#213). Please refer to [{MUST} Follow Naming Convention for Permissions (Scopes)](#225) for designing permission names.
+The naming schema for permissions corresponds to the naming schema for hostnames and event type names.
 
 APIs should stick to component specific permissions without resource extension to avoid governance complexity of too many fine grained permissions. For the majority of use cases, restricting access to specific API endpoints using read and write is sufficient for controlling access for client types like merchant or retailer business partners, customers or operational staff. However, in some situations, where the API serves different types of resources for different owners, resource specific scopes may make sense.
 
@@ -736,7 +728,7 @@ Hint: you need not explicitly define the "Authorization" header; it is a standar
 
 ### Follow Naming Convention for Permissions (Scopes)
 
-As long as the [functional naming](#223) is not supported for permissions, permission names in APIs must conform to the following naming pattern:
+As long as the functional naming is not supported for permissions, permission names in APIs must conform to the following naming pattern:
 
     <permission> ::= <standard-permission> |  -- should be sufficient for majority of use cases
                      <resource-permission> |  -- for special security access differentiation use cases
@@ -768,7 +760,7 @@ In addition, it prevents services from being designed as thin wrappers around da
 
 ### Define *useful* resources
 
-As a rule of thumb resources should be defined to cover 90% of all its client’s use cases. A *useful* resource should contain as much information as necessary, but as little as possible. A great way to support the last 10% is to allow clients to specify their needs for more/less information by supporting filtering and [embedding](#157).
+As a rule of thumb resources should be defined to cover 90% of all its client’s use cases. A *useful* resource should contain as much information as necessary, but as little as possible. A great way to support the last 10% is to allow clients to specify their needs for more/less information by supporting filtering and embedding.
 
 ### Keep URLs Verb-Free
 
@@ -858,19 +850,17 @@ Method implementations must fulfill the following basic properties according to 
 
 <table style="width:100%;"><colgroup><col style="width: 15%" /><col style="width: 15%" /><col style="width: 35%" /><col style="width: 35%" /></colgroup><thead><tr class="header"><th>Method</th><th>Safe</th><th>Idempotent</th><th>Cacheable</th></tr></thead><tbody><tr class="odd"><td><p>{GET}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td></tr><tr class="even"><td><p>{HEAD}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td></tr><tr class="odd"><td><p>{POST}</p></td><td><p>{NO}</p></td><td><p>{AT} No, but <a href="#229">{SHOULD} Consider To Design and Idempotent</a></p></td><td><p>{AT} May, but only if specific {POST} endpoint is <a href="#safe">safe</a>. <strong>Hint:</strong> not supported by most caches.</p></td></tr><tr class="even"><td><p>{PUT}</p></td><td><p>{NO}</p></td><td><p>{YES}</p></td><td><p>{NO}</p></td></tr><tr class="odd"><td><p>{PATCH}</p></td><td><p>{NO}</p></td><td><p>{AT} No, but <a href="#229">{SHOULD} Consider To Design and Idempotent</a></p></td><td><p>{NO}</p></td></tr><tr class="even"><td><p>{DELETE}</p></td><td><p>{NO}</p></td><td><p>{YES}</p></td><td><p>{NO}</p></td></tr><tr class="odd"><td><p>{OPTIONS}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td><td><p>{NO}</p></td></tr><tr class="even"><td><p>{TRACE}</p></td><td><p>{YES}</p></td><td><p>{YES}</p></td><td><p>{NO}</p></td></tr></tbody></table>
 
-**Note:** [???](#227).
-
 ### Consider To Design `POST` and `PATCH` Idempotent
 
-In many cases it is helpful or even necessary to design {POST} and {PATCH} [idempotent](#idempotent) for clients to expose conflicts and prevent resource duplicate (a.k.a. zombie resources) or lost updates, e.g. if same resources may be created or changed in parallel or multiple times. To design an [idempotent](#idempotent) API endpoint owners should consider to apply one of the following three patterns.
+In many cases it is helpful or even necessary to design {POST} and {PATCH} idempotent for clients to expose conflicts and prevent resource duplicate (a.k.a. zombie resources) or lost updates, e.g. if same resources may be created or changed in parallel or multiple times. To design an idempotent API endpoint owners should consider to apply one of the following three patterns.
 
--   A resource specific **conditional key** provided via [`If-Match` header](#182) in the request. The key is in general a meta information of the resource, e.g. a *hash* or *version number*, often stored with it. It allows to detect concurrent creations and updates to ensure [idempotent](#idempotent) behavior (see [???](#182)).
+-   A resource specific **conditional key** provided via `If-Match` header in the request. The key is in general a meta information of the resource, e.g. a *hash* or *version number*, often stored with it. It allows to detect concurrent creations and updates to ensure idempotent behavior.
 
--   A resource specific **secondary key** provided as resource property in the request body. The *secondary key* is stored permanently in the resource. It allows to ensure [idempotent](#idempotent) behavior by looking up the unique secondary key in case of multiple independent resource creations from different clients (see [{Should} Use Secondary Key for Idempotent Design](#231)).
+-   A resource specific **secondary key** provided as resource property in the request body. The *secondary key* is stored permanently in the resource. It allows to ensure idempotent behavior by looking up the unique secondary key in case of multiple independent resource creations from different clients (use Secondary Key for Idempotent Design).
 
--   A client specific **idempotency key** provided via {Idempotency-Key} header in the request. The key is not part of the resource but stored temporarily pointing to the original response to ensure [idempotent](#idempotent) behavior when retrying a request (see [???](#230)).
+-   A client specific **idempotency key** provided via {Idempotency-Key} header in the request. The key is not part of the resource but stored temporarily pointing to the original response to ensure idempotent behavior when retrying a request.
 
-**Note:** While **conditional key** and **secondary key** are focused on handling concurrent requests, the **idempotency key** is focused on providing the exact same responses, which is even a *stronger* requirement than the [idempotency defined above](#idempotent). It can be combined with the two other patterns.
+**Note:** While **conditional key** and **secondary key** are focused on handling concurrent requests, the **idempotency key** is focused on providing the exact same responses, which is even a *stronger* requirement than the idempotency defined above. It can be combined with the two other patterns.
 
 To decide, which pattern is suitable for your use case, please consult the following table showing the major properties of each pattern:
 
@@ -878,11 +868,11 @@ To decide, which pattern is suitable for your use case, please consult the follo
 
 **Note:** The patterns applicable to {PATCH} can be applied in the same way to {PUT} and {DELETE} providing the same properties.
 
-If you mainly aim to support safe retries, we suggest to apply [conditional key](#182) and [secondary key](#231) pattern before the [Idempotency Key](#230) pattern.
+If you mainly aim to support safe retries, we suggest to apply conditional key secondary key pattern before the Idempotency Key pattern.
 
 ### Use Secondary Key for Idempotent `POST` Design
 
-The most important pattern to design {POST} [idempotent](#idempotent) for creation is to introduce a resource specific **secondary key** provided in the request body, to eliminate the problem of duplicate (a.k.a zombie) resources.
+The most important pattern to design {POST} idempotent for creation is to introduce a resource specific **secondary key** provided in the request body, to eliminate the problem of duplicate (a.k.a zombie) resources.
 
 The secondary key is stored permanently in the resource as *alternate key* or *combined key* (if consisting of multiple properties) guarded by a uniqueness constraint enforced server-side, that is visible when reading the resource. The best and often naturally existing candidate is a *unique foreign key*, that points to another resource having *one-on-one* relationship with the newly created resource, e.g. a parent process identifier.
 
@@ -914,7 +904,7 @@ Implicit filtering could be done on:
 
 In such cases, the implicit filtering must be in the API specification (in its description).
 
-Consider [caching considerations](#227) when implicitely filtering.
+Consider caching considerations when implicitely filtering.
 
 Example:
 
