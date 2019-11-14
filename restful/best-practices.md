@@ -262,7 +262,7 @@ The Open API 2.0 specification is not very specific on default extensibility of 
 
 When it comes to Open API 2.0, this means an `additionalProperties` declaration is not required to make an object definition extensible:
 
--   API clients consuming data must not assume that objects are closed for extension in the absence of an `additionalProperties` declaration and must ignore fields sent by the server they cannot process. This allows API servers to evolve their data formats.
+-   API clients consuming data must not assume that objects are closed for extension in the absence of an `additionalProperties` declaration and must ignore fields sent by the server they cannot process. This allows API servers to evolve their [data formats](#data-formats).
 
 -   For API servers receiving unexpected data, the situation is slightly different. Instead of ignoring fields, servers *may* reject requests whose entities contain undefined fields in order to signal to clients that those fields would not be stored on behalf of the client. API designers must document clearly how unexpected fields are handled for {PUT}, {POST}, and {PATCH} requests.
 
@@ -299,10 +299,12 @@ Use JSON-encoded body payload for transferring structured data. The JSON payload
 ### Use Standard Date and Time Formats
 
 #### JSON Payload
+{: .no_toc }
 
 Read more about date and time format in //TODO date format definieren.
 
 #### HTTP headers
+{: .no_toc }
 
 Http headers including the proprietary headers use the {RFC-7231}\#section-7.1.1.1\[HTTP date format defined in RFC 7231\].
 
