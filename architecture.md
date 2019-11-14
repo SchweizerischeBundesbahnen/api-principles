@@ -66,7 +66,7 @@ During the process of software provisioning, the most actual and applicable [API
 ### `MUST` Teams share business capabilities and data over APIs
 Teams must focus on collaborating with other teams. They consume existing business capabilities and data over APIs.
 
-Applications and their data are very valuable assets. Every team must publish it's business capabilities and data over well defined APIs using the [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md) pattern. APIs are accessible, well documented and designed with consumer oriented focus.
+Applications and their data are very valuable assets. Every team must publish it's business capabilities and data over well defined APIs using the [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md) architectural style. APIs are accessible, well documented and designed with consumer oriented focus.
 
 The owner and master of data assets must always be clearly defined and well know to both sides of a dependency.
 

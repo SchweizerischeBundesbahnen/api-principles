@@ -5,8 +5,8 @@ parent: RESTful APIs
 nav_order: 1
 ---
 
-Guidelines
-==========
+Principles for RESTful APIs
+===========================
 {: .no_toc }
 
 This chapter describes a set of guidelines that **must** be applied when writing and publishing RESTful APIs.
@@ -23,7 +23,7 @@ This chapter describes a set of guidelines that **must** be applied when writing
 
 ### Consider reading best practices
 
-We do recommend to read the best [practices section](https://schweizerischebundesbahnen.github.io/api-principles/synchronousdesign/best-practices/) before designing and implementing a RESTful API. It is quite a long lecture, but for a deep understanding of REST and the implications of some design decisions, we believe that you will profit a lot from this common knowledge.
+We do recommend to read the best [practices section](/restful/best-practices/) before designing and implementing a RESTful API. It is quite a long lecture, but for a deep understanding of REST and the implications of some design decisions, we believe that you will profit a lot from this common knowledge.
 
 ## Compatibility
 
@@ -34,7 +34,7 @@ We do recommend to read the best [practices section](https://schweizerischebunde
 
 ### `MUST` Clients must be Tolerant Readers
 
-Clients of an API **must** follow the rules described in the chapter about [tolerant dependencies](https://schweizerischebundesbahnen.github.io/api-principles/architecture/#must-we-build-tolerant-dependencies).
+Clients of an API **must** follow the rules described in the chapter about [tolerant dependencies](/architecture/#must-we-build-tolerant-dependencies).
 
 ## Deprecation
 
@@ -80,7 +80,7 @@ We use the [OpenAPI specification](http://swagger.io/specification/) as standard
 
 The API specification files should be subject to version control using a source code management system - best together with the implementing sources.
 
-You **must** publish the component API specification with the deployment of the implementing service and make it discoverable, following our [publication](https://schweizerischebundesbahnen.github.io/api-principles/publication) principles. As a starting point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
+You **must** publish the component API specification with the deployment of the implementing service and make it discoverable, following our [publication](/api-principles/publication) principles. As a starting point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
 
 **Hint:** A good way to explore **OpenAPI 3.0/2.0** is to navigate through the [OpenAPI specification mind map](https://openapi-map.apihandyman.io/).
 
