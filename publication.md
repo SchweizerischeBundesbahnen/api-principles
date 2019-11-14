@@ -63,6 +63,11 @@ An API must be documented in english by focusing on API consumers. For a better 
 
 For a better understandability of the technical specifications, there should also be meaningful examples and the possibility to *Try-It-Out* in a sandbox environment. Cookbooks, blueprints or even public client libraries and code templates help developers consume APIs more efficiently.
 
+#### Define the language
+{: .no_toc }
+
+In a complex business domain, it's hard to translate everything in another languages without losing context. If you chose to define your resources in another language than English, you **must** provide a glossary with the explanations of the different resources.
+
 #### Example
 {: .no_toc }
 

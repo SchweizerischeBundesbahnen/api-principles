@@ -12,7 +12,7 @@ Applications provide functionality via APIs, no matter if they are designed as M
 With this in mind, we’ve defined "API Principles" with the following key statements:
 
 1. Every IT Solution publishes it's main capabilities over an API with a high [maturity](maturity/maturity.md)
-2. APIs can be [synchronous](synchronousdesign/synchronousdesign.md) or [asynchronous](asynchronousdesign/asynchronousdesign.md)
+2. APIs can be [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md)
 3. Every API must fulfill the principles described on this site
 
 ---
@@ -25,9 +25,9 @@ Chapters
 
 [Maturity](maturity/maturity.md)
 
-[Synchronous-API Design](synchronousdesign/synchronousdesign.md)
+[RESTful APIs](synchronousdesign/synchronousdesign.md)
 
-[Asynchronous-API Design](asynchronousdesign/asynchronousdesign.md)
+[Event-Driven APIs](asynchronousdesign/asynchronousdesign.md)
 
 [API Security](security.md)
 
@@ -38,7 +38,11 @@ Conventions Used in These Guidelines
 ====================================
 
 #### Requirement level
-The requirement level keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" used in this document (case insensitive) are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+The requirement level keywords `MUST` indicates that the principle or guideline is subject to SBB IT Governance and MUST be followed by all APIs listed in the API Portfolio ([internal Link](https://confluence.sbb.ch/display/AITG/API+Portfolio)). Principles marked as `SHOULD` OR `MAY` can be interpreted as best practices.
 
 #### API Consumer vs. Provider
 *Consumer* is used as a synonym for API Consumers (also known as clients of an API) and is referring the team which implements the client. On the other hand, we use *Provider* as a synonym for *API Provider*, referring the team maintaining the API.
+
+Thank you
+=========
+- To Zalando for the publication of their awesome set of [RESTful API Guidelines](https://opensource.zalando.com/restful-api-guidelines/) (we've learned a lot while reading and adopting them to our needs).
