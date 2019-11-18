@@ -22,6 +22,10 @@ This section lists all high level architectural principles that have a relevant 
 
 ---
 
+## Consider reading best practices
+
+We do recommend to read the best practices for [RESTful](/api-principles/restful/best-practices/) and [Event-Driven](/api-principles/eventdriven/best-practices/) APIs before designing and implementing a new interface. It is quite a long lecture, but for a deep understanding of the implications of some design decisions, we believe that you will profit a lot from this common knowledge.
+
 ## Architecture Design Principles
 *@see also: the complete [Architecture Design Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/GEP_Gestaltungsprinzip.pdf) \[internal link\]*
 
