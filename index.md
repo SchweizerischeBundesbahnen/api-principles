@@ -5,7 +5,7 @@ nav_order: 0
 permalink: /
 ---
 
-![API Principles](images/API-Principles-Logo.jpg)
+![SBB's API Principles](images/API-Principles-Logo.jpg)
 
 Applications provide functionality via APIs, no matter if they are designed as Microservices or Monoliths. Their APIs purely express what systems do, and are therefore highly valuable business assets. Designing high quality, long lasting APIs has therefore become a business critical duty, which must be part of the development of every digitalized business capability or product. Our strategy emphasizes developing lots of internal APIs and also public APIs for our external business partners.
 
