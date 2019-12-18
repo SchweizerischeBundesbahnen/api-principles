@@ -15,5 +15,8 @@ Custom styling is overwritten in the [_sass/custom](/_sass/custom) Folder. For f
 #### Contributing
 You are always welcome to [contribute](/CONTRIBUTING.md) to our API Principles by filing a Pull Request (PR).
 
+#### Thank you
+- To Zalando for the publication of their awesome set of RESTful API Guidelines, which is published under the [CC-BY](https://github.com/zalando/restful-api-guidelines/blob/master/LICENSE) (Creative commons Attribution 4.0) license. We’ve learned a lot while reading and adopting them to our needs.
+
 #### License
 [Apache License 2.0](/LICENSE)
