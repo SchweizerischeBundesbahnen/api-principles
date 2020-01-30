@@ -1,7 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
 
 title: API Principles
-description: The SBB API Principles [Draft]
+description: The SBB API Principles
 baseurl: "/api-principles"
 url: "https://schweizerischebundesbahnen.github.io"
 
