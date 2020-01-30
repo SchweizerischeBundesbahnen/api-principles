@@ -92,6 +92,11 @@ Content or entity headers are headers with a `Content-` prefix. They describe th
 
 Use [this list](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields) and mention its support in your OpenAPI definition.
 
+#### Use Standardized request identifiers
+To identify a specific request throug the entire chain, support the X-Correlation-Id and X-Process-Id header. 
+The X-Correlation-Id header identifes one single request from the client to the prvider. Every component like the API Management gateway or the WAF has to log this header. This information is very important in root cause analysis over several systems and helps detect how total latencies are stacked up.
+The X-Process-Id identifies a group of multiple synchronous and asynchronous requests (with different X-Correlation-Id headers) which all belong to one business transaction. 
+
 ### Consider to Support `ETag` Together With `If-Match`/`If-None-Match` Header
 
 When creating or updating resources it may be necessary to expose conflicts and to prevent the 'lost update' or 'initially created' problem. Following [RFC-7232 HTTP: Conditional Requests](https://tools.ietf.org/html/rfc7232) this can be best accomplished by supporting the {ETag} header together with the {If-Match} or {If-None-Match} conditional header. The contents of an `ETag: <entity-tag>` header is either (a) a hash of the response body, (b) a hash of the last modified field of the entity, or (c) a version number or identifier of the entity version.
