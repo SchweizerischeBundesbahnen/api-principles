@@ -34,6 +34,11 @@ Chapters
 [Collaboration](collaboration.md)
 
 
+API Principles in a nutshell
+============================
+![SBB's API Principles in a Nutshell](images/API-Principles-Blueprint.jpg)
+
+
 Conventions Used in These Guidelines
 ====================================
 
