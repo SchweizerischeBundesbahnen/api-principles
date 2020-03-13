@@ -108,7 +108,6 @@ principle of enumerations imposes compatibility issues when an enumeration must 
 recommend to use an open-ended list of values instead of an enumeration unless:
 
 1.  the API has full control of the enumeration values, i.e. the list of values does not depend on any external tool or interface, and
-
 2.  the list of value is complete with respect to any thinkable and unthinkable future feature.
 
 To specify an open-ended list of values use the marker {x-extensible-enum} as follows:
@@ -143,13 +142,9 @@ Read more about date and time format in //TODO date format definieren.
 Use the following standard formats for country, language and currency codes:
 
 -   {ISO-3166-1-a2}\[ISO 3166-1-alpha2 country codes\]
-
     -   (It is "GB", not "UK")
-
 -   {ISO-639-1}\[ISO 639-1 language code\]
-
     -   {BCP47}\[BCP 47\] (based on {ISO-639-1}\[ISO 639-1\]) for language variants
-
 -   {ISO-4217}\[ISO 4217 currency codes\]
 
 ## Deprication
