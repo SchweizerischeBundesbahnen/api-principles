@@ -66,9 +66,20 @@ describes the following API aspects:
 
 ## Compatibility
 
-### Follow Versioning best practices
+### Use Schema Management Registry
 
-#### Reflect deprecation in documentation
+If you are sharing data with clients outside the scope of your system, you will want to make sure that the schemas involved are 
+actively managed. Doing so early in the pipeline will prevent your downstream clients from deserialization and processing issues 
+at a later time (worstcase in production).
+
+Schema Management involves publication, distribution and lifecycle control of message schemas published by asynchronous interfaces.
+Use a centralized schema management registry (e.g. Confluent Schema Registry or Red Hat Service Registry) for
+
+- creating, updating and deleting schemas
+- sharing schemas, making them available to downstream clients
+- implementing schema evolution rules to enforce compatible changes of the schema
+
+### Reflect deprecation in documentation
 {: .no_toc }
 
 Every element on the API that is being deprecated should also be marked in its documentation, using 
