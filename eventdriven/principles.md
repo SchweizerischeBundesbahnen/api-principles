@@ -34,9 +34,12 @@ Clients of an API **must** follow the rules described in the chapter about [tole
 
 ## Security
 
-### `MUST` Secure Endpoints with Certificate or Username/Password
-Every API endpoint (topic/queue) needs to be secured by a certificate or username/password. 
-A certificate or username/password is valid for exactly one endpoint and stage and differs between read and write accesses.
+### `MUST` Secure Endpoints with Certificate or OAuth 2.0
+Every API endpoint (topic/queue) needs to be secured by a certificate or OAuth 2.0. A certificate or OAuth 
+client secret is valid for exactly one endpoint and stage and differs between read and write accesses.
+
+In case of certificates, Client Certificate Authentication must be used. Consider also to use two-way SSL 
+for the machine-to-machine communication. 
 
 
 ### `MUST` Distinguish between Infrastructure and Real Users
