@@ -79,6 +79,11 @@ Use a centralized schema management registry (e.g. Confluent Schema Registry or 
 - sharing schemas, making them available to downstream clients
 - implementing schema evolution rules to enforce compatible changes of the schema
 
+### Provide Version Information
+{: .no_toc }
+In addition to the major version given by topic/queue name, the full version of the API should be written into the message header. 
+Use the header field `x-api-version` and write the version in [SemVer](https://semver.org/) notation.
+
 ### Reflect deprecation in documentation
 {: .no_toc }
 

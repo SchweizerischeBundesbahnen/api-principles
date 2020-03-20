@@ -77,7 +77,7 @@ Infrastructure artifacts like topics and queues must be named according to the f
 
 
 ### `MUST` Use Semantic Versioning
-Versions in the specification should follow the principles described by [SemVer](https://semver.org/). 
+Versions in the specification must follow the principles described by [SemVer](https://semver.org/). 
 Versions in queue/topic names are always major versions. Or in a more generic way: we avoid introducing minors or 
 patches anywhere where it could break consumers compatibility. We explicitly avoid resource based versioning, 
 because this is a complexity which an API should not reflect to its consumers.
