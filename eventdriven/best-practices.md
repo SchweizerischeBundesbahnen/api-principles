@@ -90,7 +90,6 @@ Use the header field `x-api-version` and write the version in [SemVer](https://s
 Every element on the API that is being deprecated should also be marked in its documentation, using 
 the [OpenAPI](https://swagger.io/specification/) property "deprecated".
 
-
 ### Always Return JSON Objects As Top-Level Data Structures To Support Extensibility
 
 In a response body, you must always return a JSON object (and not e.g. an array) as a top level data structure to 
@@ -137,6 +136,14 @@ To specify an open-ended list of values use the marker {x-extensible-enum} as fo
 
 **Note:** {x-extensible-enum} is not JSON Schema conform but will be ignored by most tools.
 
+## Traceability
+
+### Use Standardized message / event identifiers
+To identify a specific message / event through the entire chain, support the X-Correlation-Id and X-Process-Id headers. 
+The X-Correlation-Id header identifies one single published message / event. This information is very important in root 
+cause analysis over several systems and helps detect how total latencies are stacked up. The X-Process-Id identifies a 
+group of multiple synchronous and asynchronous requests (with different X-Correlation-Id headers) which all belong to 
+one business transaction. 
 
 ## Data Formats
 
