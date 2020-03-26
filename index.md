@@ -36,8 +36,14 @@ Chapters
 
 API Principles in a nutshell
 ============================
-Every team publishes the data and functions of its most valuable business capabilities as APIs, following the common API Principles
+#### We publish APIs
+> Every team publishes the data and functions of its most valuable business capabilities as APIs, following the common API Principles.
 
+#### API Driven Architecture
+> Always use managed APIs as the boundary of your domain.
+> That gives you control and visibility of traffic going in and out.
+
+#### Key Principles
 (1) We no longer build backdoors in applications of other teams. (2) We hide the complexity of our business domain within the application and design APIs the same way as we design UIs. (3) We make sure that the functional cut of APIs is alligned with the according business capabilities and that each entity on the API has a unique identity (ID). We coordinate these design decisions tightly together with our business partners. (4) And finally, we document and publish our APIs on developer.sbb.ch so that they can be easily found, understood and used by others.
 
 The following graphic shows the API principles in a nutshell.
