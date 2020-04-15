@@ -139,6 +139,8 @@ Applications using _of the shelf_ software can be separated into the following c
 **Type S** applications can directly [publish](https://schweizerischebundesbahnen.github.io/api-principles/publication/) the API of the standard software over the [API Management](https://confluence.sbb.ch/x/noj5R) (_internal link_) infrastructure. Whereas **Type G** applications `MUST` write an own API which exposes the data and functionality of the application in the SBB's domain language, which is being understood by all the teams within the company (also outside of the company if it is a public API). We usually write **Type G** APIs, using the [facade pattern](https://en.wikipedia.org/wiki/Facade_pattern).
 
 #### When do we use standard APIs?
+{: .no_toc }
+
 Now let's imagine that application A is using  _of the shelf_ software and needs data and functions from application B, which is also using _of the shelf_ software and provides an API of that software. Standard software often provides integrated solutions for connecting standard APIs. In this case, we use these out-of-the-box integrations over standard APIs to connect application A with application B.
 
 If explicit domain logic from a foreign Domain has to be built on the consumer side in order to connect to the standard API, this is a sign that this logic should be built within the domain of application B in the form of a facade.
