@@ -128,3 +128,22 @@ Embracing 'API as a Product' facilitates a service ecosystem which can be evolve
 Understand the concrete use cases of your customers and carefully check the trade-offs of your API design variants with a product mindset. Avoid short-term implementation optimizations at the expense of unnecessary client side obligations, and have a high attention on API quality and client developer experience.
 
 API as a Product is closely related to the API First principle.
+
+### `MUST` Expose standard APIs only when they fit to SBB's business domain language
+Remember that APIs must be consumer oriented and developer friendly. We design and build APIs using SBB's domain specific language, because that is how our business partners and software development teams understand it's context and usage.
+
+Applications using _of the shelf_ software can be separated into the following categories:
+* **Type S** (Specific): The API uses a language that we also use within the SBB (often the case at very business specific Software).
+* **Type G** (Generic): The API does use a very product specific language which doas NOT fit our domain language (ofthen the case at very technical and generic APIs of standard software), or it is very complex and requires a deep understanding of the software behind the API.
+
+**Type S** applications can directly [publish](https://schweizerischebundesbahnen.github.io/api-principles/publication/) the API of the standard software over the [API Management](https://confluence.sbb.ch/x/noj5R) (_internal link_) infrastructure. Whereas **Type G** applications `MUST` write an own API which exposes the data and functionality of the application in the SBB's domain language, which is being understood by all the teams within the company (also outside of the company if it is a public API). We usually write **Type G** APIs, using the [facade pattern](https://en.wikipedia.org/wiki/Facade_pattern).
+
+#### When do we use standard APIs?
+Now let's imagine that application A is using  _of the shelf_ software and needs data and functions from application B, which is also using _of the shelf_ software and provides an API of that software. Standard software often provides integrated solutions for connecting standard APIs. In this case, we use these out-of-the-box integrations over standard APIs to connect application A with application B.
+
+If explicit domain logic from a foreign Domain has to be built on the consumer side in order to connect to the standard API, this is a sign that this logic should be built within the domain of application B in the form of a facade.
+
+Let's take the Graph API from AzureAD versus the SBB specific Eployee API as an example. In most cases, standard solutions have native integrations with AzureAD in their system. If the connection can be made purely configurable, the standard AzureAD API should also be used. However, if SBB specific domain logic from HR is required, the Employee API should be used and extended, if necessary.
+
+Also consider the following common guideline when building APIs:
+> When building interfaces between Applications, domain logic of application B `MUST` explicitly NOT be created on the side of application A (that's an often seen a workaround for the _backlog starvation_ problem). It `MUST` always be implemented behind the API of application B.
