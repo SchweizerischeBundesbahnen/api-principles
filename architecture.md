@@ -130,7 +130,7 @@ Understand the concrete use cases of your customers and carefully check the trad
 API as a Product is closely related to the API First principle.
 
 ### `MUST` Expose standard APIs only when they fit to SBB's business domain language
-APIs must be consumer oriented and developer friendly. We design and build APIs in the language which is used by SBB's , because that is how our business partners and software development teams understand it's context and usage.
+APIs must be consumer oriented and developer friendly. We design and build APIs in the language which is used by SBB, because that is how our business partners and software development teams understand it's context and usage.
 
 Applications using _of the shelf_ software can be separated into the following categories:
 * **Type S** (Specific): The API uses a language that we also use within the SBB (often the case at very business specific software).
