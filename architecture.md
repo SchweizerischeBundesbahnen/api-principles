@@ -130,11 +130,11 @@ Understand the concrete use cases of your customers and carefully check the trad
 API as a Product is closely related to the API First principle.
 
 ### `MUST` Expose standard APIs only when they fit to SBB's business domain language
-APIs must be consumer oriented and developer friendly. We design and build APIs using SBB's domain specific language, because that is how our business partners and software development teams understand it's context and usage.
+APIs must be consumer oriented and developer friendly. We design and build APIs in the language which is used by SBB's , because that is how our business partners and software development teams understand it's context and usage.
 
 Applications using _of the shelf_ software can be separated into the following categories:
 * **Type S** (Specific): The API uses a language that we also use within the SBB (often the case at very business specific software).
-* **Type G** (Generic): The API uses a very product specific language which doas NOT fit our domain language (ofthen the case at very technical and generic APIs of standard software), or it is very complex and requires a deep understanding of the software behind the API.
+* **Type G** (Generic): The API uses a very product specific language which does NOT fit our domain language (ofthen the case at very technical and generic APIs of standard software), or it is very complex and requires a deep understanding of the software behind the API.
 
 **Type S** applications can directly [publish](https://schweizerischebundesbahnen.github.io/api-principles/publication/) the API of the standard software over the [API Management](https://confluence.sbb.ch/x/noj5R) (_internal link_) infrastructure. Whereas **Type G** applications `MUST` write an own API which exposes the data and functionality of the application in the SBB's domain language, which is being understood by all the teams within the company (also outside of the company if it is a public API). We usually write **Type G** APIs using the [facade pattern](https://en.wikipedia.org/wiki/Facade_pattern).
 
