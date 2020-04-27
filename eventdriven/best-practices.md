@@ -127,7 +127,7 @@ recommend to use an open-ended list of values instead of an enumeration unless:
 
 To specify an open-ended list of values use the marker {x-extensible-enum} as follows:
 
-    deliver_methods:
+    deliverMethods:
       type: string
       x-extensible-enum:
         - parcel
@@ -170,7 +170,7 @@ Use the following standard formats for country, language and currency codes:
     -   {BCP47}\[BCP 47\] (based on {ISO-639-1}\[ISO 639-1\]) for language variants
 -   {ISO-4217}\[ISO 4217 currency codes\]
 
-## Deprication
+## Deprecation
 
 ### Monitor Usage of Deprecated APIs
 
@@ -186,16 +186,11 @@ This is a set of best practices for using JSON as a message body format. JSON he
  This section only cover some specific cases of JSON design decisions. The first some of the following guidelines are about property names, the 
  later ones about values.
 
-### Property names must be ASCII snake\_case (and never camelCase): `^[a-z_][a-z_0-9]*$`
+### Property names must be camelCase
 
-Property names are restricted to ASCII strings. The first character must be a letter, or an underscore, and subsequent characters can be a 
-letter, an underscore, or a number.
+Property names are restricted to ASCII strings in lower case camelCase, matching the following format: `[a-z]+[A-Z0-9][a-z0-9]+[A-Za-z0-9]*$`. The only exception are keywords like `_links`.
 
-(It is recommended to use `_` at the start of property names only for keywords like `_links`.)
-
-Rationale: No established industry standard exists, but many popular Internet companies prefer snake\_case: e.g. GitHub, Stack Exchange, 
-Twitter, Zalando. Others, like Google and Amazon, use both - but not only camelCase. It’s essential to establish a consistent look and feel 
-such that JSON looks as if it came from the same hand.
+Rationale: It’s essential to establish a consistent look and feel such that JSON looks as if it came from the same hand, independent of the system that provides the API. It is also very important to stick to names that do generate valid source code when generating code from specs like [OpenAPI](https://swagger.io/specification/).
 
 ### Define Maps Using `additionalProperties`
 
@@ -215,7 +210,7 @@ Here is an example for such a map definition (the `translations` property):
             A message together with translations in several languages.
           type: object
           properties:
-            message_key:
+            messageKey:
               type: string
               description: The message key.
             translations:
@@ -230,7 +225,7 @@ Here is an example for such a map definition (the `translations` property):
 
 An actual JSON object described by this might then look like this:
 
-    { "message_key": "color",
+    { "messageKey": "color",
       "translations": {
         "de": "Farbe",
         "en-US": "color",
@@ -246,10 +241,7 @@ To indicate they contain multiple values prefer to pluralize array names. This i
 
 ### Boolean property values must not be null
 
-Schema based JSON properties that are by design booleans must not be presented as nulls. A boolean is essentially a closed enumeration 
-of two values, true and false. If the content has a meaningful null value, strongly prefer to replace the boolean with enumeration of 
-named values or statuses - for example accepted\_terms\_and\_conditions with true or false can be replaced with terms\_and\_conditions 
-with values yes, no and unknown.
+Schema based JSON properties that are by design booleans must not be presented as nulls. A boolean is essentially a closed enumeration of two values, true and false. If the content has a meaningful null value, strongly prefer to replace the boolean with enumeration of named values or statuses - for example *acceptedTermsAndConditions* with true or false can be replaced with *termsAndConditions* with values `yes`, `no` and `unknown`.
 
 ###  Use same semantics for `null` and absent properties
 
@@ -293,15 +285,16 @@ Empty array values can unambiguously be represented as the empty list, `[]`.
 
 Strings are a reasonable target for values that are by design enumerations.
 
-### Name date/time properties using the `_at` suffix
+### Name date/time properties using the `At` suffix
 
-Dates and date-time properties should end with `_at` to distinguish them from boolean properties which otherwise would have very 
-similar or even identical names:
+Dates and date-time properties should end with `At` to distinguish them from boolean properties which otherwise would have very similar or even identical names:
 
--   `created_at` rather than `created`,
--   `modified_at` rather than `modified`,
--   `occurred_at` rather than `occurred`, and
--   `returned_at` rather than `returned`.
+-   `createdAt` rather than `created`
+-   `modifiedAt` rather than `modified`
+-   `occurredAt` rather than `occurred`
+-   `returnedAt` rather than `returned`
+
+**Note:** {created} and {modified} were mentioned in an earlier version of the guideline and are therefore still accepted for APIs that predate this rule.
 
 
 ### Date property values should conform to RFC 3339

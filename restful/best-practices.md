@@ -285,7 +285,7 @@ Enumerations are per definition closed sets of values, that are assumed to be co
 
 To specify an open-ended list of values use the marker {x-extensible-enum} as follows:
 
-    deliver_methods:
+    deliverMethods:
       type: string
       x-extensible-enum:
         - parcel
@@ -399,7 +399,7 @@ The schema for hypertext controls can be derived from this model:
       required:
         - href
 
-The name of an attribute holding such a `HttpLink` object specifies the relation between the object that contains the link and the linked resource. Implementations should use names from the {link-relations}\[IANA Link Relation Registry\] whenever appropriate. As IANA link relation names use hyphen-case notation, while this guide enforces snake\_case notation for attribute names, hyphens in IANA names have to be replaced with underscores (e.g. the IANA link relation type `version-history` would become the attribute `version_history`)
+The name of an attribute holding such a `HttpLink` object specifies the relation between the object that contains the link and the linked resource. Implementations should use names from the {link-relations}\[IANA Link Relation Registry\] whenever appropriate. As IANA link relation names use hyphen-case notation, while this guide enforces camelCase notation for attribute names, hyphens in IANA names have to be replaced (e.g. the IANA link relation type `version-history` would become the attribute `versionHistory`)
 
 Specific link objects may extend the basic link type with additional attributes, to give additional information related to the linked resource or the relationship between the source resource and the linked one.
 
@@ -430,13 +430,11 @@ For flexibility and precision, we prefer links to be directly embedded in the JS
 
 This is a set of best practices for using JSON as a HTTP body format. JSON here refers to [RFC 7159](https://tools.ietf.org/html/rfc7159) (which updates [RFC 4627](https://tools.ietf.org/html/rfc4627)), the "application/json" media type and custom JSON media types defined for APIs. This section only cover some specific cases of JSON design decisions. The first some of the following guidelines are about property names, the later ones about values.
 
-### Property names must be ASCII snake\_case (and never camelCase): `^[a-z_][a-z_0-9]*$`
+### Property names must be camelCase
 
-Property names are restricted to ASCII strings. The first character must be a letter, or an underscore, and subsequent characters can be a letter, an underscore, or a number.
+Property names are restricted to ASCII strings in lower case camelCase, matching the following format: `[a-z]+[A-Z0-9][a-z0-9]+[A-Za-z0-9]*$`. The only exception are keywords like `_links`.
 
-(It is recommended to use `_` at the start of property names only for keywords like `_links`.)
-
-Rationale: No established industry standard exists, but many popular Internet companies prefer snake\_case: e.g. GitHub, Stack Exchange, Twitter, Zalando. Others, like Google and Amazon, use both - but not only camelCase. It’s essential to establish a consistent look and feel such that JSON looks as if it came from the same hand.
+Rationale: It’s essential to establish a consistent look and feel such that JSON looks as if it came from the same hand, independent of the system that provides the API. It is also very important to stick to names that do generate valid source code when generating code from specs like [OpenAPI](https://swagger.io/specification/).
 
 ### Define Maps Using `additionalProperties`
 
@@ -453,7 +451,7 @@ Here is an example for such a map definition (the `translations` property):
             A message together with translations in several languages.
           type: object
           properties:
-            message_key:
+            messageKey:
               type: string
               description: The message key.
             translations:
@@ -468,7 +466,7 @@ Here is an example for such a map definition (the `translations` property):
 
 An actual JSON object described by this might then look like this:
 
-    { "message_key": "color",
+    { "messageKey": "color",
       "translations": {
         "de": "Farbe",
         "en-US": "color",
@@ -484,7 +482,7 @@ To indicate they contain multiple values prefer to pluralize array names. This i
 
 ### Boolean property values must not be null
 
-Schema based JSON properties that are by design booleans must not be presented as nulls. A boolean is essentially a closed enumeration of two values, true and false. If the content has a meaningful null value, strongly prefer to replace the boolean with enumeration of named values or statuses - for example accepted\_terms\_and\_conditions with true or false can be replaced with terms\_and\_conditions with values yes, no and unknown.
+Schema based JSON properties that are by design booleans must not be presented as nulls. A boolean is essentially a closed enumeration of two values, true and false. If the content has a meaningful null value, strongly prefer to replace the boolean with enumeration of named values or statuses - for example *acceptedTermsAndConditions* with true or false can be replaced with *termsAndConditions* with values `yes`, `no` and `unknown`.
 
 ###  Use same semantics for `null` and absent properties
 
@@ -510,26 +508,20 @@ Empty array values can unambiguously be represented as the empty list, `[]`.
 
 Strings are a reasonable target for values that are by design enumerations.
 
-### Name date/time properties using the `_at` suffix
+### Name date/time properties using the `At` suffix
 
-Dates and date-time properties should end with `_at` to distinguish them from boolean properties which otherwise would have very similar or even identical names:
+Dates and date-time properties should end with `At` to distinguish them from boolean properties which otherwise would have very similar or even identical names:
 
--   {created\_at} rather than {created},
-
--   {modified\_at} rather than {modified},
-
--   `occurred_at` rather than `occurred`, and
-
--   `returned_at` rather than `returned`.
-
-**Note:** {created} and {modified} were mentioned in an earlier version of the guideline and are therefore still accepted for APIs that predate this rule.
+-   `createdAt` rather than `created`
+-   `modifiedAt` rather than `modified`
+-   `occurredAt` rather than `occurred`
+-   `returnedAt` rather than `returned`
 
 ### Date property values should conform to RFC 3339
 
 Use the date and time formats defined by [RFC 3339](https://tools.ietf.org/html/rfc3339#section-5.6):
 
 -   for "date" use strings matching `date-fullyear "-" date-month "-" date-mday`, for example: `2015-05-28`
-
 -   for "date-time" use strings matching `full-date "T" full-time`, for example `2015-05-28T14:07:17Z`
 
 Note that the [OpenAPI format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types) "date-time" corresponds to "date-time" in the RFC) and `2015-05-28` for a date (note that the OpenAPI format "date" corresponds to "full-date" in the RFC). Both are specific profiles, a subset of the international standard ISO 8601.
@@ -555,7 +547,6 @@ Access to lists of data items must support pagination to protect the service aga
 There are two well known page iteration techniques:
 
 -   [Offset/Limit-based pagination](https://developer.infoconnect.com/paging-results): numeric offset identifies the first page entry
-
 -   [Cursor/Limit-based](https://dev.twitter.com/overview/api/cursoring) — aka key-based — pagination: a unique key element identifies the first page entry (see also [Facebook’s guide](https://developers.facebook.com/docs/graph-api/using-graph-api/v2.4#paging))
 
 The technical conception of pagination should also consider user experience related issues. As mentioned in this [article](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/), jumping to a specific page is far less used than navigation via {next}/{prev} page links. This favours cursor-based over offset-based pagination.
@@ -567,25 +558,15 @@ Cursor-based pagination is usually better and more efficient when compared to of
 Before choosing cursor-based pagination, consider the following trade-offs:
 
 -   Usability/framework support:
-
     -   Offset-based pagination is more widely known than cursor-based pagination, so it has more framework support and is easier to use for API clients
-
 -   Use case - jump to a certain page:
-
     -   If jumping to a particular page in a range (e.g., 51 of 100) is really a required use case, cursor-based navigation is not feasible.
-
 -   Data changes may lead to anomalies in result pages:
-
     -   Offset-based pagination may create duplicates or lead to missing entries if rows are inserted or deleted between two subsequent paging requests.
-
     -   If implemented incorrectly, cursor-based pagination may fail when the cursor entry has been deleted before fetching the pages.
-
 -   Performance considerations - efficient server-side processing using offset-based pagination is hardly feasible for:
-
     -   Very big data sets, especially if they cannot reside in the main memory of the database.
-
     -   Sharded or NoSQL databases.
-
 -   Cursor-based navigation may not work if you need the total count of results.
 
 The {cursor} used for pagination is an opaque pointer to a page, that must never be **inspected** or **constructed** by clients. It usually encodes (encrypts) the page position, i.e. the identifier of the first or last page element, the pagination direction, and the applied query filters - or a hash over these - to safely recreate the collection. The {cursor} may be defined as follows:
@@ -615,7 +596,7 @@ The {cursor} used for pagination is an opaque pointer to a page, that must never
           type: object
           properties: ...
 
-        query_hash:
+        queryHash:
           description: >
             Stable hash calculated over all query filters applied to create the
             collection resource that is represented by this cursor.
@@ -641,9 +622,7 @@ The page information for cursor-based pagination should consist of a {cursor} se
 Further reading:
 
 -   [Twitter](https://dev.twitter.com/rest/public/timelines)
-
 -   [Use the Index, Luke](http://use-the-index-luke.com/no-offset)
-
 -   [Paging in PostgreSQL](https://www.citusdata.com/blog/1872-joe-nelson/409-five-ways-paginate-postgres-basic-exotic)
 
 ### Use Pagination Links Where Applicable
@@ -715,10 +694,6 @@ APIs must define permissions to protect their resources. Thus, at least one perm
 The naming schema for permissions corresponds to the naming schema for hostnames and event type names.
 
 APIs should stick to component specific permissions without resource extension to avoid governance complexity of too many fine grained permissions. For the majority of use cases, restricting access to specific API endpoints using read and write is sufficient for controlling access for client types like merchant or retailer business partners, customers or operational staff. However, in some situations, where the API serves different types of resources for different owners, resource specific scopes may make sense.
-
-Some examples for standard and resource-specific permissions:
-
-<table><colgroup><col style="width: 25%" /><col style="width: 20%" /><col style="width: 15%" /><col style="width: 40%" /></colgroup><thead><tr class="header"><th>Application ID</th><th>Resource ID</th><th>Access Type</th><th>Example</th></tr></thead><tbody><tr class="odd"><td><p><code>order-management</code></p></td><td><p><code>sales_order</code></p></td><td><p><code>read</code></p></td><td><p><code>order-management.sales_order.read</code></p></td></tr><tr class="even"><td><p><code>order-management</code></p></td><td><p><code>shipment_order</code></p></td><td><p><code>read</code></p></td><td><p><code>order-management.shipment_order.read</code></p></td></tr><tr class="odd"><td><p><code>fulfillment-order</code></p></td><td></td><td><p><code>write</code></p></td><td><p><code>fulfillment-order.write</code></p></td></tr><tr class="even"><td><p><code>business-partner-service</code></p></td><td></td><td><p><code>read</code></p></td><td><p><code>business-partner-service.read</code></p></td></tr></tbody></table>
 
 After permission names are defined and the permission is declared in the security definition at the top of an API specification, it should be assigned to each API operation by specifying a [security requirement](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#securityRequirementObject) like this:
 
@@ -824,9 +799,7 @@ For example, the resources below would be counted as three resource types, one f
 Note that:
 
 -   We consider `/customers/{id}/preferences` part of the `/customers` resource type because it has a one-to-one relation to the customer without an additional identifier.
-
 -   We consider `/customers` and `/customers/{id}/addresses` as separate resource types because `/customers/{id}/addresses/{addr}` also exists with an additional identifier for the address.
-
 -   We consider `/addresses` and `/customers/{id}/addresses` as separate resource types because there’s no reliable way to be sure they are the same.
 
 Given this definition, our experience is that well defined APIs involve no more than 4 to 8 resource types. There may be exceptions with more complex business domains that require more resources, but you should first check if you can split them into separate subdomains with distinct APIs.
@@ -846,9 +819,7 @@ For the definition of how to use http methods, see the principle [Must use HTTP 
 Request methods in RESTful services can be…​
 
 -   {RFC-safe} - the operation semantic is defined to be read-only, meaning it must not have *intended side effects*, i.e. changes, to the server state.
-
 -   {RFC-idempotent} - the operation has the same *intended effect* on the server state, independently whether it is executed once or multiple times. **Note:** this does not require that the operation is returning the same response or status code.
-
 -   {RFC-cacheable} - to indicate that responses are allowed to be stored for future reuse. In general, requests to safe methods are cachable, if it does not require a current or authoritative response from the server.
 
 **Note:** The above definitions, of *intended (side) effect* allows the server to provide additional state changing behavior as logging, accounting, pre- fetching, etc. However, these actual effects and state changes, must not be intended by the operation so that it can be held accountable.
@@ -862,9 +833,7 @@ Method implementations must fulfill the following basic properties according to 
 In many cases it is helpful or even necessary to design {POST} and {PATCH} idempotent for clients to expose conflicts and prevent resource duplicate (a.k.a. zombie resources) or lost updates, e.g. if same resources may be created or changed in parallel or multiple times. To design an idempotent API endpoint owners should consider to apply one of the following three patterns.
 
 -   A resource specific **conditional key** provided via `If-Match` header in the request. The key is in general a meta information of the resource, e.g. a *hash* or *version number*, often stored with it. It allows to detect concurrent creations and updates to ensure idempotent behavior.
-
 -   A resource specific **secondary key** provided as resource property in the request body. The *secondary key* is stored permanently in the resource. It allows to ensure idempotent behavior by looking up the unique secondary key in case of multiple independent resource creations from different clients (use Secondary Key for Idempotent Design).
-
 -   A client specific **idempotency key** provided via {Idempotency-Key} header in the request. The key is not part of the resource but stored temporarily pointing to the original response to ensure idempotent behavior when retrying a request.
 
 **Note:** While **conditional key** and **secondary key** are focused on handling concurrent requests, the **idempotency key** is focused on providing the exact same responses, which is even a *stronger* requirement than the idempotency defined above. It can be combined with the two other patterns.
@@ -906,7 +875,6 @@ Sometimes certain collection resources or queries will not list all the possible
 Implicit filtering could be done on:
 
 -   the collection of resources being return on a parent {GET} request
-
 -   the fields returned for the resource’s detail
 
 In such cases, the implicit filtering must be in the API specification (in its description).
@@ -971,9 +939,7 @@ You must use the most specific HTTP status code when returning information about
 Some APIs are required to provide either *batch* or *bulk* requests using {POST} for performance reasons, i.e. for communication and processing efficiency. In this case services may be in need to signal multiple response codes for each part of an batch or bulk request. As HTTP does not provide proper guidance for handling batch/bulk requests and responses, we herewith define the following approach:
 
 -   A batch or bulk request **always** has to respond with HTTP status code {207}, unless it encounters a generic or unexpected failure before looking at individual parts.
-
 -   A batch or bulk response with status code {207} **always** returns a multi-status object containing sufficient status and/or monitoring information for each part of the batch or bulk request.
-
 -   A batch or bulk request may result in a status code {4xx}/{5xx}, only if the service encounters a failure before looking at individual parts or, if an unanticipated failure occurs.
 
 The before rules apply *even in the case* that processing of all individual part *fail* or each part is executed *asynchronously*! They are intended to allow clients to act on batch and bulk responses by inspecting the individual results in a consistent way.
@@ -985,15 +951,12 @@ The before rules apply *even in the case* that processing of all individual part
 APIs that wish to manage the request rate of clients must use the {429} (Too Many Requests) response code, if the client exceeded the request rate (see [RFC 6585](https://tools.ietf.org/html/rfc6585)). Such responses must also contain header information providing further details to the client. There are two approaches a service can take for header information:
 
 -   Return a {Retry-After} header indicating how long the client ought to wait before making a follow-up request. The Retry-After header can contain a HTTP date value to retry after or the number of seconds to delay. Either is acceptable but APIs should prefer to use a delay in seconds.
-
 -   Return a trio of `X-RateLimit` headers. These headers (described below) allow a server to express a service level in the form of a number of allowing requests within a given window of time and when the window is reset.
 
 The `X-RateLimit` headers are:
 
 -   `X-RateLimit-Limit`: The maximum number of requests that the client is allowed to make in this window.
-
 -   `X-RateLimit-Remaining`: The number of requests allowed in the current window.
-
 -   `X-RateLimit-Reset`: The relative time in seconds when the rate limit window will be reset. **Beware** that this is different to Github and Twitter’s usage of a header with the same name which is using UTC epoch seconds instead.
 
 The reason to allow both approaches is that APIs can have different needs. Retry-After is often sufficient for general load handling and request throttling scenarios and notably, does not strictly require the concept of a calling entity such as a tenant or named account. In turn this allows resource owners to minimise the amount of state they have to carry with respect to client requests. The 'X-RateLimit' headers are suitable for scenarios where clients are associated with pre-existing account or tenancy structures. 'X-RateLimit' headers are generally returned on every request and not just on a 429, which implies the service implementing the API is carrying sufficient state to track the number of requests made within a given window for each named entity.
