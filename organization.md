@@ -22,7 +22,7 @@ We define the most basic organizational requirements needed for an efficient col
 
 ## `MUST` An API is owned by a business product owner
 
-For the sake of short decision processes and clear definitions of the responsibilities of an API, every API must be owned by a business product owner. The business product owner acts "consumer driven". Means, he focuses on serving it's API consumers in a best possible way. He treats the API as an internal and sometimes also external product. He is motivated to improve the API as part of his product with the aim of delivering its capabilities to as much consumers as possible (product thinking).
+For the sake of short decision processes and clear definitions of the responsibilities of an API, every API must be owned by a business product owner. The business product owner acts "consumer driven". Means, he focuses on serving its API consumers in a best possible way. He treats the API as an internal and sometimes also external product. He is motivated to improve the API as part of his product with the aim of delivering its capabilities to as much consumers as possible (product thinking).
 
 #### Rational
 {: .no_toc }
