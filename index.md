@@ -5,6 +5,9 @@ nav_order: 0
 permalink: /
 ---
 
+Version 1.2.1
+{: .label .label-red}
+
 ![SBB's API Principles](images/API-Principles-Logo.jpg)
 
 Applications provide functionality via APIs, no matter if they are designed as Microservices or Monoliths. Their APIs purely express what systems do, and are therefore highly valuable business assets. Designing high quality, long lasting APIs has therefore become a business critical duty, which must be part of the development of every digitalized business capability or product. Our strategy emphasizes developing lots of internal APIs and also public APIs for our external business partners.
@@ -14,9 +17,6 @@ With this in mind, we’ve defined "API Principles" with the following key state
 1. Every IT Solution publishes its main capabilities over an API with a high [maturity](maturity/maturity.md)
 2. APIs can be [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md)
 3. Every API must fulfill the principles described on this site
-
-Version 1.2.1
-{: .label }
 
 ---
 
