@@ -9,6 +9,9 @@ This is the repository for maintaining the SBB's API Principles, as part of the 
 #### Documentation
 The [/docs](/docs) folder contains all the markdown files which are rendered with [jekyll](https://jekyllrb.com). The master branch is automatically being published using [GitHub Pages](https://pages.github.com). For styling, we use [Patrick Marceill](https://github.com/pmarsceill)'s awesome jekyll theme called *[Just-The-Docs](https://github.com/pmarsceill/just-the-docs)*.
 
+#### Versioning
+The applicable principles are the ones described in the version of the master branch. Minor changes and bugfixes will be merged, using the simple review process by the "Integration Team". We maintain Major changes and extensions in a Branch using the name of the next version following the rules of [semantic versioning](https://semver.org/). Releases of new major versions `MUST` be approved by the central IT architecture board and are afterwards merged into the master branch as the new applicable set of principles.
+
 #### Styling
 Custom styling is overwritten in the [_sass/custom](/_sass/custom) Folder. For further information on customization, read the documentation for [customization](https://pmarsceill.github.io/just-the-docs/docs/customization/).
 
