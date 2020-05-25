@@ -15,6 +15,9 @@ With this in mind, we’ve defined "API Principles" with the following key state
 2. APIs can be [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md)
 3. Every API must fulfill the principles described on this site
 
+Version 1.2.1
+{: .label }
+
 ---
 
 Chapters
