@@ -327,6 +327,51 @@ Use the following standard formats for country, language and currency codes:
 
 -   {ISO-4217}\[ISO 4217 currency codes\]
 
+### Define format for number and integer types
+
+Whenever an API defines a property of type `number` or `integer`, the
+precision should be defined by the format as follows to prevent clients
+from guessing the precision incorrectly, and thereby changing the value
+unintentionally:
+
+| Type      | Format   | Specified Value Range                                                 |
+|-----------|----------|-----------------------------------------------------------------------|
+| integer   | int32    | integer between pass:[-2<sup>31</sup>] and pass:[2<sup>31</sup>]-1    |
+| integer   | int64i   | integer between pass:[-2<sup>63</sup>] and pass:[2<sup>63</sup>]-1    |
+| integer   | bigint   | arbitrarily large signed integer number                               |
+| number    | float    | {IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary32 decimal number |
+| number    | doublel  | {IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary64 decimal number |
+| number    | decimal  | arbitrarily precise signed decimal number                             |
+
+The precision should be translated by clients and servers into the most
+specific language types. E.g. for the following definitions the most
+specific language types in Java will translate to `BigDecimal` for
+`Money.amount` and `int` or `Integer` for the `OrderList.page_size`:
+
+[source,yaml]
+----
+components:
+  schemas:
+    Money:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Amount expressed as a decimal number of major currency units
+          format: decimal
+          example: 99.95
+       ...
+    
+    OrderList:
+      type: object
+      properties:
+        page_size:
+          type: integer
+          description: Number of orders in list
+          format: int32
+          example: 42
+----
+
 ## Deprication
 
 ### Monitor Usage of Deprecated APIs
@@ -770,6 +815,18 @@ Examples:
     /customers/12ev123bv12v/addresses/DE_100100101
     /content/images/9cacb4d8
 
+### Use lowercase separate words with hyphens for path segments
+Example:
+```
+/shipment-orders/{shipment-order-id}
+```
+This applies to concrete path segments and not the names of path parameters.
+
+### Use snake_case for query parameters
+Examples:
+```
+customer_number, order_id, billing_address
+```
 
 ### Consider Using (Non-) Nested URLs
 
