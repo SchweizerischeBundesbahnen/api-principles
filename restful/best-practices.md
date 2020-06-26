@@ -822,6 +822,12 @@ Example:
 ```
 This applies to concrete path segments and not the names of path parameters.
 
+### Use snake_case for query parameters
+Examples:
+```
+customer_number, order_id, billing_address
+```
+
 ### Consider Using (Non-) Nested URLs
 
 If a sub-resource is only accessible via its parent resource and may not exists without parent resource, consider using a nested URL structure, for instance:
