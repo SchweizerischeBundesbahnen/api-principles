@@ -815,6 +815,12 @@ Examples:
     /customers/12ev123bv12v/addresses/DE_100100101
     /content/images/9cacb4d8
 
+### Use lowercase separate words with hyphens for path segments
+Example:
+```
+/shipment-orders/{shipment-order-id}
+```
+This applies to concrete path segments and not the names of path parameters.
 
 ### Consider Using (Non-) Nested URLs
 
