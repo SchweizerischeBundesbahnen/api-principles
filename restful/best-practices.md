@@ -348,8 +348,7 @@ specific language types. E.g. for the following definitions the most
 specific language types in Java will translate to `BigDecimal` for
 `Money.amount` and `int` or `Integer` for the `OrderList.page_size`:
 
-[source,yaml]
-----
+```
 components:
   schemas:
     Money:
@@ -370,7 +369,7 @@ components:
           description: Number of orders in list
           format: int32
           example: 42
-----
+```
 
 ## Deprication
 
