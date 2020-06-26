@@ -334,16 +334,14 @@ precision should be defined by the format as follows to prevent clients
 from guessing the precision incorrectly, and thereby changing the value
 unintentionally:
 
-[cols="15%,15%,70%",options="header",]
-|=====================================================================
-|type |format |specified value range
-|integer |int32 |integer between pass:[-2<sup>31</sup>] and pass:[2<sup>31</sup>]-1
-|integer |int64 |integer between pass:[-2<sup>63</sup>] and pass:[2<sup>63</sup>]-1
-|integer |bigint |arbitrarily large signed integer number
-|number |float |{IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary32 decimal number
-|number |double |{IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary64 decimal number
-|number |decimal |arbitrarily precise signed decimal number
-|=====================================================================
+| Type      | Format   | Specified Value Range                                                 |
+|-----------|----------|-----------------------------------------------------------------------|
+| integer   | int32    | integer between pass:[-2<sup>31</sup>] and pass:[2<sup>31</sup>]-1    |
+| integer   | int64i   | integer between pass:[-2<sup>63</sup>] and pass:[2<sup>63</sup>]-1    |
+| integer   | bigint   | arbitrarily large signed integer number                               |
+| number    | float    | {IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary32 decimal number |
+| number    | doublel  | {IEEE-754-2008}[IEEE 754-2008/ISO 60559:2011] binary64 decimal number |
+| number    | decimal  | arbitrarily precise signed decimal number                             |
 
 The precision should be translated by clients and servers into the most
 specific language types. E.g. for the following definitions the most
