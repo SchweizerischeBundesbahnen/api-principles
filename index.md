@@ -5,7 +5,7 @@ nav_order: 0
 permalink: /
 ---
 
-Version 1.3.0
+Version 1.3.1
 {: .label .label-red}
 
 ![SBB's API Principles](images/API-Principles-Logo.jpg)
@@ -28,9 +28,9 @@ Chapters
 
 [Maturity](maturity/maturity.md)
 
-[RESTful APIs](synchronousdesign/synchronousdesign.md)
+[RESTful APIs](restful/restful.md)
 
-[Event-Driven APIs](asynchronousdesign/asynchronousdesign.md)
+[Event-Driven APIs](eventdriven/eventdriven.md)
 
 [API Security](security.md)
 
