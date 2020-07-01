@@ -12,6 +12,8 @@ The [/docs](/docs) folder contains all the markdown files which are rendered wit
 #### Versioning
 The applicable principles are the ones described in the version of the master branch. Minor changes and bugfixes will be merged, using the simple review process by the "Integration Team". We maintain Major changes and extensions in a Branch using the name of the next version following the rules of [semantic versioning](https://semver.org/). Releases of new major versions `MUST` be approved by the central IT architecture board and are afterwards merged into the master branch as the new applicable set of principles.
 
+When Introducing a new Version, Changes must be updated in the [CHANGELOG.md](/CHANGELOG.md) file.
+
 #### Styling
 Custom styling is overwritten in the [_sass/custom](/_sass/custom) Folder. For further information on customization, read the documentation for [customization](https://pmarsceill.github.io/just-the-docs/docs/customization/).
 
