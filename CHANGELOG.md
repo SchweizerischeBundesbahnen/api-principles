@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.4.0] - 
+## [1.4.0] - 2020-07-01
 ### Added
 - Introducing Changelog File
 - Resolved open TODO: principle for backward compatibility
