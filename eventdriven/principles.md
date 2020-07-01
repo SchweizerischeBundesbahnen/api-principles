@@ -25,7 +25,7 @@ This chapter describes a set of guidelines that must be applied when writing and
 
 ### `MUST` We do not Break Backward Compatibility
 
-APIs are contracts between service providers and service consumers that cannot be broken via unilateral decisions. For this reason APIs may only be changed if backward compatibility is guaranteed. If this cannot be guaranteed, a new API version must be provided and the old one has to be supported in parallel.
+APIs are contracts between service providers and service consumers that cannot be broken via unilateral decisions. For this reason APIs may only be changed if backward compatibility is guaranteed. If this cannot be guaranteed, a new API major version must be provided and the old one has to be supported in parallel. For deprecation, follow the principles described in the chapter about [deprecation](/api-principles/organization/#must-deprecation).
 
 API designers should apply the following rules to evolve APIs for services in a backward-compatible way:
 
