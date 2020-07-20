@@ -48,7 +48,7 @@ When building dependencies between teams and applications, we focus on loose cou
 New versions of a dependency (API) must not be introduced, unless there is no other way. The evolution of an API must be compatible within one version as long as possible. Changes are breaking, when consumers need to change simultaneously. In that case a new version must be introduced and maintained. APIs should not have more than two concurrent supported versions. Dependencies are also built tolerant in terms of changing latencies or outages.
 
 ### `MUST` Hide Complexity
-The Design of an API must follow the principle of [information hiding](https://en.wikipedia.org/wiki/Information_hiding). As already described above, APIs transport business capabilities, but they **must not** transport the complexity of the system behind the API. This means it is relavant that an API hides implementation details. An API should be understandable and intuitive for humans that are not very familiar with the API's business domain.
+The Design of an API must follow the principle of [information hiding](https://en.wikipedia.org/wiki/Information_hiding). As already described above, APIs transport business capabilities, but they **must not** transport the complexity of the system behind the API. This means it is relevant that an API hides implementation details. An API should be understandable and intuitive for humans that are not very familiar with the API's business domain.
 
 *Example 1*:
 One should not be able to recognize if an API is provided by a software system built with ABAP, or Java or .Net.
