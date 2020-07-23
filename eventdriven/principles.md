@@ -105,10 +105,10 @@ Bad Example for a topic/queue name:
 ### `MUST` Handle duplicate messages
 
 Event consumers **must** be developed to deal with duplicate messages. Most Message Brokers implement an _at-least-once_
-delivery strategy due to the fact that _exactly-once_ is usually too expensive. 
+delivery strategy since _exactly-once_ is usually too expensive. 
 
-When systems and networks behave correctly, messages are delivered only once. However, there are some circumstances
-that might cause message duplication. For instance, a network glitch could avoid a message acknowledgment when 
+When systems and networks behave correctly, messages are delivered only once. However, some circumstances might 
+cause message duplication. For instance, a network glitch could avoid a message acknowledgment when 
 a publisher sends a message. In that case, the publisher will resend the message, leading to a message duplication in
 the Message Broker. The same can happen on the consumer side, when the message cannot be acknowledged after a successful 
 processing.
