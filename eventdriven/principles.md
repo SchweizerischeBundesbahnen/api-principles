@@ -102,21 +102,6 @@ Bad Example for a topic/queue name:
 `{application-abbreviation}/.../orders/v1/...`
 
 
-### `MUST` Handle duplicate messages
-
-Event consumers **must** be developed to deal with duplicate messages. Most Message Brokers implement an _at-least-once_
-delivery strategy since _exactly-once_ is usually too expensive. 
-
-When systems and networks behave correctly, messages are delivered only once. However, some circumstances might 
-cause message duplication. For instance, a network glitch could avoid a message acknowledgment when 
-a publisher sends a message. In that case, the publisher will resend the message, leading to a message duplication in
-the Message Broker. The same can happen on the consumer side, when the message cannot be acknowledged after a successful 
-processing.
-
-Consumers can follow one of these strategies to overcome this:
-- Keeping track of the messages and discarding duplicates
-- Writing idempotent handling logic (although not always possible)
-
 ### `MUST` Support Distributed Tracing
 In distributed systems, it is absolutely necessary to track messages across all components to be able to investigate the message flow in case of problems. 
 The API provider must support the distributed tracing mechanism as defined by [OpenTracing](https://opentracing.io/). It standardizes

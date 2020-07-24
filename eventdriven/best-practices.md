@@ -170,6 +170,23 @@ Use the following standard formats for country, language and currency codes:
     -   {BCP47}\[BCP 47\] (based on {ISO-639-1}\[ISO 639-1\]) for language variants
 -   {ISO-4217}\[ISO 4217 currency codes\]
 
+## Implementation
+
+### Handle duplicate messages
+
+Event consumers must be developed to deal with duplicate messages. Most Message Brokers implement an _at-least-once_
+delivery strategy since _exactly-once_ is usually too expensive. 
+
+When systems and networks behave correctly, messages are delivered only once. However, some circumstances might 
+cause message duplication. For instance, a network glitch could avoid a message acknowledgment when 
+a publisher sends a message. In that case, the publisher will resend the message, leading to a message duplication in
+the Message Broker. The same can happen on the consumer side, when the message cannot be acknowledged after a successful 
+processing.
+
+Consumers can follow one of these strategies to overcome this:
+- Keeping track of the messages and discarding duplicates
+- Writing idempotent handling logic (although not always possible)
+
 ## Deprecation
 
 ### Monitor Usage of Deprecated APIs
