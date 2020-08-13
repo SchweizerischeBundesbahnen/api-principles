@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2020-08-13
+### Fixed
+- Wrong Status code 405 -> 406 for Not Acceptable
+
 ## [1.5.0] - 2020-07-24
 ### Added
 - New Best Practice: Handle duplicate messages
