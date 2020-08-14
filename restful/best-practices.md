@@ -534,7 +534,48 @@ Open API 3.x allows to mark properties as `required` and as `nullable` to specif
 
 The following table shows all combinations and whether the examples are valid:
 
-<table><colgroup><col style="width: 25%" /><col style="width: 25%" /><col style="width: 25%" /><col style="width: 25%" /></colgroup><thead><tr class="header"><th>{CODE-START}required{CODE-END}</th><th>{CODE-START}nullable{CODE-END}</th><th>{CODE-START}{}{CODE-END}</th><th>{CODE-START}{"example":null}{CODE-END}</th></tr></thead><tbody><tr class="odd"><td><p><code>true</code></p></td><td><p><code>true</code></p></td><td><p>{NO}</p></td><td><p>{YES}</p></td></tr><tr class="even"><td><p><code>false</code></p></td><td><p><code>true</code></p></td><td><p>{YES}</p></td><td><p>{YES}</p></td></tr><tr class="odd"><td><p><code>true</code></p></td><td><p><code>false</code></p></td><td><p>{NO}</p></td><td><p>{NO}</p></td></tr><tr class="even"><td><p><code>false</code></p></td><td><p><code>false</code></p></td><td><p>{YES}</p></td><td><p>{NO}</p></td></tr></tbody></table>
+<table>
+  <colgroup>
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+  </colgroup>
+<thead>
+<tr class="header">
+  <th><code>required</code></th>
+  <th><code>nullable</code></th>
+  <th><code>{}</code></th>
+  <th><code>{"example":null}</code></th>
+</tr>
+</thead>
+<tbody>
+  <tr class="odd">
+    <td><p><code>true</code></p></td>
+    <td><p><code>true</code></p></td>
+    <td><p>{NO}</p></td>
+    <td><p>{YES}</p></td>
+  </tr>
+  <tr class="even">
+    <td><p><code>false</code></p></td>
+    <td><p><code>true</code></p></td>
+    <td><p>{YES}</p></td>
+    <td><p>{YES}</p></td>
+  </tr>
+  <tr class="odd">
+    <td><p><code>true</code></p></td>
+    <td><p><code>false</code></p></td>
+    <td><p>{NO}</p></td>
+    <td><p>{NO}</p></td>
+  </tr>
+  <tr class="even">
+    <td><p><code>false</code></p></td>
+    <td><p><code>false</code></p></td>
+    <td><p>{YES}</p></td>
+    <td><p>{NO}</p></td>
+  </tr>
+</tbody>
+</table>
 
 While API designers and implementers may be tempted to assign different semantics to both cases, we explicitly decide **against** that option, because we think that any gain in expressiveness is far outweighed by the risk of clients not understanding and implementing the subtle differences incorrectly.
 
