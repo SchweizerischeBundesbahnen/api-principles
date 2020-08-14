@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2020-08-14
+### Fixed
+- Wrong code formatting in RESTful API Best Practices
+
 ## [1.5.1] - 2020-08-13
 ### Fixed
 - Wrong Status code 405 -> 406 for Not Acceptable
