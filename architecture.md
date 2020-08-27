@@ -89,7 +89,7 @@ In a nutshell API First requires two aspects:
 
 -   get early review feedback from peers and client developers
 
-By defining APIs outside the code, we want to facilitate early review feedback and also a development discipline that focus service interface design on…​
+By defining APIs before starting its implementation, we want to facilitate early review feedback and also a development discipline that focus service interface design on…​
 
 -   profound understanding of the domain and required functionality
 
