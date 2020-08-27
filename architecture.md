@@ -145,7 +145,7 @@ Now let's imagine that application A is using  _of the shelf_ software and needs
 
 If explicit domain logic from the domain of application B has to be built on the consumer side (application A) in order to connect to the standard API, it is a sign that this logic should be built within the domain of application B in the form of a facade.
 
-Let's take the Graph API from AzureAD versus the SBB specific Eployee API as an example. In most cases, standard solutions have native integrations with AzureAD in their system. If the connection can be made purely configurable, the standard AzureAD API should also be used. However, if SBB specific domain logic from HR is required, the Employee API should be used and extended, if necessary.
+Let's take the Graph API from AzureAD versus the SBB specific Employee API as an example. In most cases, standard solutions have native integrations with AzureAD in their system. If the connection can be made purely configurable, the standard AzureAD API should also be used. However, if SBB specific domain logic from HR is required, the Employee API should be used and extended, if necessary.
 
 Also consider the following common guideline when building APIs:
 > When building interfaces between applications, domain logic of application B `MUST` explicitly NOT be created on the side of application A (that's an often seen workaround for the problem of prioritizing foreign backlogs). It `MUST` always be implemented behind the API of application B.
