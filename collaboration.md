@@ -44,7 +44,7 @@ Teams maintaining an API should actively foster collaboration on their API and s
 
 ## `SHOULD` API Consumers provide interface tests
 
-APIs should allow and engage consumers to provide *Consumer Driven Contract Tests*. Tests can be provided over a pact broker like the onew from [pact.io](https://docs.pact.io/pact_broker)) or over source code [contribution](collaboration.md/#must-consumers-contribute-to-apis).
+APIs should allow and engage consumers to provide *Consumer Driven Contract Tests*. Tests can be provided over a pact broker like the one from [pact.io](https://docs.pact.io/pact_broker)) or over source code [contribution](collaboration.md/#must-consumers-contribute-to-apis).
 
 #### Rational
 {: .no_toc }
