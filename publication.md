@@ -53,9 +53,9 @@ APIs must provide subscription plans and there must be an automated sign-up proc
 
 ---
 
-## `MUST` Centralized API documentation in english
+## `MUST` Centralized API documentation in English
 
-An API must be documented in english by focusing on API consumers. For a better reuse quota it crucial that APIs are well documented. Good documentation fulfills the following properties:
+An API must be documented in English by focusing on API consumers. For a better reuse quota it is crucial that APIs are well documented. Good documentation fulfills the following properties:
 - It describes the business capability in 1-3 sentences.
 - It puts the API in a well understandable context.
 - It provides all important information that a developer needs to consume the API (specification, security, access-codes, ...).
@@ -66,7 +66,7 @@ For a better understandability of the technical specifications, there should als
 #### Define the language
 {: .no_toc }
 
-In a complex business domain, it's hard to translate everything in another languages without losing context. If you chose to define your resources in another language than English, you **must** provide a glossary with the explanations of the different resources.
+In a complex business domain, it's hard to translate everything in another language without losing context. If you chose to define your resources in another language than English, you **must** provide a glossary with the explanations of the different resources.
 
 #### Example
 {: .no_toc }
@@ -77,4 +77,4 @@ A good example for comprehensive documentation is the [b2p API](https://develope
 {: .no_toc }
 - Comprehensive documentation leads to lower costs through higher reuse and better collaboration.
 - Increased understandability also improves development speed and thus reduced [Cost of Delay](https://en.wikipedia.org/wiki/Cost_of_delay).
-- Documentation in english enables new business models due to a global understandable repository of APIs.
+- Documentation in English enables new business models due to a global understandable repository of APIs.

@@ -36,7 +36,7 @@ Development teams build the core unit in the phase of decomposition and separati
 Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
 
 ### `MUST` APIs belong to business capabilities
-An API itself is not a business capability, but it transports the teams core business values to other teams. Therefore, a team providing a business capability must own and provide the according API. This API must explicitly not be own and/or maintained by other teams.
+An API itself is not a business capability, but it transports the teams core business values to other teams. Therefore, a team providing a business capability must own and provide the according API. This API must explicitly not be owned and/or maintained by other teams.
 
 For engineering teams, focusing on building business capabilities, it is tempting to delegate the API capabilities to a team which is the expert of building and providing APIs. But during the last decades we have learned, that introducing an API team which publishes the API for an other team introduces an additional organizational and technical dependency which slows down evolution, complicates failure tracing and increases cost in creation and maintenance.
 
@@ -89,7 +89,7 @@ In a nutshell API First requires two aspects:
 
 -   get early review feedback from peers and client developers
 
-By defining APIs outside the code, we want to facilitate early review feedback and also a development discipline that focus service interface design on…​
+By defining APIs before starting its implementation, we want to facilitate early review feedback and also a development discipline that focus service interface design on…​
 
 -   profound understanding of the domain and required functionality
 
@@ -145,7 +145,7 @@ Now let's imagine that application A is using  _of the shelf_ software and needs
 
 If explicit domain logic from the domain of application B has to be built on the consumer side (application A) in order to connect to the standard API, it is a sign that this logic should be built within the domain of application B in the form of a facade.
 
-Let's take the Graph API from AzureAD versus the SBB specific Eployee API as an example. In most cases, standard solutions have native integrations with AzureAD in their system. If the connection can be made purely configurable, the standard AzureAD API should also be used. However, if SBB specific domain logic from HR is required, the Employee API should be used and extended, if necessary.
+Let's take the Graph API from AzureAD versus the SBB specific Employee API as an example. In most cases, standard solutions have native integrations with AzureAD in their system. If the connection can be made purely configurable, the standard AzureAD API should also be used. However, if SBB specific domain logic from HR is required, the Employee API should be used and extended, if necessary.
 
 Also consider the following common guideline when building APIs:
 > When building interfaces between applications, domain logic of application B `MUST` explicitly NOT be created on the side of application A (that's an often seen workaround for the problem of prioritizing foreign backlogs). It `MUST` always be implemented behind the API of application B.
