@@ -66,6 +66,9 @@ In addition to the API Specification, it is good practice to provide an API user
 -   Edge cases, error situation details, and repair hints
 -   Architecture context and major dependencies - including figures and sequence flows
 
+### Use specific API instead of a generic one
+Use an easy-to-use API with fixed return values whenever possible. Dynamic, generic APIs such as ODATA are allowed if they are included with the purchase software.
+
 ## Common Headers
 
 This section describes a handful of headers which are useful in particular circumstances but not widely known.
