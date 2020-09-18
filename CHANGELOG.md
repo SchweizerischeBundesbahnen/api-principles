@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2020-09-18
+### Added
+- Best Practice: ODATA is not preferred, but allowed 
+
 ## [1.5.2] - 2020-08-14
 ### Fixed
 - Wrong code formatting in RESTful API Best Practices
