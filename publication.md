@@ -78,3 +78,23 @@ A good example for comprehensive documentation is the [b2p API](https://develope
 - Comprehensive documentation leads to lower costs through higher reuse and better collaboration.
 - Increased understandability also improves development speed and thus reduced [Cost of Delay](https://en.wikipedia.org/wiki/Cost_of_delay).
 - Documentation in English enables new business models due to a global understandable repository of APIs.
+
+## `MUST` Define plans driven by the API's business context
+
+API plans in API Management must be designed to meet the clients needs. They must be driven by the API's business context. Appropriate API plans are well documented and clarify the usage of the API.
+
+#### Use limited plans only
+{: .no_toc }
+
+We highly recommend to use limited plans only in API Management for all APIs and all plans. Plan limits clarify what amount of requests the API backend expects and can handle and therefore significantly improve documentation and understandability of an API. It also improves stability of the API and all it's clients.
+
+#### Example
+{: .no_toc }
+
+A good example for business context driven plans is the [b2p API](https://developer.sbb.ch/api/16/b2p).
+
+#### Rational
+{: .no_toc }
+
+- Well documented and designed API plans lead to better understandability and thus also a better stability
+- API plans are vital for client management and also for lifecycle management
