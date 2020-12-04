@@ -26,7 +26,13 @@ Security on dependencies and interfaces is of course a very important topic. It 
 
 An API must always be secured by default - no matter of where it is accessible from. For increased security, APIs must be secured using [OAuth 2.0](https://oauth.net/2/) (usually following the [OIDC](https://openid.net/connect/) standard). APIs should not be secured with [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) or access tokens that never expire (like static API Keys). Traffic must only be accepted via HTTPS.
 
-APIs must be protected by security gateways (like the [APIM Gateway](https://code.sbb.ch/projects/KD_APIM/repos/apim-adapter/browse)\[internal link\])
+APIs must be protected by security gateways (like the [APIM Gateway](https://code.sbb.ch/projects/KD_APIM/repos/apim-adapter/browse)\[internal link\]).
+
+#### Exceptions
+{: .no_toc }
+If, and only if, you have one of the following use cases, API Key based access is allowed as well:
+- When Standard Software, which cannot handle OAuth 2.0 Requests, needs to consume a managed API (e.g. when you can only set static headers). In that case we highly recommend to regularly rotate/regenerate the API Key for the sake of increased security.
+- When an API exposes geographic maps, it `SHOULD` be generally secured using API Keys, because most of the ecosystem in this domain ist set-up to work with API Keys only. When exposing geographic Maps, you `MUST` make sure, the API does not expose protectable and or customer specific data. You `SHOULD` therefore split protectable Data from a geographic map data API into a separate API, secured by OAuth 2.0.
 
 #### Rational
 {: .no_toc }
