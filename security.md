@@ -28,6 +28,10 @@ An API must always be secured by default - no matter of where it is accessible f
 
 APIs must be protected by security gateways (like the [APIM Gateway](https://code.sbb.ch/projects/KD_APIM/repos/apim-adapter/browse)\[internal link\]).
 
+For an easier API lifecycle management, the ability for throttling specific clients and a basic security protection, we need to know the ClientId behind every call. Therefore, this rule `MUST` be explicitly applied to all kind of traffic over APIs, including information that is publicly available (like the train schedule).
+
+*Annotation*: We are currently still looking for an appropriate way to "secure" public clients that operate (at least partly) without user-login (for example our Main App and Website) without exposing the secrets for accessing APIs on public clients. For such cases, we currently suggest to build a WebApp- / MobileApp- backend which handles and hides the secrets for accessing all the needed backend APIs.
+
 #### Exceptions
 {: .no_toc }
 If, and only if, you have one of the following use cases, API Key based access is allowed as well:
