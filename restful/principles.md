@@ -58,7 +58,7 @@ It makes little sense specifying the flow to retrieve OAuth tokens in the `secur
 
 ## Monitoring
 
-### `MUST` Support OpenTelemetry
+### `MUST` Applications Support OpenTelemetry
 
 Distributed Tracing over multiple applications, teams and even larg solutions, is very important in root cause analysis and helps detect how latencies are stacked up and where incidents are located and thus can significantly shorten _mean time to repair_.
 
@@ -75,6 +75,10 @@ The traceparent HTTP header field identifies the incoming request in a tracing s
 `tracestate`: key1=value1,key2=value2,...
 
 The tracestate HTTP header field specifies application and/or APM Tool specific key/value pairs.
+
+### `MUST` Infrastructure Supports OpenTelemetry
+
+Every component like the API Management gateway, web application firewalls or other reverse proxies have to support and log the tracing headers too.
 
 ## Documentation
 
