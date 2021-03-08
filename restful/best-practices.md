@@ -93,12 +93,7 @@ Content or entity headers are headers with a `Content-` prefix. They describe th
 
 ### Use Standardized Headers
 
-Use [this list](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields) and mention its support in your OpenAPI definition.
-
-#### Use Standardized request identifiers
-To identify a specific request throug the entire chain, support the X-Correlation-Id and X-Process-Id header. 
-The X-Correlation-Id header identifes one single request from the client to the prvider. Every component like the API Management gateway or the WAF has to log this header. This information is very important in root cause analysis over several systems and helps detect how total latencies are stacked up.
-The X-Process-Id identifies a group of multiple synchronous and asynchronous requests (with different X-Correlation-Id headers) which all belong to one business transaction. 
+Use [this list](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields) and mention its support in your OpenAPI definition. 
 
 ### Consider to Support `ETag` Together With `If-Match`/`If-None-Match` Header
 
