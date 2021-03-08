@@ -56,6 +56,26 @@ Every API endpoint needs to be secured using OAuth 2.0. Please refer to the [off
 
 It makes little sense specifying the flow to retrieve OAuth tokens in the `securitySchemes` section, as API endpoints should not care, how OAuth tokens were created. Unfortunately the `flow` field is mandatory and cannot be omitted. API endpoints should always set `flow: clientCredentials` and ignore this information.
 
+## Monitoring
+
+### `MUST` Support OpenTelemetry
+
+Distributed Tracing over multiple applications, teams and even larg solutions, is very important in root cause analysis and helps detect how latencies are stacked up and where incidents are located and thus can significantly shorten _mean time to repair_.
+
+To identify a specific request throug the entire chain and beyond team boundaries, every team (and API) `MUST` use (OpenTelemetry)[https://opentelemetry.io/] as it's way to trace calls and business transactions. Teams `MUST` use standard (W3C Trace Context)[https://www.w3.org/TR/trace-context/] Headers, as they are the common standard for distributed tracing and are supported by most of the cloud platforms and monitoring tools.
+
+##### Traceparent
+{: .no_toc }
+`traceparent`: ${version}-${trace-id}-${parent-id}-${trace-flags}
+
+The traceparent HTTP header field identifies the incoming request in a tracing system. The _trace-id_ defines the trace through the whole forest of synchronous and asynchronous requests. The _parent-id_ defines a specific span within a trace.
+
+##### Tracestate
+{: .no_toc }
+`tracestate`: key1=value1,key2=value2,...
+
+The tracestate HTTP header field specifies application and/or APM Tool specific key/value pairs.
+
 ## Documentation
 
 ### `MUST` Provide API Specification using OpenAPI
