@@ -60,9 +60,9 @@ It makes little sense specifying the flow to retrieve OAuth tokens in the `secur
 
 ### `MUST` Applications Support OpenTelemetry
 
-Distributed Tracing over multiple applications, teams and even larg solutions, is very important in root cause analysis and helps detect how latencies are stacked up and where incidents are located and thus can significantly shorten _mean time to repair_.
+Distributed Tracing over multiple applications, teams and even across large solutions is very important in root cause analysis and helps detect how latencies are stacked up and where incidents are located and thus can significantly shorten _mean time to repair_ (MTTR).
 
-To identify a specific request throug the entire chain and beyond team boundaries, every team (and API) `MUST` use (OpenTelemetry)[https://opentelemetry.io/] as it's way to trace calls and business transactions. Teams `MUST` use standard (W3C Trace Context)[https://www.w3.org/TR/trace-context/] Headers, as they are the common standard for distributed tracing and are supported by most of the cloud platforms and monitoring tools.
+To identify a specific request through the entire chain and beyond team boundaries every team (and API) `MUST` use [OpenTelemetry](https://opentelemetry.io/) as its way to trace calls and business transactions. Teams `MUST` use standard [W3C Trace Context](https://www.w3.org/TR/trace-context/) Headers, as they are the common standard for distributed tracing and are supported by most of the cloud platforms and monitoring tools. We explicitly use W3C standards for eventing too and do not differ between synchronous and asynchronous requests, as we want to be able to see traces across the boundaries of these two architectural patterns.
 
 ##### Traceparent
 {: .no_toc }
