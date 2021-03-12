@@ -136,15 +136,6 @@ To specify an open-ended list of values use the marker {x-extensible-enum} as fo
 
 **Note:** {x-extensible-enum} is not JSON Schema conform but will be ignored by most tools.
 
-## Traceability
-
-### Use Standardized message / event identifiers
-To identify a specific message / event through the entire chain, support the X-Correlation-Id and X-Process-Id headers. 
-The X-Correlation-Id header identifies one single published message / event. This information is very important in root 
-cause analysis over several systems and helps detect how total latencies are stacked up. The X-Process-Id identifies a 
-group of multiple synchronous and asynchronous requests (with different X-Correlation-Id headers) which all belong to 
-one business transaction. 
-
 ## Data Formats
 
 ### Use JSON to Encode Structured Data
