@@ -56,7 +56,7 @@ One should not be able to recognize if an API is provided by a software system b
 *Example 2*:
 Several websites already have shown that it is possible to build understandable (user) interfaces on a complex business domain like payment. When possible with UIs, it is also possible with APIs.
 
-### `MUST` Smart endpoints and dumb pipes
+### `SHOULD` Smart endpoints and dumb pipes
 Each application owns its own domain logic. Outside of an application context, no protocol transformation, routing or business rules may be applied if this requires executable code / scripts or additional configurations on the middleware. (Exceptions are functions necessary for filtering messages or for housekeeping tasks that can be managed directly in the context of an application).
 
 ## Software Provisioning Principles
