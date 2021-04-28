@@ -5,7 +5,7 @@ nav_order: 0
 permalink: /
 ---
 
-Version 2.1.0
+[Version 2.1.0](changelog.md)
 {: .label .label-red}
 
 ![SBB's API Principles](images/API-Principles-Logo.jpg)
