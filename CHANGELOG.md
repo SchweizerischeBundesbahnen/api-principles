@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2021-04-08
+### Added
+- New Architecture Principle: Smart endpoints and dumb pipes
+
 ## [2.0.0] - 2020-11-20
 ### Added
 - Exception to security principle: Allowing API Keys for certain use cases
