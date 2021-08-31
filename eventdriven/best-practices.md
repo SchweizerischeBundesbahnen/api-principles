@@ -10,8 +10,8 @@ Best Practices
 {: .no_toc }
 
 This chapter is not subject to IT Governance. It is more a collection of extractions from literature, experiences and patterns that 
-we document as shared knowledge. Nevertheless engineers **should** read this section as it contains very valuable knowledge of how t
-o design and implement event-driven APIs.
+we document as shared knowledge. Nevertheless engineers **should** read this section as it contains very valuable knowledge of how to
+design and implement event-driven APIs.
 
 ---
 
@@ -149,7 +149,7 @@ collection resources where one naturally would assume an array.
 #### JSON Payload
 {: .no_toc }
 
-Read more about date and time format in //TODO date format definieren.
+Read more about date and time format in [Date property values should conform to RFC 3339](https://schweizerischebundesbahnen.github.io/api-principles/eventdriven/best-practices/#date-property-values-should-conform-to-rfc-3339)
 
 ### Use Standards for Country, Language and Currency Codes
 
