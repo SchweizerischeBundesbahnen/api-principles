@@ -5,7 +5,7 @@ nav_order: 0
 permalink: /
 ---
 
-Version 2.1.0
+Version 2.2.0
 {: .label .label-red}
 
 ![SBB's API Principles](images/API-Principles-Logo.jpg)
@@ -14,9 +14,9 @@ Applications provide functionality via APIs, no matter if they are designed as M
 
 With this in mind, we’ve defined "API Principles" with the following key statements:
 
-1. Every IT Solution publishes its main capabilities over an API with a high [maturity](maturity/maturity.md)
+1. Every IT Solution publishes its main business capabilities over an API with a high [maturity](maturity/maturity.md)
 2. APIs can be [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md)
-3. Every API must fulfill the principles described on this site
+3. Every API published on the [SBB API Repository](https://developer.sbb.ch) must fulfill the principles described on this site. Other APIs also must follow these guidelines, unless there are justifiable and strong reasons not to do so.
 
 ---
 
