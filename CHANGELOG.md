@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2021-04-08
+### Added
+- Updated references to superordinated SBB Architecture Principles, which underwent major changes 
+- Defined scope of application for SBB API Principles more precisely
+
 ## [2.1.0] - 2021-04-08
 ### Added
 - New Architecture Principle: Smart endpoints and dumb pipes

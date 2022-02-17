@@ -26,26 +26,40 @@ This section lists all high level architectural principles that have a relevant 
 
 We do recommend to read the best practices for [RESTful](/api-principles/restful/best-practices/) and [Event-Driven](/api-principles/eventdriven/best-practices/) APIs before designing and implementing a new interface. It is quite a long lecture, but for a deep understanding of the implications of some design decisions, we believe that you will profit a lot from this common knowledge.
 
-## Architecture Design Principles
-*@see also: the complete [Architecture Design Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/GEP_Gestaltungsprinzip.pdf) \[internal link\]*
+## Architecture Design, Development and Operation Principles
+*@see also: the complete [Architecture Design, Development and Operation Principle](https://confluence.sbb.ch/x/NqCydQ) \[internal link\]*
 
 ### `MUST` Team decomposition and architecture decomposition are aligned
 Development teams build the core unit in the phase of decomposition and separation of concerns into different applications ... Each application is assigned to exactly one development team ... Dependencies between applications are also dependencies between teams.
-
-### `MUST` Composition of applications is done over well defined APIs
-Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
 
 ### `MUST` APIs belong to business capabilities
 An API itself is not a business capability, but it transports the teams core business values to other teams. Therefore, a team providing a business capability must own and provide the according API. This API must explicitly not be owned and/or maintained by other teams.
 
 For engineering teams, focusing on building business capabilities, it is tempting to delegate the API capabilities to a team which is the expert of building and providing APIs. But during the last decades we have learned, that introducing an API team which publishes the API for an other team introduces an additional organizational and technical dependency which slows down evolution, complicates failure tracing and increases cost in creation and maintenance.
 
-### `MUST` We build tolerant dependencies
-When building dependencies between teams and applications, we focus on loose coupling. We implement [tolerant readers](https://martinfowler.com/bliki/TolerantReader.html) and we strictly follow Postel's law:
+## Delivery Principles
+*@see also: the complete [Software Provisioning Principles](https://confluence.sbb.ch/x/ugMtU) \[internal link\]*
 
->Be conservative in what you do, be liberal in what you accept from others
+### `MUST` Reuse before make
+Teams must reuse functionality of other teams when the desired functionality is already existing. We prefer contributions to existing APIs (e.g. following [InnerSource](https://innersourcecommons.org) principles) than to rewrite already existing functionality of other teams.
 
-New versions of a dependency (API) must not be introduced, unless there is no other way. The evolution of an API must be compatible within one version as long as possible. Changes are breaking, when consumers need to change simultaneously. In that case a new version must be introduced and maintained. APIs should not have more than two concurrent supported versions. Dependencies are also built tolerant in terms of changing latencies or outages.
+During the process of software provisioning, the most actual and applicable [API Principles](https://schweizerischebundesbahnen.github.io/api-principles/) must be part of the decision criterias.
+
+## Data and Integration Principles
+*@see also: the complete [Data and Integration Principle](https://confluence.sbb.ch/x/1wMtU)\[internal link\]*
+
+### `MUST` Teams share business capabilities and data over APIs
+Teams must focus on collaborating with other teams. They consume existing business capabilities and data over APIs.
+
+Applications and their data are very valuable assets. Every team must publish it's business capabilities and data over well defined APIs using the [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md) architectural style. APIs are accessible, well documented and designed with consumer oriented focus.
+
+The owner and master of data assets must always be clearly defined and well know to both sides of a dependency.
+
+## `MUST` Composition of applications is done over well defined APIs
+Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
+
+### `MUST` We reuse existing APIs from the API Repository
+Before building up a new dependency between applications and teams, we check for existing capabilities in the [API Repository](https://developer.sbb.ch).
 
 ### `MUST` Hide Complexity
 The Design of an API must follow the principle of [information hiding](https://en.wikipedia.org/wiki/Information_hiding). As already described above, APIs transport business capabilities, but they **must not** transport the complexity of the system behind the API. This means it is relevant that an API hides implementation details. An API should be understandable and intuitive for humans that are not very familiar with the API's business domain.
@@ -56,29 +70,15 @@ One should not be able to recognize if an API is provided by a software system b
 *Example 2*:
 Several websites already have shown that it is possible to build understandable (user) interfaces on a complex business domain like payment. When possible with UIs, it is also possible with APIs.
 
+### `MUST` We build tolerant dependencies
+When building dependencies between teams and applications, we focus on loose coupling. We implement [tolerant readers](https://martinfowler.com/bliki/TolerantReader.html) and we strictly follow Postel's law:
+
+>Be conservative in what you do, be liberal in what you accept from others
+
+New versions of a dependency (API) must not be introduced, unless there is no other way. The evolution of an API must be compatible within one version as long as possible. Changes are breaking, when consumers need to change simultaneously. In that case a new version must be introduced and maintained. APIs should not have more than two concurrent supported versions. Dependencies are also built tolerant in terms of changing latencies or outages.
+
 ### `SHOULD` Smart endpoints and dumb pipes
 Each application owns its own domain logic. Outside of an application context, no protocol transformation, routing or business rules may be applied if this requires executable code / scripts or additional configurations on the middleware. (Exceptions are functions necessary for filtering messages or for housekeeping tasks that can be managed directly in the context of an application).
-
-## Software Provisioning Principles
-*@see also: the complete [Software Provisioning Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/BEP_Bereitstellungsprinzip.pdf) \[internal link\]*
-
-### `MUST` Reuse before make
-Teams must reuse functionality of other teams when the desired functionality is already existing. We prefer contributions to existing APIs (e.g. following [InnerSource](https://innersourcecommons.org) principles) than to rewrite already existing functionality of other teams.
-
-During the process of software provisioning, the most actual and applicable [API Principles](https://schweizerischebundesbahnen.github.io/api-principles/) must be part of the decision criterias.
-
-## Data and Integration Principles
-*@see also: the complete [Data and Integration Principles](https://sbb.sharepoint.com/teams/384/EA-eSpace/02_Querschnitt/06_Architekturprinzipien/DIP%20Daten-%20und%20Integrationsprinzip.pdf)\[internal link\]*
-
-### `MUST` Teams share business capabilities and data over APIs
-Teams must focus on collaborating with other teams. They consume existing business capabilities and data over APIs.
-
-Applications and their data are very valuable assets. Every team must publish it's business capabilities and data over well defined APIs using the [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md) architectural style. APIs are accessible, well documented and designed with consumer oriented focus.
-
-The owner and master of data assets must always be clearly defined and well know to both sides of a dependency.
-
-### `MUST` We reuse existing APIs from the API Repository
-Before building up a new dependency between applications and teams, we check for existing capabilities in the [API Repository](https://developer.sbb.ch).
 
 ### `SHOULD` Monitor API Usage
 
