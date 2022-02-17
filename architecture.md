@@ -55,7 +55,7 @@ Applications and their data are very valuable assets. Every team must publish it
 
 The owner and master of data assets must always be clearly defined and well know to both sides of a dependency.
 
-## `MUST` Composition of applications is done over well defined APIs
+### `MUST` Composition of applications is done over well defined APIs
 Dependencies between applications are always built over well defined interfaces (APIs). There must be no quick-and-dirty workarounds like direct access to a database of an other application.
 
 ### `MUST` We reuse existing APIs from the API Repository
