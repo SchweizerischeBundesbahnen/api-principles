@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.2.0] - 2021-04-08
+## [2.2.0] - 2021-02-15
 ### Added
 - Updated references to superordinated SBB Architecture Principles, which underwent major changes 
 - Defined scope of application for SBB API Principles more precisely
