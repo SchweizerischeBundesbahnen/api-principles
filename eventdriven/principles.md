@@ -84,8 +84,6 @@ You **must** publish the component API specification with the deployment of the 
 discoverable, following our [publication](/api-principles/api-principles/publication) principles. As a starting 
 point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
 
-**Hint:** A good way to explore **OpenAPI 3.0/2.0** is to navigate through the [OpenAPI specification mind map](https://openapi-map.apihandyman.io/).
-
 
 ### `MUST` Comply with the Naming Conventions for Topics and Queues
 Infrastructure artifacts like topics and queues must be named according to the following naming conventions: 
@@ -112,10 +110,3 @@ Bad Example for a topic/queue name:
 
 `{application-abbreviation}/.../orders/v1/...`
 
-
-### `MUST` Support Distributed Tracing
-In distributed systems, it is absolutely necessary to track messages across all components to be able to investigate the message flow in case of problems. 
-The API provider must support the distributed tracing mechanism as defined by [OpenTracing](https://opentracing.io/). It standardizes
-
-- The transmission of the context information between processes
-- The format used to transmit the trace information  
