@@ -45,18 +45,9 @@ Clients of an API **must** follow the rules described in the chapter about [tole
 
 ## Security
 
-### `MUST` Secure Endpoints with Certificate or OAuth 2.0
-Every API endpoint (topic/queue) needs to be secured by a certificate or OAuth 2.0. A certificate or OAuth 
-client secret is valid for exactly one endpoint and stage and differs between read and write accesses.
+### `MUST` Secure Endpoints
+Every API endpoint (topic/queue) needs to be secured by an appropriate authentication mechanism supported by the platform you'd like to use. 
 
-In case of certificates, Client Certificate Authentication must be used. Consider also to use two-way SSL 
-for the machine-to-machine communication. 
-
-
-### `MUST` Distinguish between Infrastructure and Real Users
-Use certificates or infrastructure users for the connection between machines (e.g. to establish a topic connection) and 
-forward the real users token (OAuth token) in the message header. The OAuth token is only required for internal communication
-where the consuming system has to check the real users permissions / roles.
 
 ## Monitoring
 
@@ -102,7 +93,7 @@ Infrastructure artifacts like topics and queues must be named according to the f
 `{application-abbreviation}.{application-specific}`
 
 - {application-abbreviation}:\
-[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** Use the MEGA-ID for SBB internal applications 
+[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** For internal applications, use one of the documented names or aliases according to the EADB. 
 - {application-specific}:\
 [a-z0-9-.] (Sequence of:lower case, numbers, dashes, periods)
 
