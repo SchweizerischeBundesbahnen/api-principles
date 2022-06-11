@@ -84,11 +84,6 @@ Use a centralized schema management registry (e.g. Confluent Schema Registry or 
 In addition to the major version given by topic/queue name, the full version of the API should be written into the message header. 
 Use the header field `x-api-version` and write the version in [SemVer](https://semver.org/) notation.
 
-### Reflect deprecation in documentation
-{: .no_toc }
-
-Every element on the API that is being deprecated should also be marked in its documentation, using 
-the [OpenAPI](https://swagger.io/specification/) property "deprecated".
 
 ### Always Return JSON Objects As Top-Level Data Structures To Support Extensibility
 
