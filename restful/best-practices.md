@@ -232,27 +232,6 @@ During the deprecation timespan the responses of the deprected API SHOULD have a
 | 299       | Miscellaneous Persistent Warning | Section 5.5.7 |
 
 
-### Design APIs Conservatively
-
-Designers of service provider APIs should be conservative and accurate in what they accept from clients:
-
--   Unknown input fields in payload or URL should not be ignored; servers should provide error feedback to clients via an HTTP 400 response code.
-
--   Be accurate in defining input data constraints (like formats, ranges, lengths etc.) — and check constraints and return dedicated error information in case of violations.
-
--   Prefer being more specific and restrictive (if compliant to functional requirements), e.g. by defining length range of strings. It may simplify implementation while providing freedom for further evolution as compatible extensions.
-
-Not ignoring unknown input fields is a specific deviation from Postel’s Law (e.g. see also  
-[The Robustness Principle Reconsidered](https://cacm.acm.org/magazines/2011/8/114933-the-robustness-principle-reconsidered/fulltext)) and a strong recommendation. Servers might want to take different approach but should be aware of the following problems and be explicit in what is supported:
-
--   Ignoring unknown input fields is actually not an option for {PUT}, since it becomes asymmetric with subsequent {GET} response and HTTP is clear about the {PUT} *replace* semantics and default roundtrip expectations (see [RFC-7231#section-4.3.4](https://tools.ietf.org/html/rfc7231#section-4.3.4)). Note, accepting (i.e. not ignoring) unknown input fields and returning it in subsequent {GET} responses is a different situation and compliant to {PUT} semantics.
-
--   Certain client errors cannot be recognized by servers, e.g. attribute name typing errors will be ignored without server error feedback. The server cannot differentiate between the client intentionally providing an additional field versus the client sending a mistakenly named field, when the client’s actual intent was to provide an optional input field.
-
--   Future extensions of the input data structure might be in conflict with already ignored fields and, hence, will not be compatible, i.e. break clients that already use this field but with different type.
-
-In specific situations, where a (known) input field is not needed anymore, it either can stay in the API definition with "not used anymore" description or can be removed from the API definition as long as the server ignores this specific parameter.
-
 ### Always Return JSON Objects As Top-Level Data Structures To Support Extensibility
 
 In a response body, you must always return a JSON object (and not e.g. an array) as a top level data structure to support future extensibility. JSON objects support compatible extension by additional attributes. This allows you to easily extend your response and e.g. add pagination later, without breaking backwards compatibility.
