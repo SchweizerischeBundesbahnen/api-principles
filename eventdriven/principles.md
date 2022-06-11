@@ -94,17 +94,6 @@ It's almost impossible to  fulfill the principles laid out in this document beca
 ### `SHOULD` use either Apache AVRO schema or JSON schema
 Both are supported by the Kafka schema registry and as a linkable resource from the [developer portal](https://developer.sbb.ch). 
 
-### `MUST` Comply with the Naming Conventions for Topics and Queues
-Infrastructure artifacts like topics and queues must be named according to the following naming conventions: 
-
-`{application-abbreviation}.{application-specific}`
-
-- {application-abbreviation}:\
-[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** For internal applications, use one of the documented names or aliases according to the EADB. 
-- {application-specific}:\
-[a-z0-9-.] (Sequence of:lower case, numbers, dashes, periods)
-
-
 ### `MUST` Use Semantic Versioning
 Versions in the specification must follow the principles described by [SemVer](https://semver.org/). 
 Versions in queue/topic names are always major versions. Or in a more generic way: we avoid introducing minors or 
@@ -118,4 +107,3 @@ Good example for a topic/queue name:
 Bad Example for a topic/queue name:
 
 `{application-abbreviation}/.../orders/v1/...`
-
