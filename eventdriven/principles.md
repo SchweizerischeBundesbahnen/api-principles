@@ -74,16 +74,25 @@ The tracestate header field specifies application and/or APM Tool specific key/v
 ### `MUST` Provide API Specification using AsyncAPI
 
 We use the [AsyncAPI specification](https://www.asyncapi.com/) as standard to define event-driven API specification 
-files. API designers are required to provide the API specification using a single **self-contained YAML** file to 
-improve readability. We encourage to use **OpenAPI 3.0** version, but still support **OpenAPI 2.0**.
+files. 
 
 The API specification files should be subject to version control using a source code management system - best 
 together with the implementing sources.
 
-You **must** publish the component API specification with the deployment of the implementing service and make it 
+You `MUST` publish the component API specification with the deployment of the implementing service and make it 
 discoverable, following our [publication](/api-principles/api-principles/publication) principles. As a starting 
 point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
 
+### `SHOULD` use either Apache AVRO or JSON as data format
+The preferred data format for asynchronous apis in the SBB are either [JSON](https://www.json.org/json-en.html) or [Apache AVRO](https://avro.apache.org/docs/current/spec.html)
+If you have to decide which one, choose the data format based on what your customer / consumers are comfortable with. Additionally, please check out the [confluent blog](https://www.confluent.io/blog/avro-kafka-data/) 
+about differences of the two formats. 
+
+You `SHOULD NOT` use legacy data formats such as [Xml](https://en.wikipedia.org/wiki/XML) and [Java Object Serialization Stream Protocol](https://docs.oracle.com/javase/6/docs/platform/serialization/spec/protocol.html). 
+It's almost impossible to  fulfill the principles laid out in this document because of numerous issues around versioning, compatibility and security considerations. 
+
+### `SHOULD` use either Apache AVRO schema or JSON schema
+Both are supported by the Kafka schema registry and as a linkable resource from the [developer portal](https://developer.sbb.ch). 
 
 ### `MUST` Comply with the Naming Conventions for Topics and Queues
 Infrastructure artifacts like topics and queues must be named according to the following naming conventions: 
