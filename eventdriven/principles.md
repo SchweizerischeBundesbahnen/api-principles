@@ -46,7 +46,7 @@ Clients of an API **must** follow the rules described in the chapter about [tole
 ## Security
 
 ### `MUST` Secure Endpoints
-Every API endpoint (topic/queue) needs to be secured by an appropriate authentication mechanism supported by the platform you'd like to use. 
+Every API endpoint (topic/queue) needs to be secured by an state of the art authentication mechanism supported by the platform you'd like to use. 
 
 
 ## Monitoring
@@ -84,12 +84,12 @@ discoverable, following our [publication](/api-principles/api-principles/publica
 point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
 
 ### `SHOULD` use either Apache AVRO or JSON as data format
-The preferred data format for asynchronous apis in the SBB are either [JSON](https://www.json.org/json-en.html) or [Apache AVRO](https://avro.apache.org/docs/current/spec.html)
+The preferred data format for asynchronous APIs in the SBB are either [JSON](https://www.json.org/json-en.html) or [Apache AVRO](https://avro.apache.org/docs/current/spec.html)
 If you have to decide which one, choose the data format based on what your customer / consumers are comfortable with. Additionally, please check out the [confluent blog](https://www.confluent.io/blog/avro-kafka-data/) 
 about differences of the two formats. 
 
-You `SHOULD NOT` use legacy data formats such as [Xml](https://en.wikipedia.org/wiki/XML) and [Java Object Serialization Stream Protocol](https://docs.oracle.com/javase/6/docs/platform/serialization/spec/protocol.html). 
-It's almost impossible to  fulfill the principles laid out in this document because of numerous issues around versioning, compatibility and security considerations. 
+You `SHOULD NOT` use legacy data formats such as [Xml](https://en.wikipedia.org/wiki/XML) or [Java Object Serialization Stream Protocol](https://docs.oracle.com/javase/6/docs/platform/serialization/spec/protocol.html). 
+It's almost impossible to  fulfill the principles laid out in this document because of numerous issues around versioning, compatibility and security considerations of these technologies. 
 
 ### `SHOULD` use either Apache AVRO schema or JSON schema
 Both are supported by the Kafka schema registry and as a linkable resource from the [developer portal](https://developer.sbb.ch). 

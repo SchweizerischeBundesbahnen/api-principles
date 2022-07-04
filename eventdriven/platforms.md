@@ -27,7 +27,7 @@ Infrastructure artifacts like topics and queues must be named according to the f
 `{application-abbreviation}.{application-specific}`
 
 - {application-abbreviation}:\
-[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** For internal applications, use one of the documented names or aliases according to the EADB. 
+[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** For internal applications, use one of the documented names or aliases according to the EA Repository. 
 - {application-specific}:\
 [a-z0-9-.] (Sequence of:lower case, numbers, dashes, periods)
 
@@ -35,7 +35,7 @@ Infrastructure artifacts like topics and queues must be named according to the f
 
 ### Initialload / state restore
 
-When building an Asyncapi on the Kafka platform, you should ask yourself how a prospective customer can restore its state, 
+When building an AsyncAPI on the Kafka platform, you should ask yourself how a prospective customer can restore its state, 
 using only the Kafka topics as a source. After all, the feature of sending *and storing messages in a longterm fashion* is the unique
 selling point of this technology. Consider the following hints
 * Are you sending self-containing snapshots or events (which require some kind of a baseline)?
