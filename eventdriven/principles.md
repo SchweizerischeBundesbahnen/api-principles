@@ -45,18 +45,9 @@ Clients of an API **must** follow the rules described in the chapter about [tole
 
 ## Security
 
-### `MUST` Secure Endpoints with Certificate or OAuth 2.0
-Every API endpoint (topic/queue) needs to be secured by a certificate or OAuth 2.0. A certificate or OAuth 
-client secret is valid for exactly one endpoint and stage and differs between read and write accesses.
+### `MUST` Secure Endpoints
+Every API endpoint (topic/queue) needs to be secured by an state of the art authentication mechanism supported by the platform you'd like to use. 
 
-In case of certificates, Client Certificate Authentication must be used. Consider also to use two-way SSL 
-for the machine-to-machine communication. 
-
-
-### `MUST` Distinguish between Infrastructure and Real Users
-Use certificates or infrastructure users for the connection between machines (e.g. to establish a topic connection) and 
-forward the real users token (OAuth token) in the message header. The OAuth token is only required for internal communication
-where the consuming system has to check the real users permissions / roles.
 
 ## Monitoring
 
@@ -83,29 +74,25 @@ The tracestate header field specifies application and/or APM Tool specific key/v
 ### `MUST` Provide API Specification using AsyncAPI
 
 We use the [AsyncAPI specification](https://www.asyncapi.com/) as standard to define event-driven API specification 
-files. API designers are required to provide the API specification using a single **self-contained YAML** file to 
-improve readability. We encourage to use **OpenAPI 3.0** version, but still support **OpenAPI 2.0**.
+files. 
 
 The API specification files should be subject to version control using a source code management system - best 
 together with the implementing sources.
 
-You **must** publish the component API specification with the deployment of the implementing service and make it 
+You `MUST` publish the component API specification with the deployment of the implementing service and make it 
 discoverable, following our [publication](/api-principles/api-principles/publication) principles. As a starting 
 point, use our ESTA Blueprints ([internal Link](http://esta.sbb.ch/Esta+Blueprints)).
 
-**Hint:** A good way to explore **OpenAPI 3.0/2.0** is to navigate through the [OpenAPI specification mind map](https://openapi-map.apihandyman.io/).
+### `SHOULD` use either Apache AVRO or JSON as data format
+The preferred data format for asynchronous APIs in the SBB are either [JSON](https://www.json.org/json-en.html) or [Apache AVRO](https://avro.apache.org/docs/current/spec.html)
+If you have to decide which one, choose the data format based on what your customer / consumers are comfortable with. Additionally, please check out the [confluent blog](https://www.confluent.io/blog/avro-kafka-data/) 
+about differences of the two formats. 
 
+You `SHOULD NOT` use legacy data formats such as [Xml](https://en.wikipedia.org/wiki/XML) or [Java Object Serialization Stream Protocol](https://docs.oracle.com/javase/6/docs/platform/serialization/spec/protocol.html). 
+It's almost impossible to  fulfill the principles laid out in this document because of numerous issues around versioning, compatibility and security considerations of these technologies. 
 
-### `MUST` Comply with the Naming Conventions for Topics and Queues
-Infrastructure artifacts like topics and queues must be named according to the following naming conventions: 
-
-`{application-abbreviation}.{application-specific}`
-
-- {application-abbreviation}:\
-[a-z0-9-]+ (Sequence of:lower case,numbers, dashes). **Important:** Use the MEGA-ID for SBB internal applications 
-- {application-specific}:\
-[a-z0-9-.] (Sequence of:lower case, numbers, dashes, periods)
-
+### `SHOULD` use either Apache AVRO schema or JSON schema
+Both are supported by the Kafka schema registry and as a linkable resource from the [developer portal](https://developer.sbb.ch). 
 
 ### `MUST` Use Semantic Versioning
 Versions in the specification must follow the principles described by [SemVer](https://semver.org/). 
@@ -120,11 +107,3 @@ Good example for a topic/queue name:
 Bad Example for a topic/queue name:
 
 `{application-abbreviation}/.../orders/v1/...`
-
-
-### `MUST` Support Distributed Tracing
-In distributed systems, it is absolutely necessary to track messages across all components to be able to investigate the message flow in case of problems. 
-The API provider must support the distributed tracing mechanism as defined by [OpenTracing](https://opentracing.io/). It standardizes
-
-- The transmission of the context information between processes
-- The format used to transmit the trace information  

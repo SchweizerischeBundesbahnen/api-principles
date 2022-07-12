@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2022-07-05
+### Added
+- clarified preferences for data formats
+- added preferences for schema technologies
+- added best practices concerning state retrieval / initialload
+
+### Fixed
+- Removed duplicate best practices
+- Removed references of OpenAPI in the eventdriven documentation
+- Removed considerations concerning postels law for greater simplicity in the best practices section
+
 ## [2.2.0] - 2022-02-15
 ### Added
 - Updated references to superordinated SBB Architecture Principles, which underwent major changes 
