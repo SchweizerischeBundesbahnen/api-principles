@@ -71,7 +71,7 @@ In a complex business domain, it's hard to translate everything in another langu
 #### Example
 {: .no_toc }
 
-A good example for comprehensive documentation is the [b2p API](https://developer.sbb.ch/api/16/b2p).
+A good example for comprehensive documentation is the [b2p API](https://developer.sbb.ch/apis/b2p).
 
 #### Rational
 {: .no_toc }
@@ -91,7 +91,7 @@ We highly recommend to use limited plans only in API Management for all APIs and
 #### Example
 {: .no_toc }
 
-A good example for business context driven plans is the [b2p API](https://developer.sbb.ch/api/16/b2p).
+A good example for business context driven plans is the [b2p API](https://developer.sbb.ch/apis/b2p).
 
 #### Rational
 {: .no_toc }
