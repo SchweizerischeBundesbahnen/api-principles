@@ -71,6 +71,8 @@ Use an easy-to-use API with well defined return types whenever possible. If not 
 
 ## Common Headers
 
+> API Linting by Zally SBB Ruleset: [ProprietaryHeadersRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/ProprietaryHeadersRule.kt)
+
 This section describes a handful of headers which are useful in particular circumstances but not widely known.
 
 ### Use `Content-*` Headers Correctly
@@ -187,8 +189,12 @@ The {Idempotency-Key} header should be defined as follows, but you are free to c
 
 ### Follow Versioning best practices
 
+> API Linting by Zally SBB Ruleset: [VersionInInfoSectionRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/VersionInInfoSectionRule.kt)
+
 #### URL based Versioning
 {: .no_toc }
+
+> API Linting by Zally SBB Ruleset: [VersionInUriRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/VersionInUriRule.kt)
 
 When API versioning is unavoidable, you should design your multi-version RESTful APIs carefully using URI type versioning. It is well known that versions in URIs also do have their negative consequences (like content negotiation issues). We still prefer URI Versioning because it is better supported by tools and infrastructure like API Management and Proxies use URL Mappings as an important property for routing and applying policies for the sake of performance (like e.g. different API subscription plans for different versions).
 
@@ -254,6 +260,8 @@ Note that this guideline concentrates on default extensibility and does not excl
 
 ### Use Open-Ended List of Values (`x-extensible-enum`) Instead of Enumerations
 
+> API Linting by Zally SBB Ruleset: [ExtensibleEnumRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/ExtensibleEnumRule.kt)
+
 Enumerations are per definition closed sets of values, that are assumed to be complete and not intended for extension. This closed principle of enumerations imposes compatibility issues when an enumeration must be extended. To avoid these issues, we strongly recommend to use an open-ended list of values instead of an enumeration unless:
 
 1.  the API has full control of the enumeration values, i.e. the list of values does not depend on any external tool or interface, and
@@ -305,6 +313,8 @@ Use the following standard formats for country, language and currency codes:
 -   {ISO-4217}\[ISO 4217 currency codes\]
 
 ### Define format for number and integer types
+
+> API Linting by Zally SBB Ruleset: [FormatForNumbersRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/FormatForNumbersRule.kt)
 
 Whenever an API defines a property of type `number` or `integer`, the
 precision should be defined by the format as follows to prevent clients
@@ -449,9 +459,13 @@ For flexibility and precision, we prefer links to be directly embedded in the JS
 
 ## JSON Best Practices
 
+> API Linting by Zally SBB Ruleset: [AvoidLinkHeadersRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/AvoidLinkHeadersRule.kt)
+
 This is a set of best practices for using JSON as a HTTP body format. JSON here refers to [RFC 7159](https://tools.ietf.org/html/rfc7159) (which updates [RFC 4627](https://tools.ietf.org/html/rfc4627)), the "application/json" media type and custom JSON media types defined for APIs. This section only cover some specific cases of JSON design decisions. The first some of the following guidelines are about property names, the later ones about values.
 
 ### Property names must be camelCase
+
+> API Linting by Zally SBB Ruleset: [CamelCaseInPropNameRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/CamelCaseInPropNameRule.kt)
 
 Property names are restricted to ASCII strings in lower case camelCase, matching the following format: `[a-z]+[A-Z0-9][a-z0-9]+[A-Za-z0-9]*$`. The only exception are keywords like `_links`.
 
@@ -498,6 +512,8 @@ An actual JSON object described by this might then look like this:
     }
 
 ### Array names should be pluralized
+
+> API Linting by Zally SBB Ruleset: [PluralizeNamesForArraysRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/PluralizeNamesForArraysRule.kt)
 
 To indicate they contain multiple values prefer to pluralize array names. This implies that object names should in turn be singular.
 
@@ -571,6 +587,8 @@ Empty array values can unambiguously be represented as the empty list, `[]`.
 Strings are a reasonable target for values that are by design enumerations.
 
 ### Name date/time properties using the `At` suffix
+
+> API Linting by Zally SBB Ruleset: [DateTimePropertiesSuffixRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/DateTimePropertiesSuffixRule.kt)
 
 Dates and date-time properties should end with `At` to distinguish them from boolean properties which otherwise would have very similar or even identical names:
 
@@ -786,6 +804,8 @@ As long as the functional naming is not supported for permissions, permission na
 
 ## Resources
 
+> API Linting by Zally SBB Ruleset: [PluralizeResourceNamesRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/PluralizeResourceNamesRule.kt)
+
 ### Avoid Actions — Think About Resources
 
 REST is all about your resources, so consider the domain entities that take part in web service interaction, and aim to model your API around these using the standard HTTP methods as operation indicators. For instance, if an application has to lock articles explicitly so that only one user may edit them, create an article lock with {PUT} or {POST} instead of using a lock action.
@@ -816,6 +836,8 @@ API resources represent elements of the application’s domain model. Using doma
 
 ### Identify resources and Sub-Resources via Path Segments
 
+> API Linting by Zally SBB Ruleset: [IdentifyResourcesViaPathSegments](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/IdentifyResourcesViaPathSegments.kt)
+
 Some API resources may contain or reference sub-resources. Embedded sub-resources, which are not top-level resources, are parts of a higher-level resource and cannot be used outside of its scope. Sub-resources should be referenced by their name and identifier in the path segments.
 
 Composite identifiers must not contain `/` as a separator. In order to improve the consumer experience, you should aim for intuitively understandable URLs, where each sub-path is a valid reference to a resource or a set of resources. For example, if `/customers/12ev123bv12v/addresses/DE_100100101` is a valid path of your API, then `/customers/12ev123bv12v/addresses`, `/customers/12ev123bv12v` and `/customers` must be valid as well in principle.
@@ -833,6 +855,9 @@ Examples:
     /content/images/9cacb4d8
 
 ### Use lowercase separate words with hyphens for path segments
+
+> API Linting by Zally SBB Ruleset: [KebabCaseInPathSegmentsRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/KebabCaseInPathSegmentsRule.kt)
+
 Example:
 ```
 /shipment-orders/{shipment-order-id}
@@ -840,12 +865,17 @@ Example:
 This applies to concrete path segments and not the names of path parameters.
 
 ### Use snake_case for query parameters
+
+> API Linting by Zally Zalando Ruleset: [SnakeCaseForQueryParamsRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-zalando/src/main/kotlin/org/zalando/zally/ruleset/zalando/SnakeCaseForQueryParamsRule.kt)
+
 Examples:
 ```
 customer_number, order_id, billing_address
 ```
 
 ### Consider Using (Non-) Nested URLs
+
+> API Linting by Zally SBB Ruleset: [NestedPathsMayBeRootPathsRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/NestedPathsMayBeRootPathsRule.kt)
 
 If a sub-resource is only accessible via its parent resource and may not exists without parent resource, consider using a nested URL structure, for instance:
 
@@ -857,6 +887,8 @@ However, if the resource can be accessed directly via its unique id, then the AP
     /sales-orders/5273gh3k525a
 
 ### Limit number of Resource types
+
+> API Linting by Zally SBB Ruleset: [LimitNumberOfResourcesRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/LimitNumberOfResourcesRule.kt)
 
 To keep maintenance and service evolution manageable, we should follow "functional segmentation" and "separation of concern" design principles and do not mix different business functionalities in same API definition. In practice this means that the number of resource types exposed via an API should be limited. In this context a resource type is defined as a set of highly related resources such as a collection, its members and any direct sub-resources.
 
@@ -881,6 +913,8 @@ Given this definition, our experience is that well defined APIs involve no more 
 Nevertheless one API should hold all necessary resources to model complete business processes helping clients to understand these flows.
 
 ### Limit number of Sub-Resource Levels
+
+> API Linting by Zally SBB Ruleset: [LimitNumberOfSubResourcesRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/LimitNumberOfSubResourcesRule.kt)
 
 There are main resources (with root url paths) and sub-resources (or *nested* resources with non-root urls paths). Use sub-resources if their life cycle is (loosely) coupled to the main resource, i.e. the main resource works as collection resource of the subresource entities. You should use <= 3 sub-resource (nesting) levels — more levels increase API complexity and url path length. (Remember, some popular web browsers do not support URLs of more than 2000 characters.)
 
@@ -931,6 +965,8 @@ A good example here for a secondary key is the shopping cart ID in an order reso
 **Note:** When using the secondary key pattern without {Idempotency-Key} all subsequent retries should fail with status code {409} (conflict). We suggest to avoid {200} here unless you make sure, that the delivered resource is the original one implementing a well defined behavior. Using {204} without content would be a similar well defined option.
 
 ### Define Collection Format of Header and Query Parameters
+
+> API Linting by Zally SBB Ruleset: [QueryParameterCollectionFormatRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/QueryParameterCollectionFormatRule.kt)
 
 Header and query parameters allow to provide a collection of values, either by providing a comma-separated list of values or by repeating the parameter multiple times with different values as follows:
 
@@ -991,6 +1027,8 @@ The API Specification should then specify something like this:
 
 ### Specify Success and Error Responses
 
+> API Linting by Zally SBB Ruleset: [SuccessResponseAsJsonObjectRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/SuccessResponseAsJsonObjectRule.kt)
+
 APIs should define the functional, business view and abstract from implementation aspects. Success and error responses are a vital part to define how an API is used correctly.
 
 Therefore, you must define **all** success and service specific error responses in your API specification. Both are part of the interface definition and provide important information for service clients to handle standard as well as exceptional situations.
@@ -1036,6 +1074,10 @@ The `X-RateLimit` headers are:
 The reason to allow both approaches is that APIs can have different needs. Retry-After is often sufficient for general load handling and request throttling scenarios and notably, does not strictly require the concept of a calling entity such as a tenant or named account. In turn this allows resource owners to minimise the amount of state they have to carry with respect to client requests. The 'X-RateLimit' headers are suitable for scenarios where clients are associated with pre-existing account or tenancy structures. 'X-RateLimit' headers are generally returned on every request and not just on a 429, which implies the service implementing the API is carrying sufficient state to track the number of requests made within a given window for each named entity.
 
 ### Use Problem JSON
+
+> API Linting by Zally SBB Ruleset: [UseProblemJsonRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/UseProblemJsonRule.kt)
+
+> API Linting by Zally SBB Ruleset: [JsonProblemAsDefaultResponseRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/JsonProblemAsDefaultResponseRule.kt)
 
 {RFC-7807}\[RFC 7807\] defines a Problem JSON object and the media type `application/problem+json`. Operations should return it (together with a suitable status code) when any problem occurred during processing and you can give more details than the status code itself can supply, whether it be caused by the client or the server (i.e. both for {4xx} or {5xx} error codes).
 

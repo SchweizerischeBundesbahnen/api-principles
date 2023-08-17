@@ -55,6 +55,8 @@ APIs must provide subscription plans and there must be an automated sign-up proc
 
 ## `MUST` Centralized API documentation in English
 
+> API Linting by Zally SBB Ruleset: [ApiMetaInformationRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/ApiMetaInformationRule.kt)
+
 An API must be documented in English by focusing on API consumers. For a better reuse quota it is crucial that APIs are well documented. Good documentation fulfills the following properties:
 - It describes the business capability in 1-3 sentences.
 - It puts the API in a well understandable context.
