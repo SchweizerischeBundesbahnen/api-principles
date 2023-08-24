@@ -84,6 +84,8 @@ Every component like the API Management gateway, web application firewalls or ot
 
 ### `MUST` Provide API Specification using OpenAPI
 
+>API Linting by Zally SBB Ruleset: [UseOpenApiRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/UseOpenApiRule.kt)
+
 We use the [OpenAPI specification](http://swagger.io/specification/) as standard to define RESTful API specification files. API designers are required to provide the API specification using a single **self-contained YAML** file to improve readability. We encourage to use **OpenAPI 3.0** version, but still support **OpenAPI 2.0** (a.k.a. Swagger 2).
 
 The API specification files should be subject to version control using a source code management system - best together with the implementing sources.
@@ -213,6 +215,8 @@ In practice {RFC-7396}\[JSON Merge Patch\] quickly turns out to be too limited, 
 **Note:** {OPTIONS} is rarely implemented, though it could be used to self-describe the full functionality of a resource.
 
 ### `MUST` Use Standard HTTP Status Codes
+
+> API Linting by Zally SBB Ruleset: [UseStandardHttpStatusCodesRule](https://github.com/SchweizerischeBundesbahnen/zally/blob/main/server/zally-ruleset-sbb/src/main/kotlin/org/zalando/zally/ruleset/sbb/UseStandardHttpStatusCodesRule.kt)
 
 You must only use standardized HTTP status codes consistently with their intended semantics. You must not invent new HTTP status codes.
 
