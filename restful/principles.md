@@ -48,7 +48,7 @@ Clients of an API **must** follow the rules described in the chapter about [tole
 
 ### `MUST` Secure public APIs with API Management & WAF
 
-Every public API must be published in the API Management and must be protected with a web application firewall (WAF). For applications, which are running internally or in a private cloud, the configuration of the WAF is already made during the initial deployment of the API to the API Management. If an API is published on a public cloud, you **must** protect your API with the so called CloudWAF ([internal CloudWAF documentation](https://confluence.sbb.ch/x/YoDuRw)).
+Every public API must be published in the API Management and must be protected with a web application firewall (WAF). Please see the [internal](https://confluence.sbb.ch/pages/viewpage.action?pageId=2244483249£) documentation for all possible and recommended WAF solutions.
 
 ### `MUST` Secure Endpoints with OAuth 2.0
 

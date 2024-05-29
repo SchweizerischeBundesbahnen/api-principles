@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.1] - 2024-05-29
+### Fixed
+- broken link to the internal WAF products. thx to R.D.
+
 ## [2.3.0] - 2022-07-05
 ### Added
 - clarified preferences for data formats
