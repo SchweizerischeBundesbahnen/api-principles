@@ -42,12 +42,11 @@ requirements (e.g. data privacy regulations).
 
 
 ### `MUST` Data master share business functions and data over APIs
-As data masters, we share the data and functions of our business capabilities. We provide the functions and
-data to other applications through over well defined APIs using the [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md) architectural style.
+As data masters, we share the data and functions of our business capabilities. We provide the functions and data to other applications through over well defined APIs using the [RESTful](restful/restful.md) or [Event-Driven](eventdriven/eventdriven.md) architectural style.
 We published them in the [API Repository](https://developer.sbb.ch) for further use in conformance to the API principles listed here.
 
 ### `MUST` We reuse existing APIs from the API Repository
-We use existing functions and their data through the [API Repository](https://developer.sbb.ch). We obtain data from the leading application (data master).
+We use existing functions and their data through the APIs available in the [API Repository](https://developer.sbb.ch). We obtain data from the leading application (data master).
 
 ## API best practices
 While not part of an official regulation, following API principles have proven to be valuable at SBB and throughout the software industry.
