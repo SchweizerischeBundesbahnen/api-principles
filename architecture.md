@@ -18,7 +18,7 @@ This section lists all high level architectural principles that have a relevant 
 {: .no_toc .text-delta }
 
 1. TOC
- {:toc}
+{:toc}
 
 ---
 
