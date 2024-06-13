@@ -47,8 +47,7 @@ data to other applications through over well defined APIs using the [RESTful](re
 We published them in the [API Repository](https://developer.sbb.ch) for further use in conformance to the API principles listed here.
 
 ### `MUST` We reuse existing APIs from the API Repository
-We use existing functions and their data through the [API Repository](https://developer.sbb.ch). We obtain data from
-the leading application (data master).
+We use existing functions and their data through the [API Repository](https://developer.sbb.ch). We obtain data from the leading application (data master).
 
 ## API best practices
 While not part of an official regulation, following API principles have proven to be valuable at SBB and throughout the software industry.
