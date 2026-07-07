@@ -1,9 +1,12 @@
-remote_theme: pmarsceill/just-the-docs
+remote_theme: just-the-docs/just-the-docs
+#theme: just-the-docs
+color_scheme: sbb
 
 title: API Principles
 description: The SBB API Principles
 baseurl: "/api-principles"
 url: "https://schweizerischebundesbahnen.github.io"
+favicon_ico: "/assets/favicon.ico"
 
 permalink: pretty
 search_enabled: true

@@ -2,3 +2,7 @@
 *.iml
 
 .idea/**/workspace.xml
+_site/
+Gemfile
+Gemfile.lock
+.jekyll-cache/

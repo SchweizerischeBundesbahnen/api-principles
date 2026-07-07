@@ -1,0 +1,40 @@
+@import "../fonts/sbb-fonts.css";
+
+//// Typography
+
+$body-font-family: SBBWeb Light,Helvetica Neue,Helvetica,Arial,sans-serif;
+$root-font-size: 20px;         // Base font-size for rems
+
+//// Colors
+/// SBB Farben (@see: https://digital.sbb.ch/de/foundation/colors/base-colors/ and https://digital.sbb.ch/de/foundation/colors/functional-colors/)
+$grey-dk-000: #8d8d8d !default;
+$grey-dk-100: #686868 !default;
+$grey-dk-200: #444444 !default;
+$grey-dk-250: #212121 !default;
+$grey-dk-300: #151515 !default;
+$grey-lt-000: #f6f6f6 !default;
+$grey-lt-100: #e5e5e5 !default;
+$grey-lt-200: #dcdcdc !default;
+$grey-lt-300: #d2d2d2 !default;
+$purple-000: #565dc2 !default;
+$purple-100: #3b42a5 !default;
+$purple-200: #2d327d !default;
+$purple-300: #1e2153 !default;
+$blue-000: #00588f !default;
+$blue-100: #0079c7 !default;
+$blue-200: #1b51b6 !default;
+$blue-300: #143a85 !default;
+$green-000: #33ff81 !default;
+$green-100: #00ff62 !default;
+$green-200: #00cc4e !default;
+$green-300: #00973b !default;
+$yellow-000: #ffeB7a !default;
+$yellow-100: #ffe347 !default;
+$yellow-200: #ffde15 !default;
+$yellow-300: #e0bf00 !default;
+$red-000: #eb0000 !default;
+$red-100: #c60018 !default;
+$red-200: #a20013 !default;
+$red-300: #a20013 !default;
+
+$link-color: $red-000;

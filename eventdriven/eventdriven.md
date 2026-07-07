@@ -6,8 +6,7 @@ has_children: true
 permalink: /eventdriven
 ---
 
-Event-Driven APIs
-=================
+# Event-Driven APIs
 
 
 This section lists SBB's design principles and best practices of Event-Driven APIs. The **design principles** are 

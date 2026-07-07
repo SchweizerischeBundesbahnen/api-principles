@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Organization
-nav_order: 3
+title: Responsibility & Life Cycle
+parent: Organizational Aspects
+nav_order: 2
 ---
 
-Organizational Requirements
-===========================
+# Responsibility & Life Cycle
 {: .no_toc }
 
 We define the most basic organizational requirements needed for an efficient collaboration between API Provider and Consumer.
 
----
+The transparently communicated life cycle of the API helps the consumers to be prepared on any forthcoming changes that need their attention.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -26,6 +26,7 @@ For the sake of short decision processes and clear definitions of the responsibi
 
 #### Rational
 {: .no_toc }
+
 - The definition of a product owner assures that there is always a team which is responsible for the maintenance and further development of the API. It also assures that there are appropriate financial resources and a constant invest in the API maturity.
 - Product decisions and prioritization is owned by one single person (with support of the team), which shortens the decision process.
 - An API is treated as a product, which usually leads to a higher reuse coefficient.
@@ -40,6 +41,7 @@ Applications serving an API and it's operational processes must aim to match the
 
 #### Rational
 {: .no_toc }
+
 - API consumers better understand the risk of a dependency through an API, which increases operational stability.
 
 ---
@@ -50,9 +52,11 @@ An API must have a responsive support channel which responds on bugs, questions 
 
 #### Rational
 {: .no_toc }
+
 - A well defined support channel and process leads to shorter MTR ([Mean Time To Repair](https://en.wikipedia.org/wiki/Mean_time_to_repair))
 - Responsive support channels lead to lower costs, due to higher speed through a well known and efficient support for API consumers. Usually it also reduces the [feature lead time](https://en.wikipedia.org/wiki/Lead_time) of API consumer's feature requests.
 
+---
 
 ## `MUST` Deprecation
 
@@ -60,6 +64,7 @@ Deprecation rules must be applied to make sure that necessary consumer changes a
 
 #### Rational
 {: .no_toc }
+
 - Sometimes it is necessary to phase out an API endpoint (or version), for instance, if a field is no longer supported in the result or a whole business functionality behind an endpoint has to be shut down. There are many other reasons as well.
 - As long as endpoints are still used by consumers breaking changes are not allowed. 
 
@@ -73,11 +78,9 @@ API deprecation **must** be part of the OpenAPI definition. If a method on a pat
 
 If `deprecated` is set to `true`, the producer must describe what clients should use instead and when the API will be shut down in the `description` section of the API definition.
 
-
 ### External Partners Must Agree on Deprecation Timespan
 
 If the API is consumed by any external partner, the producer **must** define a reasonable timespan that the API will be maintained after the producer has announced deprecation. The external partner (client) must agree to this minimum after-deprecation-lifespan before he starts using the API. Usually we prefer timespans between **3-6 months**.
-
 
 ### Not Start Using Deprecated APIs
 
