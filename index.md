@@ -22,17 +22,12 @@ With this in mind, we’ve defined "API Principles" with the following key state
 
 # Chapters
 
-[Architecture](architecture)
-
-[Organizational Aspects](organization/organizational-aspects)
-
-[General Principles](general/general-principles)
-
-[RESTful APIs](restful/restful)
-
-[Event-Driven APIs](eventdriven/eventdriven)
-
-[Changelog](CHANGELOG.md)
+- [Architecture](architecture)
+- [Organizational Aspects](organization)
+- [General Principles](general)
+- [RESTful APIs](restful)
+- [Event-Driven APIs](eventdriven)
+- [Changelog](CHANGELOG.md)
 
 ## API Principles in a nutshell
 
